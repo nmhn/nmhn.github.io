@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Hexo</title>
+  
+  
+  <link href="http://example.com/atom.xml" rel="self"/>
+  
+  <link href="http://example.com/"/>
+  <updated>2022-10-13T04:42:52.974Z</updated>
+  <id>http://example.com/</id>
+  
+  <author>
+    <name>John Doe</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>编码技巧 笔记</title>
+    <link href="http://example.com/2022/10/12/1012%E7%BC%96%E7%A0%81%E6%8A%80%E5%B7%A7/"/>
+    <id>http://example.com/2022/10/12/1012%E7%BC%96%E7%A0%81%E6%8A%80%E5%B7%A7/</id>
+    <published>2022-10-12T01:43:00.000Z</published>
+    <updated>2022-10-13T04:42:52.974Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1-整洁性"><a href="#1-整洁性" class="headerlink" title="1 整洁性"></a>1 整洁性</h2><ul><li>语义简单明确,优先考虑易于读者理解的写法</li><li>简洁!&#x3D;代码短 <ul><li>复杂的问号表达式反而不如 if else 方便理解<ul><li>个人疑问:问号表达式可以一定程度上提供条件数据传送,而非条件转移</li></ul></li></ul></li><li>提前返错<ul><li>提前返回错误判断可以减少主体逻辑的缩进数量,使主体代码逻辑更醒目</li></ul></li><li>利用析构函数做清理工作<ul><li>利用C++析构函数做清理工作,在复杂冗长代码中不会漏掉. 比如执行回调,关闭文件,释放内存</li></ul></li><li>用朴素直观的算法<ul><li>在非关键路径上,优先使用朴素直观,维护性好的代码.</li></ul></li><li>用轮询代替条件变量<ul><li>非关键路径上这么做,代码间接,不容易出bug</li><li>轮询: 一直等待信号</li></ul></li><li>在关键对象增加magic字段<ul><li>增加magic字段和断言检查,可以及时发现内存错误</li></ul></li></ul><h2 id="2-测试"><a href="#2-测试" class="headerlink" title="2 测试"></a>2 测试</h2><ul><li><p>边界</p></li><li><p>状态&#x2F;分支测试</p></li><li><p>重复&#x2F;幂等性测试</p></li><li><p>兼容性测试</p></li><li><p>防御性测试</p><ul><li>关注系统在最差情况下的表现,明确能力边界</li></ul></li><li><p>避免写出不稳定case</p><ul><li><p>例</p></li><li><blockquote><ul><li>测试不聚焦，无脑复制粘贴，等价类测试爆炸</li><li>异步等待，基于时间假设，sleep 并发，未能在预期的窗口期交互</li><li>有顺序依赖的测试，共享某个状态</li><li>资源溢出，数据库链接满、内存 OOM 析构随机 core</li><li>析构未严格保序或者未构造</li><li>多线程共享资源的错误用法导致概率 crash</li><li>有未处理完的任务就退出</li></ul></blockquote></li></ul></li></ul><h2 id="3-提交"><a href="#3-提交" class="headerlink" title="3 提交"></a>3 提交</h2><ol><li>一次提交不要超过400行代码,最好只解决一个问题</li><li>自我检查<ol><li>速度&lt;500行&#x2F;小时</li><li>一次review时间不超过1小时</li><li>接口&gt;测试&gt;实现</li></ol></li></ol><h2 id="4-高效工作方法"><a href="#4-高效工作方法" class="headerlink" title="4 高效工作方法"></a>4 高效工作方法</h2><ul><li><p>抽象和分而治之</p><ul><li>抽象:明确模块之间的依赖关系,确定API接口</li><li>分而治之:对子系统设计进行合理的注释,帮助理解</li><li>代码提交尽量做到原子[不可分割的特性.修复.优化],测试代码一同提交</li></ul></li><li><p>不要重复</p><ul><li>寻找重复逻辑和代码,并进行封装</li><li>寻找流程重复,使用脚本或者工具自动化</li><li>沉淀踩坑经验</li></ul></li><li><p>快速迭代</p><ul><li>不要过度设计</li><li>尽快让代码运行和快速验证,不断迭代来完善</li><li>为了快速验证,本地测试成本低</li><li>实现一个可运行的脚手架,再持续添加内容</li></ul></li><li><p>忌“太心急”，慢即是快</p></li><li><ul><li>需求澄清：类似 TCP 三次握手，用自己理解的方式再给对方讲一遍，确认双方理解一致，对焦，避免重复返工</li><li>自我提问：为什么做这件事？业务价值是什么？关键技术是什么？已有的系统和它对比有什么不同？兄弟团队是否做过类似的工作？是否有经验可供参考？业务&#x2F;技术的适用场景是什么？预计耗时和进度风险？</li><li>新人往往脚踏实地，忘记了仰望星空，只顾着埋头苦干，不思考背后的业务价值，这一锄头，那一铁锹，遍地都是坑，就是不开花，费时费力，成就感低。</li></ul></li><li><p>忌低效沟通，用数据说话</p></li><li><ul><li>精确地描述问题，上下文和范围，提供有效信息</li><li>文档是提高沟通效率的最佳方式之一，Google 有文档文化，推荐阅读《Design Docs at Google》﻿[5]</li><li>Bad Case：「测试 CX6 网卡时，IOPS 大幅下降」</li><li>Good Case：「在 100g 网络标卡 CX6 验证性能时，8 jobs 32 depth iosize 4K 场景下，极限 IOPS 从 120 万下降至 110 万，与 FIC 卡相比性能存在 8% 差异」</li></ul></li><li><p>忌“蠢问题”，学会提问</p></li><li><ul><li>鼓励新人多提问，但提问的问题一定要有质量</li><li>关于如何提出一个好问题推荐阅读《提问的智慧》﻿[6]</li><li>Bad Case：「我在编译耗时很长，我怀疑是资源不够，这种情况怎么办？」</li><li>Good Case：「我的开发机编译耗时 2 小时，不符合预期，OS 是 centOS 7U、128GB 内存、64Core，编译并发度是 20 核，未限制内存，编译过程使用 Top 查看确实 20 核并发，Cpu 和 Mem没有达到瓶颈，iostat 看磁盘使用率每秒 60%」</li></ul></li><li></li><li><h2 id="5-延伸阅读"><a href="#5-延伸阅读" class="headerlink" title="5 延伸阅读"></a>5 延伸阅读</h2></li><li><blockquote><p>编写可读代码的艺术</p><p>software Engineer at Google</p><p>人月神话</p><p>数据密集型应用系统设计</p></blockquote></li><li></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;1-整洁性&quot;&gt;&lt;a href=&quot;#1-整洁性&quot; class=&quot;headerlink&quot; title=&quot;1 整洁性&quot;&gt;&lt;/a&gt;1 整洁性&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;语义简单明确,优先考虑易于读者理解的写法&lt;/li&gt;
+&lt;li&gt;简洁!&amp;#x3D;代码短 &lt;ul&gt;
+&lt;li&gt;</summary>
+      
+    
+    
+    
+    <category term="笔记" scheme="http://example.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="笔记" scheme="http://example.com/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="技巧" scheme="http://example.com/tags/%E6%8A%80%E5%B7%A7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CSAPP Linking 笔记</title>
+    <link href="http://example.com/2022/10/12/1012%20Linking/"/>
+    <id>http://example.com/2022/10/12/1012%20Linking/</id>
+    <published>2022-10-12T00:43:00.000Z</published>
+    <updated>2022-10-13T04:42:16.809Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="符号和符号表"><a href="#符号和符号表" class="headerlink" title="符号和符号表"></a>符号和符号表</h2><blockquote><p>static属性声明的全局变量&#x2F;函数都是模块私有的,任意不被static修饰的全局变量&#x2F;函数都是公共的,可以被其他模块访问</p><p>因此,在每个可重定位目标模块中存在三类符号</p><ul><li>自己定义的全局符号</li><li>由其他模块定义并由该模块引用的全局符号</li><li>自己定义的局部符号–static修饰的函数&#x2F;全局变量</li></ul></blockquote><h2 id="符号解析"><a href="#符号解析" class="headerlink" title="符号解析"></a>符号解析</h2><blockquote><p>编译器解析符号引用的办法是将每个与它输入的可重定位目标文件中的一个确定的符号定义关联起来</p></blockquote><h3 id="如何解析多重定义的全局符号"><a href="#如何解析多重定义的全局符号" class="headerlink" title="如何解析多重定义的全局符号"></a>如何解析多重定义的全局符号</h3><blockquote><p>区别强弱定义: (我的理解) 强定义是全局定义后有初始值,弱定义没有</p><ol><li>不允许有多个同名的强符号</li><li>如果有一个强符号和多个弱符号同名,则选择强符号</li><li>如果多个弱符号同名,则随机选择一个</li></ol></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;符号和符号表&quot;&gt;&lt;a href=&quot;#符号和符号表&quot; class=&quot;headerlink&quot; title=&quot;符号和符号表&quot;&gt;&lt;/a&gt;符号和符号表&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;static属性声明的全局变量&amp;#x2F;函数都是模块私有的,任意不被static</summary>
+      
+    
+    
+    
+    <category term="笔记" scheme="http://example.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="操作系统" scheme="http://example.com/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="csapp" scheme="http://example.com/tags/csapp/"/>
+    
+    <category term="笔记" scheme="http://example.com/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CSAPP 存储器层次结构 笔记</title>
+    <link href="http://example.com/2022/10/09/1009%E5%AD%98%E5%82%A8%E5%99%A8%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84/"/>
+    <id>http://example.com/2022/10/09/1009%E5%AD%98%E5%82%A8%E5%99%A8%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84/</id>
+    <published>2022-10-09T00:43:00.000Z</published>
+    <updated>2022-10-13T04:42:09.204Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="6-1-存储技术"><a href="#6-1-存储技术" class="headerlink" title="6.1 存储技术"></a>6.1 存储技术</h2><ul><li><h3 id="随机访问存储器-RAM"><a href="#随机访问存储器-RAM" class="headerlink" title="随机访问存储器 RAM"></a>随机访问存储器 RAM</h3><ul><li><h4 id="静态-SRAM"><a href="#静态-SRAM" class="headerlink" title="静态 SRAM"></a>静态 SRAM</h4><blockquote><p>位存储模式:双稳态存储器单元</p><p>只要有电,就能永远保持值</p></blockquote></li><li><h4 id="动态-DRAM"><a href="#动态-DRAM" class="headerlink" title="动态 DRAM"></a>动态 DRAM</h4><blockquote><p>位存储模式: 电容充电</p></blockquote></li><li><h4 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h4></li><li><table><thead><tr><th></th><th>每位晶体管数</th><th>相对访问时间</th><th>持续?</th><th>敏感</th><th>相对花费</th><th>应用</th></tr></thead><tbody><tr><td>SRAM</td><td>6</td><td>1</td><td>是</td><td>否</td><td>1000</td><td>高速缓冲存储器</td></tr><tr><td>DRAM</td><td>1</td><td>10</td><td>否</td><td>是</td><td>1</td><td>主存&#x2F;帧缓冲区</td></tr></tbody></table></li><li></li><li><h4 id="非易失性存储器-ROM"><a href="#非易失性存储器-ROM" class="headerlink" title="非易失性存储器 ROM"></a>非易失性存储器 ROM</h4><blockquote><p>关电后仍然能保持信息</p></blockquote></li><li><h4 id="访问主存"><a href="#访问主存" class="headerlink" title="访问主存"></a>访问主存</h4><blockquote><p>通过数据总线和主存信息交互</p></blockquote></li></ul></li><li><h3 id="磁盘存储"><a href="#磁盘存储" class="headerlink" title="磁盘存储"></a>磁盘存储</h3><ul><li><p>从磁盘读数据的效率是从DRAM读数据的几乎10万倍慢,不过ssd会快的多,不过只是相对于传统磁盘而言</p></li><li><p>固态磁盘SSD</p><ul><li><p>读SSD比写要快</p><ul><li>因为随机写要擦除块,这个动作是毫秒级的</li><li>如果试图写一个有数据的块,会先将这块的数据复制到另一个没数据的地方</li></ul></li><li><p>SSD多次重复写后会损坏</p></li></ul></li></ul></li></ul><h2 id="6-2局部性"><a href="#6-2局部性" class="headerlink" title="6.2局部性"></a>6.2局部性</h2><h3 id="局部性原理"><a href="#局部性原理" class="headerlink" title="局部性原理"></a>局部性原理</h3><p>计算机程序倾向于引用邻近与其他最近引用过的数据项的数据项</p><h3 id="简单原则"><a href="#简单原则" class="headerlink" title="简单原则"></a>简单原则</h3><ul><li>重复引用相同变量的程序有良好的时间局部性</li><li>对于步长为k的引用模式的程序,步长越小,空间局部性越好.</li><li>对于取指令来说,循环有好的时间和空间局部性.循环体越小,迭代次数越多,局部性越好</li></ul><h2 id="6-3-存储器层次结构"><a href="#6-3-存储器层次结构" class="headerlink" title="6.3 存储器层次结构"></a>6.3 存储器层次结构</h2><ul><li>L0 寄存器 –保存着从高速缓存中取出的字</li><li>L1 高速缓存 SRAM –缓存着从L2取出的缓存行 – 速度接近寄存器</li><li>L2 高速缓存 SRAM –缓存着从L3取出的缓存行 – 速度比L1慢</li><li>L3 高速缓存 SRAM –缓存着从主存高速缓存取出的缓存行 –速度比L2慢</li><li>L4 主存 DRAM – 保存着从本地磁盘取出的代码块</li><li>L5 本地耳机存储 本地磁盘 –保存着从远程网络服务器磁盘上读取的文件</li><li>L6 远程二级存储 [分布式文件系统,Web服务器]</li></ul><h2 id="6-4-高速缓存存储器"><a href="#6-4-高速缓存存储器" class="headerlink" title="6.4 高速缓存存储器"></a>6.4 高速缓存存储器</h2><h3 id="6-4-1-通用的高速缓存存储器组织结构"><a href="#6-4-1-通用的高速缓存存储器组织结构" class="headerlink" title="6.4.1 通用的高速缓存存储器组织结构"></a>6.4.1 通用的高速缓存存储器组织结构</h3><blockquote><p>存储器地址位数: m</p><p>存储器地址数: M&#x3D;2^m</p><p>高速缓存组数 S&#x3D; 2^s</p><p>高速缓存组内缓存行: E</p><p>缓存行内数据块 B&#x3D;2^b</p><p>高速缓存大小: C&#x3D;S*E*B</p></blockquote><h3 id="6-4-2-直接映射高速缓存"><a href="#6-4-2-直接映射高速缓存" class="headerlink" title="6.4.2 直接映射高速缓存"></a>6.4.2 直接映射高速缓存</h3><blockquote><h4 id="特征-每个组只有一行-因此字选择时简单-但容易发生抖动"><a href="#特征-每个组只有一行-因此字选择时简单-但容易发生抖动" class="headerlink" title="特征: 每个组只有一行,因此字选择时简单,但容易发生抖动"></a>特征: 每个组只有一行,因此字选择时简单,但容易发生抖动</h4></blockquote><blockquote><h4 id="流程-假设执行一条读内存字w的指令"><a href="#流程-假设执行一条读内存字w的指令" class="headerlink" title="流程: 假设执行一条读内存字w的指令"></a>流程: 假设执行一条读内存字w的指令</h4><h4 id="组选择"><a href="#组选择" class="headerlink" title="组选择:"></a>组选择:</h4><ul><li>从w中抽取s个组标记位,s由高速缓存组数决定</li><li>之后查看高速缓存中是否存在该组,如果存在就得到一个缓存命中,不存在就是缓存不命中</li></ul><h4 id="字选择"><a href="#字选择" class="headerlink" title="字选择:"></a>字选择:</h4><ul><li>高速缓存中的偏移位标识了字节在块中的偏移</li></ul><h4 id="行替换"><a href="#行替换" class="headerlink" title="行替换:"></a>行替换:</h4><ul><li>如果缓存不命中,就需要从层次结构的下一层中取出被请求的块,然后将心的块存储在组索引所示的块中</li></ul><h4 id="示例"><a href="#示例" class="headerlink" title="示例:"></a>示例:</h4><ul><li>书P429</li></ul><h4 id="冲突不命中"><a href="#冲突不命中" class="headerlink" title="冲突不命中:"></a>冲突不命中:</h4><ul><li>由直接映射的设计可以看出,如果程序访问大小为2的幂的数组,很可能会发生冲突不命中.</li><li>相同组映射的内存块会不断的来回覆盖–抖动</li></ul></blockquote><h3 id="6-4-3-组相联高速缓存"><a href="#6-4-3-组相联高速缓存" class="headerlink" title="6.4.3 组相联高速缓存"></a>6.4.3 组相联高速缓存</h3><blockquote><p>每个组都有 1&lt;E&lt;C&#x2F;B 个高速缓存行的 的高速缓存通常称为E路组相联高速缓存</p><p>如果E&#x3D;C&#x2F;B 称为全相联高速缓存</p></blockquote><blockquote><h4 id="行匹配"><a href="#行匹配" class="headerlink" title="行匹配"></a>行匹配</h4><ul><li>检查多个行的标记和有效位,判断是否在缓存中</li></ul><h4 id="行替换-1"><a href="#行替换-1" class="headerlink" title="行替换"></a>行替换</h4><ul><li>如果组中有空行,则换到空行上去</li><li>如果没有,则根据替换策略替换–比如LRU</li></ul></blockquote><h3 id="6-4-4-写回"><a href="#6-4-4-写回" class="headerlink" title="6.4.4 写回"></a>6.4.4 写回</h3><blockquote><h4 id="怎么更新层次结构中-低一层的副本"><a href="#怎么更新层次结构中-低一层的副本" class="headerlink" title="怎么更新层次结构中,低一层的副本"></a>怎么更新层次结构中,低一层的副本</h4><ol><li>直写 – write throuth<ul><li>立即将w的高速缓存块写回到紧接着的第一层</li><li>每次写都会引起总线流量</li><li>能够使用独立于高速缓存的写缓冲区用来更新内存</li><li>读不命中开销小</li></ul></li><li>写回[ 延迟更新] write back<ul><li>只有当替换算法要驱逐这个块时,将这个块写到低一层</li><li>显著减少总线流量</li><li>增加复杂性– 需要维护一个新的位[修改位]</li><li>允许更多到内存的贷款用于执行DMA的I&#x2F;O.</li></ul></li></ol><h4 id="如何处理写不命中"><a href="#如何处理写不命中" class="headerlink" title="如何处理写不命中"></a>如何处理写不命中</h4><p>就是说,要写的块拿不到</p><ol><li>写分配 write-allocate<ul><li>加载相应的低一层的块到高速缓存中,然后更新这个高速缓存块</li><li>写回高速缓存通常是写分配的</li></ul></li><li>非写分配 not-write-<strong>allocate</strong><ul><li>避开高速缓存,直接把这个字写到低一层中</li><li>直写高速缓存通常是非写分配的</li></ul></li></ol></blockquote><h3 id="6-4-7-性能影响"><a href="#6-4-7-性能影响" class="headerlink" title="6.4.7 性能影响"></a>6.4.7 性能影响</h3><ol><li>不命中率<ul><li>执行期间,内存引用不命中的比率 不命中数量&#x2F;引用数量</li></ul></li><li>命中时间<ul><li>从高速缓存传送一个字到CPU所需的时间</li></ul></li><li>不命中处罚<ul><li>不命中所需的额外时间</li></ul></li></ol><h4 id="下列因素提高的影响"><a href="#下列因素提高的影响" class="headerlink" title="下列因素提高的影响"></a>下列因素提高的影响</h4><ul><li>高速缓存:命中率提高,命中时间提高</li><li>块大小:命中率提高,不命中处罚提高,损害时间局部性比空间局部性更好的程序的命中率</li><li>相联度:降低抖动可能,成本提高,增加不命中处罚</li></ul><h4 id="越往层次下面走-传送时间增加-减少传送的数量就更为重要"><a href="#越往层次下面走-传送时间增加-减少传送的数量就更为重要" class="headerlink" title="越往层次下面走,传送时间增加,减少传送的数量就更为重要."></a>越往层次下面走,传送时间增加,减少传送的数量就更为重要.</h4><h2 id="6-5-编写高速缓存友好的代码"><a href="#6-5-编写高速缓存友好的代码" class="headerlink" title="6.5 编写高速缓存友好的代码"></a>6.5 编写高速缓存友好的代码</h2><h3 id="两个原则"><a href="#两个原则" class="headerlink" title="两个原则"></a>两个原则</h3><ul><li>让最常见的情况运行的最快</li><li>尽量减少,每个循环内部的缓存不命中数量.</li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;6-1-存储技术&quot;&gt;&lt;a href=&quot;#6-1-存储技术&quot; class=&quot;headerlink&quot; title=&quot;6.1 存储技术&quot;&gt;&lt;/a&gt;6.1 存储技术&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;h3 id=&quot;随机访问存储器-RAM&quot;&gt;&lt;a href=&quot;#随机访问存储器-R</summary>
+      
+    
+    
+    
+    <category term="笔记" scheme="http://example.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="操作系统" scheme="http://example.com/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="csapp" scheme="http://example.com/tags/csapp/"/>
+    
+    <category term="笔记" scheme="http://example.com/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CSAPP Optimize 笔记</title>
+    <link href="http://example.com/2022/10/08/1008CSAPP%20Optimize/"/>
+    <id>http://example.com/2022/10/08/1008CSAPP%20Optimize/</id>
+    <published>2022-10-08T00:43:00.000Z</published>
+    <updated>2022-10-13T04:41:52.275Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="5-1-编译器优化能力的局限性"><a href="#5-1-编译器优化能力的局限性" class="headerlink" title="5.1 编译器优化能力的局限性"></a>5.1 编译器优化能力的局限性</h2><ul><li><h3 id="编译器只做安全的优化–优化后和未优化的版本有一样的行为"><a href="#编译器只做安全的优化–优化后和未优化的版本有一样的行为" class="headerlink" title="编译器只做安全的优化–优化后和未优化的版本有一样的行为"></a>编译器只做安全的优化–优化后和未优化的版本有一样的行为</h3></li></ul><h3 id="限制"><a href="#限制" class="headerlink" title="限制"></a>限制</h3><ul><li><h3 id="内存别名使用"><a href="#内存别名使用" class="headerlink" title="内存别名使用"></a>内存别名使用</h3></li></ul><blockquote><p>编译器并不知道指针指向哪里,因此它必须假设指针可能指向同一个位置.</p></blockquote><ul><li><h3 id="函数调用"><a href="#函数调用" class="headerlink" title="函数调用"></a>函数调用</h3></li></ul><blockquote><p>大多数编译器不会去判断一个函数是否有副作用,因此它们倾向于将函数的调用保持不变</p><h4 id="内联"><a href="#内联" class="headerlink" title="内联"></a>内联</h4><blockquote><p>包含函数调用的代码可以用内联函数替换过程进行优化,就是将函数内部的执行步骤内联到一起</p><p>在gcc中,只尝试单文件的内联,不会尝试多文件的内联(比如一组函数在其他文件内的函数中被调用)</p></blockquote></blockquote><h2 id="5-2-表示程序性能"><a href="#5-2-表示程序性能" class="headerlink" title="5.2 表示程序性能"></a>5.2 表示程序性能</h2><h3 id="标准-CPE"><a href="#标准-CPE" class="headerlink" title="标准:CPE"></a>标准:CPE</h3><blockquote><p>每元素的周期数</p></blockquote><h2 id="5-3-消除低效循环"><a href="#5-3-消除低效循环" class="headerlink" title="5.3 消除低效循环"></a>5.3 消除低效循环</h2><blockquote><p>例如 :可以拿出来的拿出来</p></blockquote><h2 id="5-4减少过程调用"><a href="#5-4减少过程调用" class="headerlink" title="5.4减少过程调用"></a>5.4减少过程调用</h2><blockquote><p>例: 如果一个循环中不断从结构体中的列表中获取值,而同时,结构体会不断对列表中值的存在进行判断</p><p>则可在保证安全的情况下,直接获取结构体中的列表进行访问.</p></blockquote><h2 id="5-5消除不必要的内存引用"><a href="#5-5消除不必要的内存引用" class="headerlink" title="5.5消除不必要的内存引用"></a>5.5消除不必要的内存引用</h2><blockquote><p>例如</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="comment">// for loop</span></span><br><span class="line">    *dest=*dest+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 将dest这个不断访问内存的东西挪到寄存器里</span></span><br><span class="line">val tmp=*dest;</span><br><span class="line">&#123;</span><br><span class="line">  tmp=tmp+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line">*dest=tmp</span><br></pre></td></tr></table></figure></blockquote><h2 id="5-6-了解现代处理器"><a href="#5-6-了解现代处理器" class="headerlink" title="5.6 了解现代处理器"></a>5.6 了解现代处理器</h2><blockquote><ul><li><p>延迟界限</p><blockquote><p>当一系列操作必须按照严格顺序执行时会碰到</p><p>因为下一条指令开始前,这一条必须结束</p><p>代码中的数据相关限制了处理器利用指令级并行的能力时会碰到延迟界限</p></blockquote></li><li><p>吞吐量界限</p><blockquote><p>是处理器功能单元的原始计算能力,是程序性能的终极限制</p></blockquote></li></ul></blockquote><h2 id="5-7-循环展开"><a href="#5-7-循环展开" class="headerlink" title="5.7 循环展开"></a>5.7 循环展开</h2><blockquote><ul><li>比如n长的循环,2个一组展开之后,循环长度&#x2F;2,这种称之为1*2循环展开</li></ul></blockquote><blockquote><p>对一个n长的循环,进行k级别的展开,就需要将上限设置为n-k+1,这样最大循环索引会小于n</p></blockquote><h2 id="5-8-提高并行性"><a href="#5-8-提高并行性" class="headerlink" title="5.8 提高并行性"></a>5.8 提高并行性</h2><blockquote><h3 id="5-8-1-多个累积变量"><a href="#5-8-1-多个累积变量" class="headerlink" title="5.8.1 多个累积变量"></a>5.8.1 多个累积变量</h3><p>例: 见书P370</p><p>上面的例子称之为2*2循环展开</p><h3 id="5-8-2重新结合变换"><a href="#5-8-2重新结合变换" class="headerlink" title="5.8.2重新结合变换"></a>5.8.2重新结合变换</h3><p>该例子为2*1a循环展开</p><p>例</p><blockquote><p>&#x2F;&#x2F; slow version</p><p>acc&#x3D; (acc * data[i]) * data[i+1]</p><p>&#x2F;&#x2F;fast version</p><p>acc &#x3D; acc * ( data[i] * data[i+1])</p></blockquote><p>slow版里,每次计算都需要等之前的计算结果出来之后才能继续进行</p><p>fast版里,data[i]*&amp; data[i+1]不受约束,因此可以被CPU并行优化,故效率高</p></blockquote><h2 id="5-9-一些限制因素"><a href="#5-9-一些限制因素" class="headerlink" title="5.9 一些限制因素"></a>5.9 一些限制因素</h2><p>书P378</p><h3 id="5-9-1-寄存器溢出"><a href="#5-9-1-寄存器溢出" class="headerlink" title="5.9.1 寄存器溢出"></a>5.9.1 寄存器溢出</h3><blockquote><p>当用到的临时变量过多,使得寄存器不够用的时候,会调用栈来存储这些变量,这会使得程序效率变低.</p></blockquote><h3 id="5-9-2-分支预测和预测错误处罚"><a href="#5-9-2-分支预测和预测错误处罚" class="headerlink" title="5.9.2 分支预测和预测错误处罚"></a>5.9.2 分支预测和预测错误处罚</h3><blockquote><p>预测错误会导致较大的错误处罚,那么有什么办法来保证这个处罚对程序效率影响较小呢</p><ol><li><p>不过分关心可预测的分支</p><blockquote><p>例如,大部分结束循环的语句判断都是不结束,预测时一般都按照不结束来判断. 这时候只在最后一次会导致预测错误处罚.</p></blockquote></li><li><p>书写适合使用条件传送实现的代码</p><blockquote><p>最好使用条件数据传送而非条件控制转移.</p><p>数据传送示例:</p><blockquote><p>max&#x3D;a&gt;b?a:b;</p></blockquote><p>这种形式适合流水线并行操作.</p></blockquote></li></ol></blockquote><h2 id="5-10-应用-性能提高技术"><a href="#5-10-应用-性能提高技术" class="headerlink" title="5.10 应用 性能提高技术"></a>5.10 应用 性能提高技术</h2><blockquote><ol><li>高级设计: 为遇到的问题选择适当的算法和数据结构</li><li>基本编码原则. 避免限制优化的因素<ol><li>消除连续的函数调用<ul><li>在可能时,将计算一道循环外</li></ul></li><li>消除不必要的内存引用<ul><li>引入临时变量来保存中间结果,只有在最后的值计算出来时,才将结果存放到数组和全局变量中.</li></ul></li></ol></li><li>低级优化. 结构化代码以利用硬件性能<ol><li>展开循环,降低开销</li><li>使用多个累计变量和重新结合技术,找到方法提高指令级并行</li><li>用功能性的风格重写条件操作,使编译采用条件数据传送.</li></ol></li></ol></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;5-1-编译器优化能力的局限性&quot;&gt;&lt;a href=&quot;#5-1-编译器优化能力的局限性&quot; class=&quot;headerlink&quot; title=&quot;5.1 编译器优化能力的局限性&quot;&gt;&lt;/a&gt;5.1 编译器优化能力的局限性&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;h3 id=&quot;编译器只</summary>
+      
+    
+    
+    
+    <category term="笔记" scheme="http://example.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="操作系统" scheme="http://example.com/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="csapp" scheme="http://example.com/tags/csapp/"/>
+    
+    <category term="笔记" scheme="http://example.com/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CSAPP Machine Level Programming</title>
+    <link href="http://example.com/2022/10/07/1007csapp_CPu/"/>
+    <id>http://example.com/2022/10/07/1007csapp_CPu/</id>
+    <published>2022-10-07T00:43:00.000Z</published>
+    <updated>2022-10-13T04:41:31.632Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="C-语言-基础属性"><a href="#C-语言-基础属性" class="headerlink" title="C 语言 基础属性"></a>C 语言 基础属性</h2><p>数组的指针运算– 数组存储的是它的指针,其指针++ 会跳过存储数据量的位置(如 int a[10],a++ ,arr[a]会+4)</p><h2 id="struct的对齐"><a href="#struct的对齐" class="headerlink" title="struct的对齐"></a>struct的对齐</h2><p>由于会根据struct中的最大的基本结构类型[int,double,float 之类的,和列表没关系]来进行对齐[例如,struct中存在double就会按照8byte对齐,如果最大只有int,就按照4byte对齐],因此,最好将结构合理组织,</p><p>如</p><blockquote><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">S4</span>&#123;</span><span class="comment">//char :1 byte, int : 4byte</span></span><br><span class="line">    <span class="type">char</span> c;<span class="comment">// 产生3个用于对齐的内存浪费</span></span><br><span class="line">    <span class="type">int</span> i;</span><br><span class="line">    <span class="type">char</span> d;<span class="comment">// 产生3个用于对齐的浪费</span></span><br><span class="line">&#125;<span class="comment">// waste 3+3 byte</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">S5</span>&#123;</span></span><br><span class="line">    <span class="type">int</span> i;</span><br><span class="line">    <span class="type">char</span> c;</span><br><span class="line">    <span class="type">char</span> d;<span class="comment">//c,d一并存储,产生2个用于对齐的浪费</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></blockquote><h2 id="Memory-Layout"><a href="#Memory-Layout" class="headerlink" title="Memory Layout"></a>Memory Layout</h2><h3 id="IMG"><a href="#IMG" class="headerlink" title="IMG:"></a>IMG:</h3><img src="C:\Users\Ysh78\AppData\Roaming\Typora\typora-user-images\image-20221007163747876.png" alt="image-20221007163747876" style="zoom: 33%;" /><h2 id="Buffer-OverFlow"><a href="#Buffer-OverFlow" class="headerlink" title="Buffer OverFlow"></a>Buffer OverFlow</h2><img src="C:\Users\Ysh78\AppData\Roaming\Typora\typora-user-images\image-20221007163839893.png" alt="image-20221007163839893" style="zoom:33%;" /><blockquote><ul><li>注: 内存是按照0x7FFFFFFFFFFF 也就是2^47来作为地址的,所以各位置之间可能会有较大的差距[因为暂时,硬件条件并不会使得整块可供分配的内存id映射被用尽]</li></ul><p>stack:</p><ul><li>8MB</li><li>向下拓展[地址高标号低]</li></ul><p>Data:</p><ul><li>用于存放程序开始时分配的数据 <ul><li>存放全局变量</li></ul></li></ul><p>Heap:</p><ul><li>存放通过malloc&#x2F;相关函数申请的变量,会动态变化</li><li>大的数据块会出现在靠近stack的位置,并向下增长,小的数据块会出现在靠近Data的位置,并向上增长</li></ul><p>SharedLibraries:</p><ul><li>存放库函数代码[一般在磁盘上]</li><li>在运行时动态加载到内存中</li></ul></blockquote><h2 id="Unions"><a href="#Unions" class="headerlink" title="Unions"></a>Unions</h2><h2 id="BufferOverFlow"><a href="#BufferOverFlow" class="headerlink" title="BufferOverFlow"></a>BufferOverFlow</h2><h3 id="代码注入攻击详解"><a href="#代码注入攻击详解" class="headerlink" title="代码注入攻击详解"></a>代码注入攻击详解</h3><blockquote><p>举例: gets 会不断读取字符串,直至收到一个’\0’</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">echo</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">char</span> buf[<span class="number">4</span>];<span class="comment">/* Way too small*/</span></span><br><span class="line">    gets(buf);</span><br><span class="line">    <span class="built_in">puts</span>(buf);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>此时,若输入大于4个字符,echo还是可以接收</p><p>查看汇编代码可以看到,调用echo的时候给stackFrame分配了24byte的空间</p><p>如果输入大于23个字符,就会报出 segment fault</p><ul><li>这时候该函数的返回位置可能被溢出的字符串覆盖,使得函数不会到main这个接口,而是进入一个新的地区</li><li>这就是代码注入攻击</li></ul><p>小于23就没事,</p></blockquote><h3 id="How-to-Avoid"><a href="#How-to-Avoid" class="headerlink" title="How to Avoid"></a>How to Avoid</h3><blockquote><ol><li>使用安全的替代<ol><li>fgets-&gt; gets</li><li>strncopy-&gt; strcopy</li><li>scanf(“%ns”)-&gt; scanf(“%s”)</li></ol></li><li>Randomized stack offsets– 地址空间布局随机化<ol><li>使得每次程序运行的时候,它分配到的缓冲区长度都是变化的</li></ol></li><li>None executable code segments<ol><li>在可读&#x2F;可写等内存标识之外增加一个 “execute” 权限</li></ol></li><li>stack canary 栈保护机制<ol><li><img src="C:\Users\Ysh78\AppData\Roaming\Typora\typora-user-images\image-20221007201652095.png" alt="image-20221007201652095"></li><li>程序会检测到栈溢出的问题并返回</li></ol></li></ol></blockquote><h3 id="A-Skill-to-Avoid-Randomized-stack-offset-x2F-None-executable-code-segments"><a href="#A-Skill-to-Avoid-Randomized-stack-offset-x2F-None-executable-code-segments" class="headerlink" title="A Skill to Avoid Randomized stack offset&#x2F;None executable code segments"></a>A Skill to Avoid Randomized stack offset&#x2F;None executable code segments</h3><blockquote><ul><li>但是躲不开canary</li></ul><h4 id="Gadget"><a href="#Gadget" class="headerlink" title="Gadget"></a>Gadget</h4><p>A Example:<img src="C:\Users\Ysh78\AppData\Roaming\Typora\typora-user-images\image-20221008122557042.png" alt="image-20221008122557042" style="zoom:50%;" /></p><p>p后面的值恰好和mov rax rdi 相等,结尾又是一个c3,因此这一段额外的代码会在p赋值之后执行,并返回.</p><p>这样就实现了在代码中插入一定量的自己的小代码,返回后就可以通过获取rsp栈中的代码,来将之前的代码块拼接一起执行.</p></blockquote><h3 id="GDB-Trick"><a href="#GDB-Trick" class="headerlink" title="GDB Trick"></a>GDB Trick</h3><blockquote><p>disass [FUNC_NAME] </p><p>解析对应函数的汇编代码</p></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;C-语言-基础属性&quot;&gt;&lt;a href=&quot;#C-语言-基础属性&quot; class=&quot;headerlink&quot; title=&quot;C 语言 基础属性&quot;&gt;&lt;/a&gt;C 语言 基础属性&lt;/h2&gt;&lt;p&gt;数组的指针运算– 数组存储的是它的指针,其指针++ 会跳过存储数据量的位置(如 in</summary>
+      
+    
+    
+    
+    <category term="笔记" scheme="http://example.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="操作系统" scheme="http://example.com/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="csapp" scheme="http://example.com/tags/csapp/"/>
+    
+    <category term="笔记" scheme="http://example.com/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>论文阅读笔记-Towards a Fully Disaggregated and Programmable Data Center</title>
+    <link href="http://example.com/2022/10/02/1002%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0-Towards%20a%20Fully%20Disaggregated%20and%20Programmable/"/>
+    <id>http://example.com/2022/10/02/1002%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0-Towards%20a%20Fully%20Disaggregated%20and%20Programmable/</id>
+    <published>2022-10-02T00:43:00.000Z</published>
+    <updated>2022-10-13T04:40:45.005Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>目的： 探索建立一个完全分布式的数据中心的可能性。</p><p>topLayer: 探索了两种抽象形式，并提出了一种原分布式的方法</p><p>bottomLayer: 描述了建立分布式设备与连接它们的网络基础设施所需的硬件和关键功能。</p><p>connection：提出了一个静态时间组价，它将不同的用户程序编译到异构的分布式设备中，通过一个disaggregation-native 的中间表示法。</p><p>同时提出了一个运行时的系统，他管理硬件资源，并安排编译器生成的执行单元。</p><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>现有的问题： </p><blockquote><p> 应用的颗粒化和硬件性能增长速度的限制，对分布式数据中心提出了要求。</p><p>而现有的分布式解决方案无法对网络和计算器进行分布。</p><p>同时，现有的数据中心网络的设计目的是连接服务器，但是，怎么高效地连接分布式设备呢？</p><p>最后，目前仍不清楚如何将应用映射到一个分布式的硬件平台。</p></blockquote><h3 id="两种设想的抽象类型"><a href="#两种设想的抽象类型" class="headerlink" title="两种设想的抽象类型"></a>两种设想的抽象类型</h3><blockquote><ol><li>向后兼容的抽象，<br>用户不知道硬件性质，他们会认为程序在虚拟机上运行，完全与服务器无关。</li><li>向应用程序暴露部分分布式、可编程的底层性质。<br>这种类型会有更好的 性能，因为用户可以直接控制并利用低层次的系统功能。如网络通信等。</li></ol></blockquote><h3 id="实现应用的分布式映射"><a href="#实现应用的分布式映射" class="headerlink" title="实现应用的分布式映射"></a>实现应用的分布式映射</h3><blockquote><p>不同于以往的分布式架构，这里使用Intetmediate Representation 作为中层架构。它是围绕着分解执行单元的概念进行的。</p><p>用MLIR将程序分解成小编码块</p></blockquote><h3 id="如何在FDP-DC中建立硬件基础设施"><a href="#如何在FDP-DC中建立硬件基础设施" class="headerlink" title="如何在FDP-DC中建立硬件基础设施"></a>如何在FDP-DC中建立硬件基础设施</h3><blockquote><p>提供了建立一个分布式设备的指导方针，并却行了它的三个方针，网络连接性，硬件虚拟化和多用户隔离</p><p>设想了一个可重配置的网络架构</p></blockquote><h3 id="runtime-management-system"><a href="#runtime-management-system" class="headerlink" title="runtime management system"></a>runtime management system</h3><blockquote><p>FDP-DC OS 监督整个资源池，在规划的时候会采用编译器的提示</p></blockquote><h2 id="FDP-DC-Design"><a href="#FDP-DC-Design" class="headerlink" title="FDP-DC Design"></a>FDP-DC Design</h2><p><img src="C:\Users\Ysh78\AppData\Roaming\Typora\typora-user-images\image-20221002152443741.png" alt="image-20221002152443741"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;Abstract&quot;&gt;&lt;a href=&quot;#Abstract&quot; class=&quot;headerlink&quot; title=&quot;Abstract&quot;&gt;&lt;/a&gt;Abstract&lt;/h2&gt;&lt;p&gt;目的： 探索建立一个完全分布式的数据中心的可能性。&lt;/p&gt;
+&lt;p&gt;topLayer: 探索了</summary>
+      
+    
+    
+    
+    <category term="笔记" scheme="http://example.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="计算机" scheme="http://example.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/"/>
+    
+    <category term="笔记" scheme="http://example.com/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Giant VM 操作过程</title>
+    <link href="http://example.com/2022/10/01/1001GiantVm%20%E6%93%8D%E4%BD%9C%E8%BF%87%E7%A8%8B%20-ysh/"/>
+    <id>http://example.com/2022/10/01/1001GiantVm%20%E6%93%8D%E4%BD%9C%E8%BF%87%E7%A8%8B%20-ysh/</id>
+    <published>2022-10-01T00:43:00.000Z</published>
+    <updated>2022-10-13T04:39:59.899Z</updated>
+    
+    <content type="html"><![CDATA[<p>主机环境：Windows 11 64位 core i9 12900p</p><p>此次使用VMWare Workstation pro 16进行操作</p><h2 id="1-环境配置"><a href="#1-环境配置" class="headerlink" title="1.环境配置"></a>1.环境配置</h2><h4 id="step1-系统准备"><a href="#step1-系统准备" class="headerlink" title="step1 系统准备"></a>step1 系统准备</h4><blockquote><p>win+r 打开cmd</p><p>sysinfo</p><p>查看是否开启了Hyper-V，如果开启应将其关闭</p><p>关闭方式</p><ul><li>【启用或关闭Windows功能】-&gt; 将虚拟机平台和windows虚拟机监控程序平台关闭<br><img src="C:\Users\Ysh78\AppData\Roaming\Typora\typora-user-images\image-20220930105100032.png" alt="image-20220930105100032"></li><li>如果看到了Hyper-V的选项框，将其取消勾选</li><li>然后重启生效修改</li></ul></blockquote><h3 id="step2-VMware-设置"><a href="#step2-VMware-设置" class="headerlink" title="step2 VMware 设置"></a>step2 VMware 设置</h3><blockquote><p>VMware 中启动Ubuntu16.04<br>配置为<br>内核： Linux4.15.0-112，磁盘分配&gt;40G,在CPU设置中启用嵌套虚拟化</p></blockquote><h3 id="step3-下载必要的包"><a href="#step3-下载必要的包" class="headerlink" title="step3  下载必要的包"></a>step3  下载必要的包</h3><blockquote><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install build-essential openssl libncurses5-dev libssl-dev</span><br><span class="line"></span><br><span class="line">sudo apt-get install zlibc minizip libidn11-dev libidn11 bison flex</span><br></pre></td></tr></table></figure></blockquote><h3 id="step4-获得Linux-DSM"><a href="#step4-获得Linux-DSM" class="headerlink" title="step4 获得Linux-DSM"></a>step4 获得Linux-DSM</h3><blockquote><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/GiantVM/Linux-DSM.git</span><br></pre></td></tr></table></figure></blockquote><h3 id="step5"><a href="#step5" class="headerlink" title="step5"></a>step5</h3><blockquote><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd Linux-DSM</span><br></pre></td></tr></table></figure></blockquote><h3 id="step6-Enable-DSM-support"><a href="#step6-Enable-DSM-support" class="headerlink" title="step6 Enable DSM support"></a>step6 Enable DSM support</h3><blockquote><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make menuconfig</span><br></pre></td></tr></table></figure><p>   <code>Virtualization</code> –&gt; <code>KVM distributed software memory support</code> –&gt; <code>press &#39;Y&#39; to include the option</code><br>   <code>Save</code> –&gt; <code>Exit</code></p></blockquote><h3 id="step7-Compile-the-Kernel-make"><a href="#step7-Compile-the-Kernel-make" class="headerlink" title="step7 Compile the Kernel (make)"></a>step7 Compile the Kernel (make)</h3><p>   make -jN<br>   [N 是]<br>   wait for about three hour(or more)<br>   <code>   之前的失败经历：    Environment: win11 wsl2 Ubuntu16.04 LinuxKernel version 5.10    output :    makefile:976: recipe for target &#39;vmlinux&#39; failed    </code></p><h3 id="step-8-install-the-Kernel"><a href="#step-8-install-the-Kernel" class="headerlink" title="step 8 install the Kernel"></a>step 8 install the Kernel</h3><blockquote><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo make modules_install</span><br><span class="line">  sudo make install</span><br></pre></td></tr></table></figure></blockquote><h3 id="step-9-update-the-grub"><a href="#step-9-update-the-grub" class="headerlink" title="step 9 update the grub"></a>step 9 update the grub</h3><blockquote><p>[在我的尝试中，这时候应当先打开grub这个文件]<br>[gedit 比较方便看，用vi也可以]</p></blockquote>   <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit /etc/default/grub</span><br></pre></td></tr></table></figure><p>   [然后将GRUB_HIDDEN_TIMEOUT 这个属性置为0，不然之后重启的时候没时间换系统]<br>   这自己操作<br>   [然后是核心操作 ]</p>   <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo update-grub</span><br></pre></td></tr></table></figure><p>   [之后重启]</p>   <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reboot</span><br></pre></td></tr></table></figure><p>   [重启后看到下面界面，按照图片选择]<br>   [之后等待，启动后，在shell里输入]</p>   <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname -a </span><br></pre></td></tr></table></figure><p>   [可以看到版本为ubuntu 4.9.76+]</p><h2 id="2-QEMU"><a href="#2-QEMU" class="headerlink" title="2.QEMU"></a>2.QEMU</h2><h3 id="step1-Prepartion"><a href="#step1-Prepartion" class="headerlink" title="step1 Prepartion"></a>step1 Prepartion</h3><blockquote><p>sudo apt-get install python pkg-config libglib2.0-dev zlib1g-dev libpixman-1-dev libfdt-dev<br>git clone <a href="https://github.com/GiantVM/QEMU.git">https://github.com/GiantVM/QEMU.git</a><br>cd QEMU</p></blockquote><h3 id="step2-Configuration"><a href="#step2-Configuration" class="headerlink" title="step2 Configuration"></a>step2 Configuration</h3><blockquote><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure --target-list=x86_64-softmmu --enable-kvm</span><br></pre></td></tr></table></figure></blockquote><h3 id="step3-Compilation"><a href="#step3-Compilation" class="headerlink" title="step3 Compilation"></a>step3 Compilation</h3><blockquote><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make -jN</span><br></pre></td></tr></table></figure></blockquote><h3 id="step4-Create-hard-disk-image"><a href="#step4-Create-hard-disk-image" class="headerlink" title="step4 Create hard disk image"></a>step4 Create hard disk image</h3><blockquote><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ..</span><br><span class="line">wget http://ftp.sjtu.edu.cn/ubuntu-cd/16.04.7/ubuntu-16.04.7-server-amd64.iso</span><br></pre></td></tr></table></figure><p>[如果找不到，可以直接输入<a href="http://ftp.sjtu.edu.cn/ubuntu-cd/16.04.7%EF%BC%8C%E5%9C%A8%E9%87%8C%E9%9D%A2%E6%89%BE%E5%88%B0Ubuntu-16.x-server.iso">http://ftp.sjtu.edu.cn/ubuntu-cd/16.04.7，在里面找到Ubuntu-16.x-server.iso</a> ，然后wget]</p><p>[这里就是得用apt下一个qemu，选择不下,用底下x86-64_softmmu&#x2F; 底下的qemu-system-x86_64会卡死]</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/qemu-img create -f qcow2 ubuntu-server.img 10G</span><br><span class="line">sudo apt-get install qemu</span><br><span class="line">qemu-system-x86_64 -m 1024 ubuntu-server.img -cdrom ../ubuntu-16.04.7-server-amd64.iso -enable-kvm</span><br></pre></td></tr></table></figure><p>[上面会跳出系统设置，基本设置一下用户名和密码，然后会问是否要装载GRUB，选择yes，其他无所谓]</p></blockquote><h2 id="3-Run-Giant-VM-on-a-single-machine"><a href="#3-Run-Giant-VM-on-a-single-machine" class="headerlink" title="3.Run Giant VM on a single machine"></a>3.Run Giant VM on a single machine</h2><h3 id="First-we-install-vncviewer-to-monitor-the-guest"><a href="#First-we-install-vncviewer-to-monitor-the-guest" class="headerlink" title="First we install vncviewer to monitor the guest."></a>First we install vncviewer to monitor the guest.</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https://www.realvnc.com/download/file/viewer.files/VNC-Viewer-6.19.325-Linux-x64.deb</span><br><span class="line">sudo dpkg -i VNC-Viewer-6.19.325-Linux-x64.deb</span><br></pre></td></tr></table></figure><p>如果下面报错说内存不够，把虚拟机关掉，多分配给它一点内存（&gt;8G)</p><blockquote><h3 id="terminal-1"><a href="#terminal-1" class="headerlink" title="terminal 1 :"></a>terminal 1 :</h3> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd QEMU/</span><br><span class="line"></span><br><span class="line">sudo x86_64-softmmu/qemu-system-x86_64 --nographic -hda ubuntu-server.img -cpu host -machine kernel-irqchip=off -smp 4 -m 4096  --enable-kvm -serial mon:stdio -local-cpu 2,start=0,iplist=&quot;127.0.0.1 127.0.0.1&quot; -vnc :0</span><br></pre></td></tr></table></figure></blockquote><blockquote><h3 id="terminal-2："><a href="#terminal-2：" class="headerlink" title="terminal 2："></a>terminal 2：</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd QEMU/</span><br><span class="line">sudo x86_64-softmmu/qemu-system-x86_64 --nographic -hda ubuntu-server.img -cpu host -machine kernel-irqchip=off -smp 4 -m 2048  --enable-kvm -serial mon:stdio -local-cpu 2,start=2,iplist=&quot;127.0.0.1 127.0.0.1&quot;</span><br></pre></td></tr></table></figure></blockquote><blockquote><h3 id="terminal-3-启动-vncviewer"><a href="#terminal-3-启动-vncviewer" class="headerlink" title="terminal 3:[启动 vncviewer]"></a>terminal 3:[启动 vncviewer]</h3><p>冒号后面的0和前面 terminal1 后面-vnc 后面的数字对应</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vncviewer :0</span><br></pre></td></tr></table></figure><p>如果启动之后看到 nobootable device ，可能需要检查2 QEMU 最后一步的 qemu-system-x86_64 那段是不是正常</p></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;主机环境：Windows 11 64位 core i9 12900p&lt;/p&gt;
+&lt;p&gt;此次使用VMWare Workstation pro 16进行操作&lt;/p&gt;
+&lt;h2 id=&quot;1-环境配置&quot;&gt;&lt;a href=&quot;#1-环境配置&quot; class=&quot;headerlink&quot; titl</summary>
+      
+    
+    
+    
+    <category term="大四" scheme="http://example.com/categories/%E5%A4%A7%E5%9B%9B/"/>
+    
+    <category term="上交" scheme="http://example.com/categories/%E5%A4%A7%E5%9B%9B/%E4%B8%8A%E4%BA%A4/"/>
+    
+    
+    <category term="计算机" scheme="http://example.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/"/>
+    
+    <category term="VM" scheme="http://example.com/tags/VM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CPU虚拟化</title>
+    <link href="http://example.com/2022/09/29/0929CPU%E8%99%9A%E6%8B%9F%E5%8C%96/"/>
+    <id>http://example.com/2022/09/29/0929CPU%E8%99%9A%E6%8B%9F%E5%8C%96/</id>
+    <published>2022-09-29T00:43:00.000Z</published>
+    <updated>2022-10-13T04:39:25.413Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="MAIN-TASK-执行虚拟机程序指令，响应虚拟机内外部事件"><a href="#MAIN-TASK-执行虚拟机程序指令，响应虚拟机内外部事件" class="headerlink" title="MAIN TASK: 执行虚拟机程序指令，响应虚拟机内外部事件"></a>MAIN TASK: 执行虚拟机程序指令，响应虚拟机内外部事件</h2><h2 id="面临的挑战"><a href="#面临的挑战" class="headerlink" title="面临的挑战"></a>面临的挑战</h2><h3 id="1-敏感非特权指令"><a href="#1-敏感非特权指令" class="headerlink" title="1. 敏感非特权指令"></a>1. 敏感非特权指令</h3><p>挑战来源： 基于 陷入-模拟 机制的虚拟化架构只能在所有敏感指令都是特权指令的架构中被建立<br>敏感指令： 操作敏感物理资源的指令，如I&#x2F;O指令、页表基地址切换指令等<br>特权指令； 必须运行在最高特权级的指令，在非特权级中执行这些指令将会触发特权级切换。<br>解决方案： </p><blockquote><p>软件方案： 解释执行【无脑解释执行所有指令，效率较低】，二进制翻译【将敏感指令替换为其他指令，会增加指令数量】，扫描与修补【在执行前，将敏感指令替换为特权指令，代码局部性较差】，半虚拟化【在执行敏感指令的时候通过超调用主动陷入Hypervisor中，避免扫描二进制代码引入的开销，但是打破了虚拟机和Hypervisor之间的界限】<br>硬件辅助方案： Intel VT-x,AMD SVM, ARM EL2, RISC-V H-Extension<br>将所有敏感指令转化为特权指令【可能存在兼容性问题】<br>引入虚拟化模式</p></blockquote><h3 id="2-上下文切换"><a href="#2-上下文切换" class="headerlink" title="2. 上下文切换"></a>2. 上下文切换</h3><p>类似进程上下文，虚拟机发生退出时需要保持各寄存器的状态<br>发生虚拟CPU调度时，需要保存当前虚拟CPU的上下文兵加载待调度虚拟CPU上下文</p><h3 id="3-中断处理"><a href="#3-中断处理" class="headerlink" title="3. 中断处理"></a>3. 中断处理</h3><p>模拟方式：为每一个虚拟机维护一个虚拟中断控制器</p><h1 id="QEMU-x2F-KVM-CPU虚拟化实现"><a href="#QEMU-x2F-KVM-CPU虚拟化实现" class="headerlink" title="QEMU&#x2F;KVM CPU虚拟化实现"></a>QEMU&#x2F;KVM CPU虚拟化实现</h1>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;MAIN-TASK-执行虚拟机程序指令，响应虚拟机内外部事件&quot;&gt;&lt;a href=&quot;#MAIN-TASK-执行虚拟机程序指令，响应虚拟机内外部事件&quot; class=&quot;headerlink&quot; title=&quot;MAIN TASK: 执行虚拟机程序指令，响应虚拟机内外部事件&quot;</summary>
+      
+    
+    
+    
+    <category term="大四" scheme="http://example.com/categories/%E5%A4%A7%E5%9B%9B/"/>
+    
+    
+    <category term="操作系统" scheme="http://example.com/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="计算机" scheme="http://example.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>floats</title>
+    <link href="http://example.com/2022/09/18/22-09-18-csapp02/"/>
+    <id>http://example.com/2022/09/18/22-09-18-csapp02/</id>
+    <published>2022-09-18T05:21:00.000Z</published>
+    <updated>2022-10-12T04:37:28.040Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a>浮点数</h1><h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><h4 id="浮点通过移动二进制小数点来表示尽可能大的取值范围"><a href="#浮点通过移动二进制小数点来表示尽可能大的取值范围" class="headerlink" title="浮点通过移动二进制小数点来表示尽可能大的取值范围"></a>浮点通过移动二进制小数点来表示尽可能大的取值范围</h4><h3 id="数字公式"><a href="#数字公式" class="headerlink" title="数字公式"></a>数字公式</h3><p>$$<br>(-1)^S M 2^E<br>$$</p><p>符号位{S} 表示正负</p><p>小数{M}  一般是一个1~2之间的小数值</p><p> 指数位{E} 指的是乘2的E次方 </p><h3 id="IEEE浮点数标准"><a href="#IEEE浮点数标准" class="headerlink" title="IEEE浮点数标准"></a>IEEE浮点数标准</h3><h4 id="single-单精度"><a href="#single-单精度" class="headerlink" title="single 单精度"></a>single 单精度</h4><p>1位符号位，8位指数位，23位小数位</p><h4 id="Double-双精度"><a href="#Double-双精度" class="headerlink" title="Double 双精度"></a>Double 双精度</h4><p>1位符号位，11位指数位，52位小数位</p><h3 id="小数位的特殊表示"><a href="#小数位的特殊表示" class="headerlink" title="小数位的特殊表示"></a>小数位的特殊表示</h3><p>由于小数位永远是1.010101这样的模式</p><p>因此前面的1不放入存储，只记录后面的01010101这种</p><p>同时，在计算时，会刻意维持小数位为1.010111这样的模式，就是说维持小数位在1~2之间</p><h3 id="零表示法"><a href="#零表示法" class="headerlink" title="零表示法"></a>零表示法</h3><p>$$<br>(-1)^S M 2^E<br>$$</p><p>此时E为1-Bias，之前为0-Bias</p><p>由于之前无法表示0，将M设置为0.110101010这种模式，此时可以表示0</p><h4 id="当E全0，小数位全0的时候"><a href="#当E全0，小数位全0的时候" class="headerlink" title="当E全0，小数位全0的时候"></a>当E全0，小数位全0的时候</h4><p>表示0</p><p>这会导致正负0的出现</p><p>当E为0，小数位不为0的时候，可以表示一些很接近0的东西</p><h4 id="如果E为111111…-1-，frac-不为0，"><a href="#如果E为111111…-1-，frac-不为0，" class="headerlink" title="如果E为111111….1 ，frac 不为0，"></a>如果E为111111….1 ，frac 不为0，</h4><p>则代表一个极大值，不代表数字</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;浮点数&quot;&gt;&lt;a href=&quot;#浮点数&quot; class=&quot;headerlink&quot; title=&quot;浮点数&quot;&gt;&lt;/a&gt;浮点数&lt;/h1&gt;&lt;h2 id=&quot;基础知识&quot;&gt;&lt;a href=&quot;#基础知识&quot; class=&quot;headerlink&quot; title=&quot;基础知识&quot;&gt;&lt;/a&gt;基础知</summary>
+      
+    
+    
+    
+    
+    <category term="csapp" scheme="http://example.com/tags/csapp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Bits Bytes and Integers</title>
+    <link href="http://example.com/2022/09/17/2022-09-17-csapp01/"/>
+    <id>http://example.com/2022/09/17/2022-09-17-csapp01/</id>
+    <published>2022-09-17T10:37:57.000Z</published>
+    <updated>2022-10-12T04:37:28.040Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Bits-Bytes-and-Integers"><a href="#Bits-Bytes-and-Integers" class="headerlink" title="Bits,Bytes and Integers"></a>Bits,Bytes and Integers</h1><h2 id="基础位运算"><a href="#基础位运算" class="headerlink" title="基础位运算"></a>基础位运算</h2><h3 id="分清-amp-，-amp-amp-，-，-，-，-之间的区别"><a href="#分清-amp-，-amp-amp-，-，-，-，-之间的区别" class="headerlink" title="分清&amp;，&amp;&amp;，| ，||，~，!之间的区别"></a>分清&amp;，&amp;&amp;，| ，||，~，!之间的区别</h3><p>位操作： &amp;，|，~，运算时只是单纯进行位操作</p><p>逻辑比较： &amp;&amp;，||，！，运算时会添加逻辑考虑，</p><blockquote><p>比如||前面的为True，则提前中止调用</p><p>又比如，对一个非0的数进行！两次会获得一个1，这和位操作有很大的区别</p></blockquote><h3 id="算术右移和逻辑右移"><a href="#算术右移和逻辑右移" class="headerlink" title="算术右移和逻辑右移"></a>算术右移和逻辑右移</h3><p>逻辑右移： 将整个数字向右移动，同时高位补0</p><p>算术右移： 将整个数字向右移动，同时高位按照<strong>符号位补充</strong></p><h4 id="左移的特殊情况"><a href="#左移的特殊情况" class="headerlink" title="左移的特殊情况"></a>左移的特殊情况</h4><p>如果一个八位的数字进行左移八位的操作，在部分计算机中，这个8将被模8，因此并不能得到想象中的0</p><h3 id="补码-T"><a href="#补码-T" class="headerlink" title="补码 T"></a>补码 T</h3><p>国内讲法： 除了符号位，全部按位取反再加1</p><p>这课的讲法：最高位视为负权，如[-16,8,4,2,1]</p><p>经典图片</p><p><img src="/image/2022-09-17-csapp01/1663413629124.png" alt="1663413629124"></p><h3 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h3><p>例如：8位-&gt;16位</p><p>基本规则：将符号位复制k份，k为扩展位数</p><blockquote><p>解释，想象负数的情况，假设最高位权重暂时是-8，增加一位最高位，新增一位-16，但之前的最高位变为+8，刚好抵消。</p></blockquote><h2 id="加减乘除"><a href="#加减乘除" class="headerlink" title="加减乘除"></a>加减乘除</h2><p>无符号数直接不谈</p><p>补码加法： 可以通过补码加法简单得到减法，只要加上负的值就行</p><h3 id="正-x2F-负溢出"><a href="#正-x2F-负溢出" class="headerlink" title="正&#x2F;负溢出"></a>正&#x2F;负溢出</h3><p>正溢出：俩正数加起来等于一个负数</p><h3 id="乘法"><a href="#乘法" class="headerlink" title="乘法"></a>乘法</h3><p>如果乘2的倍数，只需要【算术】移位就行了，不管是不是补码表示</p><h3 id="除法"><a href="#除法" class="headerlink" title="除法"></a>除法</h3><p>同样是算术移位，但这回如果是负数，它就不是四舍五入，而是向负无穷舍入,例如 -3&#x2F;2&#x3D;-2。而不是-1</p><h3 id="获得相反数"><a href="#获得相反数" class="headerlink" title="获得相反数"></a>获得相反数</h3><p>按位取反再+1</p><h3 id="一个恐怖的案例"><a href="#一个恐怖的案例" class="headerlink" title="一个恐怖的案例"></a>一个恐怖的案例</h3><p><img src="/image/2022-09-17-csapp01/1663426748805.png" alt="1663426748805"></p><p>这里，i会被隐式转换成unsigned int(因为sizeof是 unsigned int)，于是这个for循环不会结束</p><h3 id="无符号数的优点"><a href="#无符号数的优点" class="headerlink" title="无符号数的优点"></a>无符号数的优点</h3><p>由于无符号数的计算采用取模的方式</p><p>在一些模运算时（比如大多数加密算法）</p><p>当位表示集合而非数字时，用无符号数最好。</p><h3 id="字存储"><a href="#字存储" class="headerlink" title="字存储"></a>字存储</h3><p>最低有效字节在小端序电脑中放在首位，在大端机器中放在末位</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;Bits-Bytes-and-Integers&quot;&gt;&lt;a href=&quot;#Bits-Bytes-and-Integers&quot; class=&quot;headerlink&quot; title=&quot;Bits,Bytes and Integers&quot;&gt;&lt;/a&gt;Bits,Bytes and In</summary>
+      
+    
+    
+    
+    
+    <category term="computer" scheme="http://example.com/tags/computer/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>计组复习</title>
+    <link href="http://example.com/2022/09/11/2022-09-11-%E8%AE%A1%E7%BB%84%E5%A4%8D%E4%B9%A0/"/>
+    <id>http://example.com/2022/09/11/2022-09-11-%E8%AE%A1%E7%BB%84%E5%A4%8D%E4%B9%A0/</id>
+    <published>2022-09-11T15:12:15.000Z</published>
+    <updated>2022-10-12T04:37:28.040Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="指令系统"><a href="#指令系统" class="headerlink" title="指令系统"></a>指令系统</h1><p>基本格式： 操作码| 地址码   （字节的整数倍）</p><h3 id="地址码结构"><a href="#地址码结构" class="headerlink" title="地址码结构"></a>地址码结构</h3><blockquote><p>四地址指令： A1 OP A2 -&gt; A3 4次访存</p><p>三地址： 四地址-A3 （通过PC+1获得下一条指令位置） 4次访存</p><p>二地址： 三地址-A3 （ 结果存放在A1位置）4次访存</p><p>一地址： A_cc OP A1-&gt;Acc (Acc在累加寄存器中) 2次访存</p><p>零地址： 都在堆栈中</p></blockquote><h3 id="操作码"><a href="#操作码" class="headerlink" title="操作码"></a>操作码</h3><p>定长： 简化架构，但利用率低</p><p>变长：设计复杂，但同字节长度下可支持较多指令</p><h3 id="编址方式"><a href="#编址方式" class="headerlink" title="编址方式"></a>编址方式</h3><p>目的： 指出操作数的来源和去向</p><p>需要编址的：通用寄存器，主存，输入输出设备</p><h4 id="编址单位"><a href="#编址单位" class="headerlink" title="编址单位"></a>编址单位</h4><blockquote><ol><li>字编址<br>编址单位&#x3D;访问单位，每个编址单位所包含的信息量与读写寄存器所得的信息量相同</li><li>字节编址<br>编址单位&lt;访问单位<br>编址单位和信息的基本单位（一个字节）相一致</li><li>位编址<br>先不谈</li></ol></blockquote><h4 id="地址码的位数"><a href="#地址码的位数" class="headerlink" title="地址码的位数"></a>地址码的位数</h4><p>与主存容量成正比，和最小寻址单位成反比</p><h3 id="数据寻址"><a href="#数据寻址" class="headerlink" title="数据寻址"></a>数据寻址</h3><p>目的：找到所需的操作数</p><blockquote><ol><li>立即寻址<br>直接取出操作数</li><li>寄存器寻址<br>给出寄存器编号，再访问寄存器取出操作数</li><li>直接寻址<br>取出操作数再主存中的地址</li><li>间接寻址<br>从主存中取出存放操作数地址的地址</li><li>寄存器间接寻址<br>获取寄存器编号，寄存器中该编号存放操作数在主存的地址</li><li>变址寻址<br>读取形式地址A加上变址寄存器Rx的值，获取真实地址</li><li>基址寻址<br>读取位移量D，与基址寄存器中的值相加获得真是地址</li><li>相对寻址<br>相对于基址寻址，由程序寄存器提供基准地址</li><li>页面寻址<br>将整个主存空间分成若干个大小相同的页，每页有自己的编号，称为页面地址，业内的主存单元也有自己的编号，称为页内地址，操作数的有效地址就被分为：页面地址和页内地址两部分<br>有三种页面寻址方式<ol><li>基页寻址<br>有效地址为 0&#x2F;&#x2F;A （&#x2F;&#x2F;为简单拼接)</li><li>当前页寻址<br>页面地址为程序计数器PC的高位部分，有效地址为(PC)h &#x2F;&#x2F; A</li><li>页寄存器寻址<br>页面地址取自页寄存器，与形式地址拼接形成操作数有效地址<br>EA&#x3D;(页寄存器)&#x2F;&#x2F;A</li></ol></li></ol></blockquote><h3 id="指令寻址"><a href="#指令寻址" class="headerlink" title="指令寻址"></a>指令寻址</h3><p>目的：寻找下一条要执行的指令地址</p><h4 id="顺序寻址："><a href="#顺序寻址：" class="headerlink" title="顺序寻址："></a>顺序寻址：</h4><p>PC+1(程序计数器加1)</p><h4 id="跳跃寻址："><a href="#跳跃寻址：" class="headerlink" title="跳跃寻址："></a>跳跃寻址：</h4><p>通过程序转移类指令实现</p><p>直接、相对、间接寻址（详见数据寻址）</p><h2 id="堆栈与堆栈操作"><a href="#堆栈与堆栈操作" class="headerlink" title="堆栈与堆栈操作"></a>堆栈与堆栈操作</h2><h3 id="堆栈结构"><a href="#堆栈结构" class="headerlink" title="堆栈结构"></a>堆栈结构</h3><blockquote><ol><li>寄存器堆栈<br>一组专门的寄存器构成，栈顶固定，且组中寄存器互相连接，可将一个寄存器中的内容推移到另一个寄存器中去</li><li>存储器堆栈<br>从主存中划出一块区域来当堆栈，大小可变，栈底固定，栈顶浮动，需要一个硬件寄存器作为堆栈栈顶指针SP<br>PS: 栈底指针地址大于栈顶地址，因此进栈时，栈顶指针先减一，然后将数据压入指针指向的堆栈位置</li></ol></blockquote><h3 id="堆栈操作（用途）"><a href="#堆栈操作（用途）" class="headerlink" title="堆栈操作（用途）"></a>堆栈操作（用途）</h3><p>【一般计算机】</p><ol><li>暂存中断断点</li><li>子程序调用时的返回地址</li><li>状态标志</li><li>现场信息</li><li>子程序调用时参数的传递</li></ol><p>因此访问堆栈的指令只有进栈和出栈两种。</p><h2 id="指令类型"><a href="#指令类型" class="headerlink" title="指令类型"></a>指令类型</h2><h3 id="数据传送类指令"><a href="#数据传送类指令" class="headerlink" title="数据传送类指令"></a>数据传送类指令</h3><p>用于寄存器与寄存器，寄存器与主存 ，主存与主存之间的数据传送</p><ol><li>一般传送指令：将源地址的数据复制到目的地址</li><li>堆栈操作指令：因为堆栈（主存中开辟的）是一个特殊区域，因此对堆栈的操作也就是对存储器的操作</li><li>数据交换指令：将源操作数和目的地操作数相互交换位置</li></ol><h3 id="运算类指令"><a href="#运算类指令" class="headerlink" title="运算类指令"></a>运算类指令</h3><ol><li>算术运算指令</li><li>逻辑运算指令</li><li>移位指令（算数移位【保持操作数符号不变，左移数值*2，右移数值&#x2F;2】，逻辑移位【不管符号】，循环移位）</li></ol><h3 id="程序控制类指令"><a href="#程序控制类指令" class="headerlink" title="程序控制类指令"></a>程序控制类指令</h3><p>用于控制程序的执行方向，并使程序具有测试、分析与判断的能力</p><ol><li>转移指令<br>无条件（JMP）： 直接吧程序转向新的位置执行<br>条件转移：条件满足才转移</li><li>子程序调用指令<br>子程序是一组可以公用的指令序列，只要知道地址就能调用<br>主程序转向子程序称为子程序调用指令（CALL）<br>子程序转向主程序成为转移指令（RET）<br>一般使用堆栈保持返回地址</li><li>返回指令（RET）</li></ol><h3 id="输入输出类指令"><a href="#输入输出类指令" class="headerlink" title="输入输出类指令"></a>输入输出类指令</h3><p>实现主机与外部设备之间的信息交换</p><h4 id="独立编址的IO"><a href="#独立编址的IO" class="headerlink" title="独立编址的IO"></a>独立编址的IO</h4><p>独立编址：外设端口和主存单元独立编址，指令系统有专门的IN&#x2F;OUT指令，信息从外设到主机称为输入</p><p>指令中给出外设端口地址，这些地址是另一个独立的地址空间</p><h4 id="统一编址的IO"><a href="#统一编址的IO" class="headerlink" title="统一编址的IO"></a>统一编址的IO</h4><p>指令系统没有专门的IO指令，用一般的数据传送类指令来实现</p><h2 id="数值的机器运算"><a href="#数值的机器运算" class="headerlink" title="数值的机器运算"></a>数值的机器运算</h2><h2 id="基本算数运算的实现"><a href="#基本算数运算的实现" class="headerlink" title="基本算数运算的实现"></a>基本算数运算的实现</h2><p>并行可以加快过程，但并行会使计算式过长，因此采用并串联合使用的方式取得性能和逻辑的平衡</p><ol><li>单级先行进位方式<br>组内并行，组间串行</li><li>多级先行进位方式<br>组内并行，组间也并行</li></ol><h2 id="定点加减运算"><a href="#定点加减运算" class="headerlink" title="定点加减运算"></a>定点加减运算</h2><p>补码加法：[X+Y]补&#x3D;[X]补+[Y]补</p><p>减法也只是加补码求反后的结果</p><p>后面的先不看了</p><h2 id="存储系统和结构"><a href="#存储系统和结构" class="headerlink" title="存储系统和结构"></a>存储系统和结构</h2><h2 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h2><h3 id="按作用分类"><a href="#按作用分类" class="headerlink" title="按作用分类"></a>按作用分类</h3><ol><li>高速缓冲存储器</li></ol><p>位于主存和CPU之间</p><ol start="2"><li>主存储器</li></ol><p>CPU 可直接访问</p><ol start="3"><li>辅助存储器</li></ol><p>CPU不能直接访问</p><h3 id="存取方式分类"><a href="#存取方式分类" class="headerlink" title="存取方式分类"></a>存取方式分类</h3><ol><li>RAM 随机存取<br>存取时间相同，随机读写访问</li><li>ROM 只读<br>特殊的RAM，只能读不能写</li><li>SAM 顺序存取<br>只能按某种顺序存取，存取时间与存储体上的物理位置有关</li><li>DAM 直接存取存储器<br>读取步骤： 第一步直接指向存储器中的某个小区域，第二部在小区域内顺序检索</li></ol><h3 id="存取层次结构"><a href="#存取层次结构" class="headerlink" title="存取层次结构"></a>存取层次结构</h3><p>cache 主存 辅存 分为两个层次</p><h4 id="Cache-主存-存储层次"><a href="#Cache-主存-存储层次" class="headerlink" title="Cache-主存 存储层次"></a>Cache-主存 存储层次</h4><p>目的：解决主存速度不足</p><p>方式： 在CPU和主存之间，增加辅助硬件，让他们构成一个整体，使CPU速度接近cache，容量接近主存</p><h4 id="主存-辅存存储层次"><a href="#主存-辅存存储层次" class="headerlink" title="主存 - 辅存存储层次"></a>主存 - 辅存存储层次</h4><p>目的：解决主存容量不足</p><h2 id="主存储器的组织"><a href="#主存储器的组织" class="headerlink" title="主存储器的组织"></a>主存储器的组织</h2><h3 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h3><p>存储体</p><p>地址译码驱动电路</p><ul><li>译码器和驱动器，译码器将地址总线输入的地址吗转换成输出线上的有效电平，驱动器提供驱动电流去驱动相应的读写电路</li></ul><p>IO和读写电路</p><h3 id="存储单元"><a href="#存储单元" class="headerlink" title="存储单元"></a>存储单元</h3><p>位： 二进制数的最基本单位，也是存储器存储信息的最小单位</p><p>存储字：一个二进制数由若干位组成，当这个二进制数作为一个整体存入或取出时，这个数称为存储字</p><p>存储单元（主存单元) 存放存储字或存储字节的主存空间，由计算机的结构确定。是CPU对主存可访问擦欧总的最小存储单位。</p><p>存储体： 大量存储单元集合构成一个存储体</p><h3 id="技术指标"><a href="#技术指标" class="headerlink" title="技术指标"></a>技术指标</h3><ol><li>存储容量<br>指主存所能容纳的二进制信息总量，对字节编址的计算机，以字节数表示，对字编址的计算机，以字数和字长的乘积来表示</li><li>存取速度<br>2.1 存取时间<br>从启动一次存储器操作到完成该操作所经历的时间<br>2.2 存取周期<br>指存储器进行一次完整的读写操作所需的全部时间，连续两次访问存储器操作之间所需要的最短时间</li><li>主存带宽<br>每秒从主存进出信息的最大数量（字&#x2F;秒或 字节&#x2F; 秒 或 位&#x2F; 秒）</li></ol><h2 id="半导体随机存储器和只读存储器"><a href="#半导体随机存储器和只读存储器" class="headerlink" title="半导体随机存储器和只读存储器"></a>半导体随机存储器和只读存储器</h2><h3 id="动态RAM的刷新"><a href="#动态RAM的刷新" class="headerlink" title="动态RAM的刷新"></a>动态RAM的刷新</h3><h4 id="刷新方式"><a href="#刷新方式" class="headerlink" title="刷新方式"></a>刷新方式</h4><h5 id="集中式"><a href="#集中式" class="headerlink" title="集中式"></a>集中式</h5><p>集中安排若干个刷新周期，刷新时停止读写操作</p><p>时间&#x3D;存储体矩阵行数*刷新周期</p><h5 id="分散式"><a href="#分散式" class="headerlink" title="分散式"></a>分散式</h5><p>把刷新操作分散到每个存取周期内进行，此时存取周期被分成读写和刷新两个部分。</p><h5 id="异步式"><a href="#异步式" class="headerlink" title="异步式"></a>异步式</h5><p>把刷新操作平均分配到整个最大刷新间隔时间内进行</p><p>刷新间隔&#x3D;最大刷新间隔时间&#x2F; 行数</p><h3 id="主存容量的扩展"><a href="#主存容量的扩展" class="headerlink" title="主存容量的扩展"></a>主存容量的扩展</h3>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;指令系统&quot;&gt;&lt;a href=&quot;#指令系统&quot; class=&quot;headerlink&quot; title=&quot;指令系统&quot;&gt;&lt;/a&gt;指令系统&lt;/h1&gt;&lt;p&gt;基本格式： 操作码| 地址码   	（字节的整数倍）&lt;/p&gt;
+&lt;h3 id=&quot;地址码结构&quot;&gt;&lt;a href=&quot;#地址码结构&quot;</summary>
+      
+    
+    
+    
+    
+    <category term="computer" scheme="http://example.com/tags/computer/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>微型数据库开发记录</title>
+    <link href="http://example.com/2022/09/04/2022-09-04-%E5%BE%AE%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/"/>
+    <id>http://example.com/2022/09/04/2022-09-04-%E5%BE%AE%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/</id>
+    <published>2022-09-04T15:35:57.000Z</published>
+    <updated>2022-10-12T04:37:28.040Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>近三周应小学期老师要求，和4位队友合作开发了一个微型数据库系统。由于耗费了许多的精力，我想将开发过程记录在这个博客上。</p><h2 id="功能性需求："><a href="#功能性需求：" class="headerlink" title="功能性需求："></a>功能性需求：</h2><ol><li>创建数据库和表，能够以文件形式保存在磁盘上（操作系统的文 件、进程管理，数据结构 的 B树）</li><li>支持表的增删改查（数据库 中SQL形式，编译的词法语法检查）</li><li>SQL中支持通配符（数据结构的查找）、多表连接（操作系统 的 文件管理）</li><li>支持整数、实数、字符（串）、日期等数据类型</li><li>支持索引（数据库、数据结构 ）</li></ol><h2 id="性能性需求"><a href="#性能性需求" class="headerlink" title="性能性需求"></a>性能性需求</h2><ol><li>单表记录最大行数不少于10万行，不少于10 列</li><li>单表响应时间不多于 1秒（普通笔记本）</li><li>主表不少于5000行，子表不少于20000行时，连接操作响应时 间不多于 2 秒</li></ol><h1 id="痛苦的开端"><a href="#痛苦的开端" class="headerlink" title="痛苦的开端"></a>痛苦的开端</h1><h2 id="最初的迷茫"><a href="#最初的迷茫" class="headerlink" title="最初的迷茫"></a>最初的迷茫</h2><p>开始的时候确实是啥也不知道，一堆人在教室里商量了半天也没想明白该干些什么，就留了两天各自查资料。等大家查完，在教室里一讨论，就发现任务极其重大。由于要实现5000*20000级别的表连接，还有100 000级别的数据插入，因此我们需要考虑底层的文件存储，但由于开发经验的不足和工期较短，我们在讨论中断定，凭空实现完全的页面管理对我们来说是不可能的，因此决定退而求其次，找一份有页面管理的借鉴一下。</p><p>因此，我们翻看了sqlite的源码，还通篇学习了一门斯坦福的课程（代码仓库叫redbase）,在途中，还重新确定了我们要实现的关键字等需求。</p><h2 id="借鉴都借鉴不明白"><a href="#借鉴都借鉴不明白" class="headerlink" title="借鉴都借鉴不明白"></a>借鉴都借鉴不明白</h2><p>然后就出现了问题，我们找到了一份很好的页面管理代码，但光页面管理（包括缓冲区管理）的代码量就直接超过了8000行，为了实现它我们需要做的工作过于繁复（虽然我们确实尝试了一天）。</p><p>同时，Linux开发也对我们组造成了较大的麻烦，因为有开发经验的仅有一人，其他人光环境配置就花了很长时间。后来采用先富带后富的方式，总算是搞定了整组的环境。</p><h2 id="借鉴不了，想一个自己的框架吧！"><a href="#借鉴不了，想一个自己的框架吧！" class="headerlink" title="借鉴不了，想一个自己的框架吧！"></a>借鉴不了，想一个自己的框架吧！</h2><p>最后，我们发现，我们的这种特种需求，只有我们自己琢磨一个框架来才能够满足3周内开发完成，且能够实现一定的文件管理和查询优化。</p><p>这里用文字形容一下我们初步商量的框架</p><blockquote><p>顶层：词法分析-&gt;语法分析，产出一棵抽象语法树</p><p>中层：语义分析，并实现一系列数据库操作函数</p><p>底层：B+树代码和物理存储管理代码，存储二进制数据。</p></blockquote><p>中层咱暂时实在想不明白，就先大致写了一点儿，之后先把顶层和底层开发出来，到时候再看中层该怎么搞。</p><h1 id="辛苦又充满成长的开发过程"><a href="#辛苦又充满成长的开发过程" class="headerlink" title="辛苦又充满成长的开发过程"></a>辛苦又充满成长的开发过程</h1><p>经历了鸡飞狗跳，还有一堆学校其他杂事（搬家，做华为云实验）的一周之后，我们正式开始开发。</p><h2 id="顶层"><a href="#顶层" class="headerlink" title="顶层"></a>顶层</h2><p>顶层被我们归类为最困难的工作，我们想了些取巧的办法让它稍微简单一点儿。这块儿是组里大佬写的，我也只是有所了解。</p><p>参考redbase的顶层（就算是斯坦福的课，顶层代码也是预先写好，不用学生写的），我们按照自己的需求写了一份语法文件，并用yacc（应该）生成分析代码。</p><h2 id="底层"><a href="#底层" class="headerlink" title="底层"></a>底层</h2><p>第二周折腾了老半天，把一份B+树代码折腾出来了，它还满足我们的要求（改泛型改了一个周末）：能够存储int，float和string类型的数据（本来还有个要求是，一级索引将和纯数据文件放在一起，方便存取，但泛型这东西实在不是一个初学c++的同志能整的这么明白的，就没实现）</p><h3 id="数据文件（初版）"><a href="#数据文件（初版）" class="headerlink" title="数据文件（初版）"></a>数据文件（初版）</h3><p>这里给出示例文件框架</p><blockquote><p>save</p><p>-table1 示例表名</p><p>–table1.data存放二进制数据文件</p><p>—-table1.meta存放表说明文件</p><p>—-IND&#x2F;&#x2F;存放索引</p><p>——-table1&#x2F;&#x2F;自增主键索引</p><p>—其他索引</p></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;近三周应小学期老师要求，和4位队友合作开发了一个微型数据库系统。由于耗费了许多的精力，我想将开发过程记录在这个博客上。&lt;/p&gt;
+&lt;h2 id</summary>
+      
+    
+    
+    
+    
+    <category term="database" scheme="http://example.com/tags/database/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>字节二面记录</title>
+    <link href="http://example.com/2022/04/02/2022-04-02-%E5%AD%97%E8%8A%82%E4%BA%8C%E9%9D%A2%E8%AE%B0%E5%BD%95/"/>
+    <id>http://example.com/2022/04/02/2022-04-02-%E5%AD%97%E8%8A%82%E4%BA%8C%E9%9D%A2%E8%AE%B0%E5%BD%95/</id>
+    <published>2022-04-02T12:01:01.000Z</published>
+    <updated>2022-10-12T04:37:28.040Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="2022-x2F-4-x2F-2-字节二面记录"><a href="#2022-x2F-4-x2F-2-字节二面记录" class="headerlink" title="2022&#x2F;4&#x2F;2 字节二面记录"></a>2022&#x2F;4&#x2F;2 字节二面记录</h1><blockquote><p>啸问题:开头以为只有暑假可以实习,直接被面试官拒了,然后被同学提醒才发现开学也能实习,紧急联系回来了</p><p>面试官还挺好的,居然还能继续面</p></blockquote><h2 id="问了些啥"><a href="#问了些啥" class="headerlink" title="问了些啥"></a>问了些啥</h2><p>最开始还是最难顶的自我介绍,感觉像是一个垃圾桶被要求介绍自己(x),我下次应该记住重复一下北理是个985,不然听起来像个野鸡大学(</p><p>和一面不同的是,这回自我介绍完了就开始做题,还问了python里头元组和字典的关系(答不出来,寄)</p><p>计网方面问了http请求一个页面的过程(上学期刚上完这学期就忘得差不多了属于是)</p><p>这回没问数据库,不知道是为啥</p><p>问了对软件项目管理的理解(?),我就当问我管理上的看法,感觉有点答非所问</p><h2 id="哪里不行"><a href="#哪里不行" class="headerlink" title="哪里不行"></a>哪里不行</h2><p>对语言的理解比较烂,属于是只知道用不知道学</p><p>计网还是得看看http请求的全过程</p><p>其实数据库查询语句还有点欠缺,不过能用</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;2022-x2F-4-x2F-2-字节二面记录&quot;&gt;&lt;a href=&quot;#2022-x2F-4-x2F-2-字节二面记录&quot; class=&quot;headerlink&quot; title=&quot;2022&amp;#x2F;4&amp;#x2F;2 字节二面记录&quot;&gt;&lt;/a&gt;2022&amp;#x2F;4&amp;#x2</summary>
+      
+    
+    
+    
+    
+    <category term="面试" scheme="http://example.com/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>React学习20220314 虚拟DOM</title>
+    <link href="http://example.com/2022/03/16/2022-03-14-React%E5%AD%A6%E4%B9%A020220314%20%E8%99%9A%E6%8B%9FDOM/"/>
+    <id>http://example.com/2022/03/16/2022-03-14-React%E5%AD%A6%E4%B9%A020220314%20%E8%99%9A%E6%8B%9FDOM/</id>
+    <published>2022-03-16T03:48:15.000Z</published>
+    <updated>2022-10-12T04:37:28.040Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="React学习20220314-虚拟DOM"><a href="#React学习20220314-虚拟DOM" class="headerlink" title="React学习20220314 虚拟DOM"></a>React学习20220314 虚拟DOM</h1><h2 id="虚拟DOM是什么"><a href="#虚拟DOM是什么" class="headerlink" title="虚拟DOM是什么"></a>虚拟DOM是什么</h2><p>是JS和DOM之间的一个映射缓存，在形态上表现为一个能够描述DOM结构及其属性信息的JS对象。</p><p>在REACT中，表现为</p><p><img src="G:/WorkStation/JavaScriptProject/React%E5%AD%A6%E4%B9%A0/React%E5%AD%A6%E4%B9%A020220314%20%E8%99%9A%E6%8B%9FDOM/assets/image-20220314142105501.png" alt="image-20220314142105501"></p><p>是JS对象，是对真实DOM的描述</p><h2 id="如何工作"><a href="#如何工作" class="headerlink" title="如何工作"></a>如何工作</h2><blockquote><ul><li>挂载阶段：结合JSX的描述，构建出虚拟DOM树，然后通过ReactDOM.render实现虚拟DOM到真实DOM的映射</li><li>更新阶段，页面的变化在作用于真实DOM之前，先作用于虚拟DOM，虚拟DOM在JS层借助算法先对比出那些真实DOM需要被改变，然后将改变作用于真实DOM</li></ul></blockquote><p>这一段历史讲得好有趣，摘下来</p><p><img src="G:/WorkStation/JavaScriptProject/React%E5%AD%A6%E4%B9%A0/React%E5%AD%A6%E4%B9%A020220314%20%E8%99%9A%E6%8B%9FDOM/assets/image-20220314142856250.png" alt="image-20220314142856250"></p><p><img src="G:/WorkStation/JavaScriptProject/React%E5%AD%A6%E4%B9%A0/React%E5%AD%A6%E4%B9%A020220314%20%E8%99%9A%E6%8B%9FDOM/assets/image-20220314145559439.png" alt="image-20220314145559439"></p><p><img src="G:/WorkStation/JavaScriptProject/React%E5%AD%A6%E4%B9%A0/React%E5%AD%A6%E4%B9%A020220314%20%E8%99%9A%E6%8B%9FDOM/assets/image-20220314145616729.png" alt="image-20220314145616729"></p><p data-nodeid="6717">可以看出，模板语法其实就是把 JS 和 HTML 结合在一起的一种规则，而模板引擎做的事情也非常容易理解。</p><p data-nodeid="6718">把 staff 这个数据源读进去，塞到预置好的 HTML 模板里，然后把两者融合在一起，吐出一段目标字符串给你。这段字符串的内容，其实就是一份标准的、可用于渲染的 HTML 代码，它将对应一个 DOM 元素。最后，将这个 DOM 元素挂载到页面中去，整个模板的渲染流程也就走完了。</p><p data-nodeid="6719">这个过程可以用伪代码来表示，如下所示：</p><pre class="lang-js" data-nodeid="6720"><code data-language="js"><span class="hljs-comment">// 数据和模板融合出 HTML 代码</span><span class="hljs-keyword">var</span> targetDOM = template(&#123;<span class="hljs-attr">data</span>: students&#125;)<span class="hljs-comment">// 添加到页面中去</span><span class="hljs-built_in">document</span>.body.appendChild(targetDOM)</code></pre><p data-nodeid="6721">当然，实际的过程会比我们描述的要复杂一些。这里我补充一下模板引擎的实现思路，供感兴趣的同学参考。模板引擎一般需要做下面几件事情：</p><ol data-nodeid="6722"><li data-nodeid="6723"><p data-nodeid="6724">读取 HTML 模板并解析它，分离出其中的 JS 信息；</p></li><li data-nodeid="6725"><p data-nodeid="6726">将解析出的内容拼接成字符串，动态生成 JS 代码；</p></li><li data-nodeid="6727"><p data-nodeid="6728">运行动态生成的 JS 代码，吐出“目标 HTML”；</p></li><li data-nodeid="6729"><p data-nodeid="6730">将“目标 HTML”赋值给 innerHTML，触发渲染流水线，完成真实 DOM 的渲染。</p></li></ol><p data-nodeid="6731">使用模板引擎方案来渲染数据是非常爽的：每次数据发生变化时，我们都不用关心到底是哪里的数据变了，也不用手动去点对点完成 DOM 的修改。只<strong data-nodeid="6882">需要关注的仅仅是数据和数据变化本身</strong>，DOM 层面的改变模板引擎会帮我们做掉。</p><p data-nodeid="6732">如此看来，模板引擎像极了一个只需要接收命令，就能够把活干得漂漂亮亮的“扫地机器人”！可惜的是，模板引擎出现的契机虽然是为了使用户界面与业务数据相分离，但实际的应用场景基本局限在“实现高效的字符串拼接”这一个点上，因此不能指望它去做太复杂的事情。尤其令人无法接受的是，<strong data-nodeid="6888">它在性能上的表现并不尽如人意</strong>：由于不够“智能”，它更新 DOM 的方式是将已经渲染出 DOM 整体注销后再整体重渲染，并且不存在更新缓冲这一说。在 DOM 操作频繁的场景下，模板引擎可能会直接导致页面卡死。</p><blockquote data-nodeid="6733"><p data-nodeid="6734">注：请注意小标题中“早期”这个限定词——本课时所讨论的“模板引擎”概念，指的是虚拟 DOM 思想推而广之以前，相对原始的一类模板引擎，这类模板引擎曾经主导了一个时代。但时下来看，越来越多的模板引擎正在引入虚拟 DOM，模板引擎最终也将走向现代化。</p></blockquote><p data-nodeid="6735">虽然指望模板引擎实现生产力解放有些天方夜谭，但模板引擎在思想上无疑具备高度的先进性：允许程序员只关心数据而不必关心 DOM 细节的这一操作，和 React 的“数据驱动视图”思想如出一辙，实在是高！</p><h3 data-nodeid="6736">那该怎么办呢？</h3><p data-nodeid="6737">jQuery 救不了加班写 DOM 操作的前端，模板引擎也救不了，那该怎么办呢？</p><p data-nodeid="6738">这时候有一批仁人志士，兴许是从模板引擎的设计思想上得到了启发，他们明确了要走“数据驱动视图”这条基本道路，于是便沿着这个思路往下摸索：模板引擎的数据驱动视图方案，核心问题在于对真实 DOM 的修改过于“大刀阔斧”，导致了 DOM 操作的范围过大、频率过高，进而可能会导致糟糕的性能。然后这帮人就想啊：既然操作真实 DOM 对性能损耗这么大，那我操作假的 DOM 不就行了？</p><p data-nodeid="6739">沿着这个思路再往下走，就有了我们都爱的虚拟 DOM。</p><blockquote data-nodeid="6740"><p data-nodeid="6741">注：出于严谨，还是要解释下。真实历史中的虚拟 DOM 创作过程，到底有没有向模板引擎去学习，这个暂时无从考证。但是按照前端发展的过程来看，模板引擎和虚拟 DOM 确实在思想上存在递进关系，很多场景下，面试官也可能会问及两者的关系。因此在此处，我采取了这样一种表述方式，希望能够帮助你更好地把握住问题的关键所在。</p></blockquote><p>虚拟DOM使得之前的全局刷新，改成了有更新的部分更新，在真实DOM前加了一层</p><p><img src="G:/WorkStation/JavaScriptProject/React%E5%AD%A6%E4%B9%A0/React%E5%AD%A6%E4%B9%A020220314%20%E8%99%9A%E6%8B%9FDOM/assets/image-20220314151706530.png" alt="image-20220314151706530"></p><p>虚拟DOM解决的问题重心不是性能</p><p><img src="G:/WorkStation/JavaScriptProject/React%E5%AD%A6%E4%B9%A0/React%E5%AD%A6%E4%B9%A020220314%20%E8%99%9A%E6%8B%9FDOM/assets/image-20220314151854443.png" alt="image-20220314151854443"></p><h1 id="Reconciliation过程与Diff算法"><a href="#Reconciliation过程与Diff算法" class="headerlink" title="Reconciliation过程与Diff算法"></a>Reconciliation过程与Diff算法</h1><h2 id="Diff算法"><a href="#Diff算法" class="headerlink" title="Diff算法"></a>Diff算法</h2><p>找两个树结构之间的不同</p><h3 id="两个规律"><a href="#两个规律" class="headerlink" title="两个规律"></a>两个规律</h3><p><img src="G:/WorkStation/JavaScriptProject/React%E5%AD%A6%E4%B9%A0/React%E5%AD%A6%E4%B9%A020220314%20%E8%99%9A%E6%8B%9FDOM/assets/image-20220314152249841.png" alt="image-20220314152249841"></p><p><img src="G:/WorkStation/JavaScriptProject/React%E5%AD%A6%E4%B9%A0/React%E5%AD%A6%E4%B9%A020220314%20%E8%99%9A%E6%8B%9FDOM/assets/image-20220314153544145.png" alt="image-20220314153544145"></p><p>对于Key，下图可以比较好地展示使用了Key后的更新策略</p><p><img src="G:/WorkStation/JavaScriptProject/React%E5%AD%A6%E4%B9%A0/React%E5%AD%A6%E4%B9%A020220314%20%E8%99%9A%E6%8B%9FDOM/assets/image-20220314153745501.png" alt="image-20220314153745501"></p><p>如果不使用key，则仅有AB可保留，其他均被重建</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;React学习20220314-虚拟DOM&quot;&gt;&lt;a href=&quot;#React学习20220314-虚拟DOM&quot; class=&quot;headerlink&quot; title=&quot;React学习20220314 虚拟DOM&quot;&gt;&lt;/a&gt;React学习20220314 虚拟DOM&lt;/</summary>
+      
+    
+    
+    
+    
+    <category term="React" scheme="http://example.com/tags/React/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>React学习20220314 SetState</title>
+    <link href="http://example.com/2022/03/16/2022-03-14-React%E5%AD%A6%E4%B9%A020220314%20SetState/"/>
+    <id>http://example.com/2022/03/16/2022-03-14-React%E5%AD%A6%E4%B9%A020220314%20SetState/</id>
+    <published>2022-03-16T03:48:15.000Z</published>
+    <updated>2022-10-12T04:37:28.040Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="React学习20220314-SetState"><a href="#React学习20220314-SetState" class="headerlink" title="React学习20220314 SetState"></a>React学习20220314 SetState</h1><h2 id="初始认知"><a href="#初始认知" class="headerlink" title="初始认知"></a>初始认知</h2><p>setState之后立马访问对应state，会发现它并没有改变，而是会在之后某个时间发生变化</p><h2 id="异步的动机和原理"><a href="#异步的动机和原理" class="headerlink" title="异步的动机和原理"></a>异步的动机和原理</h2><img src="https://s0.lgstatic.com/i/image/M00/6D/8A/Ciqc1F-uMeSAYK6FAABN0Vwnq5M814.png" alt="图片3.png" data-nodeid="13893"><h2 id="异步避免重复reRender"><a href="#异步避免重复reRender" class="headerlink" title="异步避免重复reRender"></a>异步避免重复reRender</h2><p><img src="G:/WorkStation/JavaScriptProject/React%E5%AD%A6%E4%B9%A0/typoimg/image-20220314185248371.png" alt="image-20220314185248371"></p><h2 id="从源码角度看异步setState"><a href="#从源码角度看异步setState" class="headerlink" title="从源码角度看异步setState"></a>从源码角度看异步setState</h2><p><img src="G:/WorkStation/JavaScriptProject/React%E5%AD%A6%E4%B9%A0/typoimg/image-20220314185446537.png" alt="image-20220314185446537"></p><h2 id="再查看batchingStrategy"><a href="#再查看batchingStrategy" class="headerlink" title="再查看batchingStrategy"></a>再查看batchingStrategy</h2><p><img src="G:/WorkStation/JavaScriptProject/React%E5%AD%A6%E4%B9%A0/typoimg/image-20220314185810854.png" alt="image-20220314185810854"></p><h2 id="理解Transaction（事务）机制"><a href="#理解Transaction（事务）机制" class="headerlink" title="理解Transaction（事务）机制"></a>理解Transaction（事务）机制</h2><p><img src="G:/WorkStation/JavaScriptProject/React%E5%AD%A6%E4%B9%A0/typoimg/image-20220314185913490.png" alt="image-20220314185913490"></p><h2 id="同步现象的本质"><a href="#同步现象的本质" class="headerlink" title="同步现象的本质"></a>同步现象的本质</h2><p><img src="G:/WorkStation/JavaScriptProject/React%E5%AD%A6%E4%B9%A0/typoimg/image-20220314190033221.png" alt="image-20220314190033221"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;React学习20220314-SetState&quot;&gt;&lt;a href=&quot;#React学习20220314-SetState&quot; class=&quot;headerlink&quot; title=&quot;React学习20220314 SetState&quot;&gt;&lt;/a&gt;React学习2022031</summary>
+      
+    
+    
+    
+    
+    <category term="React" scheme="http://example.com/tags/React/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>React学习20220313 Hook</title>
+    <link href="http://example.com/2022/03/13/2022-03-13-React%E5%AD%A6%E4%B9%A020220313%20Hook/"/>
+    <id>http://example.com/2022/03/13/2022-03-13-React%E5%AD%A6%E4%B9%A020220313%20Hook/</id>
+    <published>2022-03-13T03:48:15.000Z</published>
+    <updated>2022-10-12T04:37:28.040Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="React学习20220313-Hook"><a href="#React学习20220313-Hook" class="headerlink" title="React学习20220313 Hook"></a>React学习20220313 Hook</h1><h2 id="理解Hook"><a href="#理解Hook" class="headerlink" title="理解Hook"></a>理解Hook</h2><p>按我的理解，Hook是对繁琐，学习曲线长，难以更改中间步骤的类的拆分，使得函数可以拥有一些类能够使用的功能：如state和生命周期等，而且Hook所辅助的函数式编程比较符合React所推崇的组件化编程。</p><h2 id="对useState的理解"><a href="#对useState的理解" class="headerlink" title="对useState的理解"></a>对useState的理解</h2><p>充当函数中的state，但一次只有一个，不像类中一次指定多个</p><blockquote><p>[text,setText] &#x3D;useState(‘初始文字’)</p></blockquote><p>useState返回一个数组，数组第一个是想要的state变量，第二个是修改变量的Api</p><h2 id="对useEffect的理解"><a href="#对useEffect的理解" class="headerlink" title="对useEffect的理解"></a>对useEffect的理解</h2><p>弥补生命周期</p><p>接收两个参数：回调函数和依赖数组</p><p>useEffect(callBack,[])</p><p>调用规则：</p><blockquote><p>每次渲染后：传入回调函数，不传依赖数组： </p><ul><li>useEffect(callBack)</li></ul><p>挂载阶段执行一次后不再执行：传入回调函数，且此函数的返回值不是函数，同时传入空数组。</p><ul><li>useEffect(()&#x3D;&gt;{&#x2F;*业务逻辑*&#x2F;},[])</li></ul><p>仅在挂载和卸载阶段执行的：传入回调函数，且此函数的返回值是一个函数</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">useEffect</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line"><span class="comment">//业务逻辑</span></span><br><span class="line"><span class="comment">//返回一个函数记为B</span></span><br><span class="line"><span class="keyword">return</span> <span class="function">()=&gt;</span>&#123;</span><br><span class="line">&#125;</span><br><span class="line">&#125;,[])</span><br></pre></td></tr></table></figure><p>每次渲染都触发，且卸载阶段也会被触发的：传入回调函数，且这个函数的返回值是一个函数，同时不传第二个参数</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">useEffect</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">    <span class="comment">//A的业务逻辑</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//返回一个函数记为B</span></span><br><span class="line">    <span class="keyword">return</span> <span class="function">()=&gt;</span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p>上面这段代码在每次渲染都触发A逻辑，并在卸载阶段触发B逻辑</p><p>按我的理解，在前面一半写个函数会在渲染阶段一直触发，单纯写一段逻辑就会在挂载阶段触发，在return那写个函数就会在卸载的时候触发</p></blockquote><p><img src="G:/WorkStation/JavaScriptProject/React%E5%AD%A6%E4%B9%A0/React%E5%AD%A6%E4%B9%A020220313%20Hook/assets/image-20220313160121838.png" alt="image-20220313160121838"></p><h2 id="不要在循环，条件或嵌套函数中调用Hook"><a href="#不要在循环，条件或嵌套函数中调用Hook" class="headerlink" title="不要在循环，条件或嵌套函数中调用Hook"></a>不要在循环，条件或嵌套函数中调用Hook</h2><h3 id="首次渲染过程"><a href="#首次渲染过程" class="headerlink" title="首次渲染过程"></a>首次渲染过程</h3><p><img src="G:/WorkStation/JavaScriptProject/React%E5%AD%A6%E4%B9%A0/React%E5%AD%A6%E4%B9%A020220313%20Hook/assets/image-20220314135945234.png" alt="image-20220314135945234"></p><p>hook相关的所有信息收敛在一个hook对象粒，而hook对象之间以单向链表的形式相互串联，</p><h3 id="更新过程"><a href="#更新过程" class="headerlink" title="更新过程"></a>更新过程</h3><p><img src="G:/WorkStation/JavaScriptProject/React%E5%AD%A6%E4%B9%A0/React%E5%AD%A6%E4%B9%A020220313%20Hook/assets/image-20220314140737526.png" alt="image-20220314140737526"></p><p>因此，hooks的渲染是通过“依次遍历”（也就是说，它只会管这回需要前进几个next，而不会对对应位置的真实性进行判断）来定位每个hooks的内容的，如果前后两次读到的链表顺序出现差异，那么渲染的结果自然是不可控的。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;React学习20220313-Hook&quot;&gt;&lt;a href=&quot;#React学习20220313-Hook&quot; class=&quot;headerlink&quot; title=&quot;React学习20220313 Hook&quot;&gt;&lt;/a&gt;React学习20220313 Hook&lt;/h1&gt;&lt;</summary>
+      
+    
+    
+    
+    
+    <category term="React" scheme="http://example.com/tags/React/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>React学习20220312 生命周期</title>
+    <link href="http://example.com/2022/03/12/2022-03-12-React%E5%AD%A6%E4%B9%A020220312/"/>
+    <id>http://example.com/2022/03/12/2022-03-12-React%E5%AD%A6%E4%B9%A020220312/</id>
+    <published>2022-03-12T03:48:15.000Z</published>
+    <updated>2022-10-12T04:37:28.040Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="React学习20220312"><a href="#React学习20220312" class="headerlink" title="React学习20220312"></a>React学习20220312</h1><h2 id="CreateElement函数拆解"><a href="#CreateElement函数拆解" class="headerlink" title="CreateElement函数拆解"></a>CreateElement函数拆解</h2><img src="C:\Users\www13\AppData\Roaming\Typora\typora-user-images\image-20220312150556893.png" alt="image-20220312150556893" style="zoom:50%;" /><img src="C:\Users\www13\AppData\Roaming\Typora\typora-user-images\image-20220312150653145.png" alt="image-20220312150653145" style="zoom:50%;" /><img src="C:\Users\www13\AppData\Roaming\Typora\typora-user-images\image-20220312150814067.png" alt="image-20220312150814067" style="zoom:50%;" /><img src="C:\Users\www13\AppData\Roaming\Typora\typora-user-images\image-20220312150922420.png" alt="image-20220312150922420" style="zoom:50%;" /><h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><p><img src="C:\Users\www13\AppData\Roaming\Typora\typora-user-images\image-20220312151139289.png" alt="image-20220312151139289"></p><p>React16</p><p><img src="C:\Users\www13\AppData\Roaming\Typora\typora-user-images\image-20220312152345970.png" alt="image-20220312152345970"></p><blockquote><p>挂载过程</p><img src="C:\Users\www13\AppData\Roaming\Typora\typora-user-images\image-20220312152839851.png" alt="image-20220312152839851" style="zoom:50%;" /><p>getDerivedFromProps的功能：使用props来派生&#x2F;更新state</p><ul><li>是针对某个属性的定向更新</li></ul><p>更新过程</p><img src="C:\Users\www13\AppData\Roaming\Typora\typora-user-images\image-20220312153339553.png" alt="image-20220312153339553" style="zoom:50%;" /><p>getSnapshotBeforeUpdate:</p><img src="C:\Users\www13\AppData\Roaming\Typora\typora-user-images\image-20220312154540844.png" alt="image-20220312154540844" style="zoom:50%;" /><img src="C:\Users\www13\AppData\Roaming\Typora\typora-user-images\image-20220312154512940.png" alt="image-20220312154512940" style="zoom:50%;" /></blockquote><p>React16引入的Fiber架构</p><p>之前组件更新：树状递归更新，同步更新，占用主线程，易卡死</p><p>Fiber会把大任务转为小任务，使得渲染线程可打断</p><p>重要特征</p><blockquote><p>可以被<u>打断</u>的异步渲染模式</p></blockquote><p>react将渲染过程分为render和commit两个过程</p><p>render可被打断</p><p>commit同步执行</p><p>因为commit会改视图，因此不可打断</p><h2 id="数据的流动"><a href="#数据的流动" class="headerlink" title="数据的流动"></a>数据的流动</h2><p>基于props的单向数据流：</p><blockquote><p>当前组件的state以props的形式流动时，只能流向组件树中比自己层级更低的组件</p></blockquote><p>父子组件通信</p><blockquote><p>父组件把this.props传入子组件</p></blockquote><p>子父组件通信</p><blockquote><p>父组件向子组件传递一个绑定了自身上下文的函数</p><p>子组件在调用该函数时，</p><p>就可以把想要交给父组件的数据以函数入参的形式传入</p><blockquote><img src="C:\Users\www13\AppData\Roaming\Typora\typora-user-images\image-20220312163654393.png" alt="image-20220312163654393" style="zoom:50%;" /><img src="C:\Users\www13\AppData\Roaming\Typora\typora-user-images\image-20220312163734257.png" alt="image-20220312163734257" style="zoom:50%;" /><img src="C:\Users\www13\AppData\Roaming\Typora\typora-user-images\image-20220312163752751.png" alt="image-20220312163752751" style="zoom:50%;" /></blockquote></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;React学习20220312&quot;&gt;&lt;a href=&quot;#React学习20220312&quot; class=&quot;headerlink&quot; title=&quot;React学习20220312&quot;&gt;&lt;/a&gt;React学习20220312&lt;/h1&gt;&lt;h2 id=&quot;CreateElement</summary>
+      
+    
+    
+    
+    
+    <category term="React" scheme="http://example.com/tags/React/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>黑盒测试</title>
+    <link href="http://example.com/2022/03/11/2022-03-11-%E9%BB%91%E7%9B%92%E6%B5%8B%E8%AF%95/"/>
+    <id>http://example.com/2022/03/11/2022-03-11-%E9%BB%91%E7%9B%92%E6%B5%8B%E8%AF%95/</id>
+    <published>2022-03-11T01:48:15.000Z</published>
+    <updated>2022-10-12T04:37:28.040Z</updated>
+    
+    <content type="html"><![CDATA[<p>测试用例选择</p><ol><li>为每一个等价类规定一个唯一编号； </li><li>设计一个新的测试用例，使其尽可能多地覆盖 尚未被覆盖的有效等价类，重复这一步，直到 所有的有效等价类都被覆盖为止； </li><li>设计一个新的测试用例，使其仅覆盖一个尚未 被覆盖的无效等价类，重复这一步，直到所有 的无效等价类都被覆盖为止</li></ol><blockquote><p><img src="C:\Users\www13\AppData\Roaming\Typora\typora-user-images\image-20220309134921110.png" alt="image-20220309134921110"></p><h4 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h4><h4 id="是否是三角形的三条边"><a href="#是否是三角形的三条边" class="headerlink" title="是否是三角形的三条边"></a>是否是三角形的三条边</h4><h6 id="等价类"><a href="#等价类" class="headerlink" title="等价类"></a>等价类</h6><p>A&gt;0</p><p>B&gt;0</p><p>c&gt;0</p><p>A+B&gt;C</p><p>B+C&gt;A</p><p>A+C&gt;B</p><h5 id="非等价类"><a href="#非等价类" class="headerlink" title="非等价类"></a>非等价类</h5><p>A&lt;&#x3D;0</p><p>B&lt;&#x3D;0</p><p>C&lt;&#x3D;0</p><p>A+B&lt;&#x3D;C</p><p>…</p><h4 id="是否等腰"><a href="#是否等腰" class="headerlink" title="是否等腰"></a>是否等腰</h4><h5 id="等价类-1"><a href="#等价类-1" class="headerlink" title="等价类"></a>等价类</h5><p>A&#x3D;B</p><p>B&#x3D;C</p><p>C&#x3D;A</p><h5 id="非等价类-1"><a href="#非等价类-1" class="headerlink" title="非等价类"></a>非等价类</h5><p>A!&#x3D;B！&#x3D;C</p><h5 id="是否等边"><a href="#是否等边" class="headerlink" title="是否等边"></a>是否等边</h5><h5 id="等价类-2"><a href="#等价类-2" class="headerlink" title="等价类"></a>等价类</h5><p>A&#x3D;B&#x3D;C</p><h5 id="非等价类-2"><a href="#非等价类-2" class="headerlink" title="非等价类"></a>非等价类</h5><p>A!&#x3D;B</p><p>B!&#x3D;C</p><p>C!&#x3D;A</p></blockquote><h3 id="边界值分析法（单缺陷假设）"><a href="#边界值分析法（单缺陷假设）" class="headerlink" title="边界值分析法（单缺陷假设）"></a>边界值分析法（单缺陷假设）</h3><p>比最大值稍微小一点，比最小值稍微大一点</p><p><img src="C:\Users\www13\AppData\Roaming\Typora\typora-user-images\image-20220309140314690.png" alt="image-20220309140314690"></p><p><strong>健壮性测试：（再多两个点）</strong></p><p>比最大值稍微大一点，比最小值稍微小一点</p><p><img src="C:\Users\www13\AppData\Roaming\Typora\typora-user-images\image-20220309140305899.png" alt="image-20220309140305899"></p><p><strong>最坏情况测试：</strong></p><p>多变量取极值的情况</p><p><img src="C:\Users\www13\AppData\Roaming\Typora\typora-user-images\image-20220309140255646.png" alt="image-20220309140255646"></p><p><strong>健壮最坏情况测试</strong></p><p>最坏情况取超边界情况</p><p><img src="C:\Users\www13\AppData\Roaming\Typora\typora-user-images\image-20220309140405550.png" alt="image-20220309140405550"></p><h3 id="错误推测法"><a href="#错误推测法" class="headerlink" title="错误推测法"></a>错误推测法</h3><p>根据经验推测</p><p>简单有效，但系统性差，是其他的补充</p><h3 id="判定表法"><a href="#判定表法" class="headerlink" title="判定表法"></a>判定表法</h3><blockquote><p>判定表是一种用来表示和分析复杂逻辑关系的工具，最适 合描述在多个逻辑条件取值的组合所构成的复杂情况下， 分别要执行哪些不同的动作。</p></blockquote><blockquote><p>条件桩（Condition Stub）：列出了问题的所有条件。通常认为列出的条件的次序无关紧要。 </p><p>动作桩（Action Stub）：列出了问题规定可能采取的操作。这些操作的排列顺序没有约束。</p><p>条件项（Condition Entry）：列出针对它所列条件的取值，在所有可能情况下的真假值。</p><p>动作项（Action Entry）：列出在条件项的各种取值情况下应该采取的动作</p></blockquote><p>例子</p><blockquote><p>“……对于功率大于50马力的机器，并且维修记录不全或已运行 10年以上的机器，应给予优先的维修处理……</p><p>（1）列出所有的条件桩和动作桩 </p><p>– 条件桩 C1：功率大于50马力吗？ C2：维修记录不全吗？ C3：运行超过10年吗？ </p><p>– 动作桩 A1：进行优先处理 A2：做其他处理</p><p>（2）确定规则个数 </p><p>– 输入条件个数：3 </p><p>– 每个条件的取值：“是”或“否” </p><p>– 规则个数：2<em>2</em>2 &#x3D;8</p><p><img src="C:\Users\www13\AppData\Roaming\Typora\typora-user-images\image-20220309143736908.png" alt="image-20220309143736908"></p><p><img src="C:\Users\www13\AppData\Roaming\Typora\typora-user-images\image-20220309143751694.png" alt="image-20220309143751694"></p></blockquote><blockquote><p>因果图法</p><blockquote><p>从用自然语言书写的程序规格说明 的描述中找出因（输入条件）和果（输出或程序状态的改 变），通过因果图转换为判定表</p></blockquote><p>基本步骤</p><blockquote><ol><li><p>分析软件规格说明描述中，哪些是原因（即输入条件或输入 条件的等价类），哪些是结果（即输出条件），并给每个原因和 结果赋予一个标识符。</p></li><li><p>分析软件规格说明描述中的语义，找出原因与结果之间，原 因与原因之间对应的关系，根据这些关系，画出因果图</p></li><li><p>由于语法或环境限制，有些原因与原因之间，结果与结果之 间的组合情况不可能出现。为表明这些特殊情况，在因果图上用 一些记号标明约束或限制条件</p></li><li><p>把因果图转换成判定表。</p></li><li><p>把判定表的每一列拿出来作为依据，设计测试用例</p></li></ol><p>图形符号</p><p><img src="C:\Users\www13\AppData\Roaming\Typora\typora-user-images\image-20220311152714975.png" alt="image-20220311152714975"></p><p><img src="https://s2.loli.net/2022/03/11/2Izxij3sJbMwBCX.png" alt="image-20220311152824009"></p></blockquote></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;测试用例选择&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;为每一个等价类规定一个唯一编号； &lt;/li&gt;
+&lt;li&gt;设计一个新的测试用例，使其尽可能多地覆盖 尚未被覆盖的有效等价类，重复这一步，直到 所有的有效等价类都被覆盖为止； &lt;/li&gt;
+&lt;li&gt;设计一个新的测试用例，使其仅覆盖一个尚未 被</summary>
+      
+    
+    
+    
+    
+    <category term="软件质量与评测技术" scheme="http://example.com/tags/%E8%BD%AF%E4%BB%B6%E8%B4%A8%E9%87%8F%E4%B8%8E%E8%AF%84%E6%B5%8B%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>白盒测试</title>
+    <link href="http://example.com/2022/03/09/2022-03-09-%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/"/>
+    <id>http://example.com/2022/03/09/2022-03-09-%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/</id>
+    <published>2022-03-09T01:48:15.000Z</published>
+    <updated>2022-10-12T04:37:28.040Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="白盒测试"><a href="#白盒测试" class="headerlink" title="白盒测试"></a>白盒测试</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>知道内部工作过程，可通过测试内部动作来测试</p><h3 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h3><p>通过测试来检测软件产品内部动作是否按照规格说明书的规定正常执行</p><h3 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h3><p>看软件内部各条通路是否按照规定工作</p><h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><p>黑盒可能存在负负得正的情况，而白盒不会</p><p>白盒能发现一些隐患：如内存泄漏，误差累积等</p><h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><h3 id="主要想对程序模块进行如下的检查"><a href="#主要想对程序模块进行如下的检查" class="headerlink" title="主要想对程序模块进行如下的检查"></a>主要想对程序模块进行如下的检查</h3><blockquote><p>对所有独立测试路径至少测试一次</p><p>对所有的逻辑判定，取真&#x2F;假的两种至少测试一次</p><p>在循环的边界和运行界限内执行循环体 </p><p>测试内部数据结构的有效性</p></blockquote><h3 id="局限"><a href="#局限" class="headerlink" title="局限"></a>局限</h3><p>一个具有多重选择和循环嵌套的程序，不同的路径数目可能是天文数字。</p><h2 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h2><img src="C:\Users\www13\AppData\Roaming\Typora\typora-user-images\image-20220311162005086.png" alt="image-20220311162005086" style="zoom: 50%;" /><h2 id="如何安排白盒测试"><a href="#如何安排白盒测试" class="headerlink" title="如何安排白盒测试"></a>如何安排白盒测试</h2><h3 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h3><h3 id="集成测试"><a href="#集成测试" class="headerlink" title="集成测试"></a>集成测试</h3><blockquote><ul><li><p>集成阶段，依据概要设计说明书 </p></li><li><p>静态结构分析 </p></li><li><p>代码质量度量 </p></li><li><p>功能确认与接口分析 </p></li><li><p>覆盖率分析 </p></li><li><p>性能分析 </p></li><li><p>内存分析</p></li></ul></blockquote><h3 id="系统测试"><a href="#系统测试" class="headerlink" title="系统测试"></a>系统测试</h3><p>到这步已经很少做白盒测试了</p><h3 id="验收测试"><a href="#验收测试" class="headerlink" title="验收测试"></a>验收测试</h3><h3 id="白盒测试综合策略"><a href="#白盒测试综合策略" class="headerlink" title="白盒测试综合策略"></a>白盒测试综合策略</h3><blockquote><ol><li><p>在测试中，应尽量先用工具进行静态结构分析。 </p></li><li><p>测试中可采取先静态后动态的组合方式：先进行静态结构分析、代码检查和静态质量度量，再进行覆盖率测试。 </p></li><li><p>利用静态分析的结果作为引导，通过代码检查和动态测试的方式对静态结构分析结果进行进一步的确认，使测试工作更为有效</p></li><li><p>覆盖率测试是白盒测试的重点，一般可使用基本路径测试 法达到语句覆盖标准；对于软件的重点模块，应使用多种覆盖标准衡量代码的覆盖率。</p></li><li><p>在不同的测试阶段，测试的侧重点不同：在单元测试阶段 ，以代码检查、逻辑覆盖为主；在集成测试阶段，需要增加静态结构分析、静态质量度量；在系统测试阶段，应根据黑盒测试的结果，采取相应的白盒测试</p></li></ol></blockquote><h2 id="白盒测试用例设计技术"><a href="#白盒测试用例设计技术" class="headerlink" title="白盒测试用例设计技术"></a>白盒测试用例设计技术</h2><h3 id="静态"><a href="#静态" class="headerlink" title="静态"></a>静态</h3><blockquote><ul><li><p>代码检查（人工＋工具） </p></li><li><p>静态结构分析（主要由软件工具自动进行） </p></li><li><p>软件质量度量（主要由软件工具自动进行</p></li></ul></blockquote><h3 id="动态"><a href="#动态" class="headerlink" title="动态"></a>动态</h3>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;白盒测试&quot;&gt;&lt;a href=&quot;#白盒测试&quot; class=&quot;headerlink&quot; title=&quot;白盒测试&quot;&gt;&lt;/a&gt;白盒测试&lt;/h1&gt;&lt;h2 id=&quot;定义&quot;&gt;&lt;a href=&quot;#定义&quot; class=&quot;headerlink&quot; title=&quot;定义&quot;&gt;&lt;/a&gt;定义&lt;/h</summary>
+      
+    
+    
+    
+    
+    <category term="软件质量与评测技术" scheme="http://example.com/tags/%E8%BD%AF%E4%BB%B6%E8%B4%A8%E9%87%8F%E4%B8%8E%E8%AF%84%E6%B5%8B%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MC服务器设置</title>
+    <link href="http://example.com/2021/12/19/2021-12-19-MC%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AE%BE%E7%BD%AE/"/>
+    <id>http://example.com/2021/12/19/2021-12-19-MC%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AE%BE%E7%BD%AE/</id>
+    <published>2021-12-19T12:43:23.000Z</published>
+    <updated>2022-10-12T04:37:28.040Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="MC服务器设置"><a href="#MC服务器设置" class="headerlink" title="MC服务器设置"></a>MC服务器设置</h1><p>[toc]</p><p>今天心血来潮搞了个mc服务器,下面记录一下过程</p><h2 id="基础配置"><a href="#基础配置" class="headerlink" title="基础配置"></a>基础配置</h2><p>服务器系统:Debian(我也不知道是什么版本,反正是vultur上买的)</p><p>java版本:openjdk8 具体下载过程在后面有说</p><p>之后参考教程<a href="https://minecraft.fandom.com/zh/wiki/%E6%95%99%E7%A8%8B/%E6%9E%B6%E8%AE%BE%E6%9C%8D%E5%8A%A1%E5%99%A8#Debian.E3.80.81Ubuntu.E5.92.8CRaspbian">教程&#x2F;架设服务器 - Minecraft Wiki，最详细的我的世界百科 (fandom.com)</a></p><h2 id="java下载"><a href="#java下载" class="headerlink" title="java下载"></a>java下载</h2><p>参考: <a href="https://www.myfreax.com/install-java-on-debian-10/">如何在Debian 10 Linux上安装Java (myfreax.com)</a></p><p>执行以下代码即可</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line"></span><br><span class="line">sudo apt install apt-transport-https ca-certificates wget dirmngr gnupg software-properties-com</span><br><span class="line"></span><br><span class="line">wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | sudo apt-key add -</span><br><span class="line"></span><br><span class="line">sudo add-apt-repository --<span class="built_in">yes</span> https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/</span><br><span class="line"></span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt install adoptopenjdk-8-hotspot</span><br></pre></td></tr></table></figure><p>最后看看是否真的安装了</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></table></figure><p>预计输出如下</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">openjdk version <span class="string">&quot;1.8.0_212&quot;</span></span><br><span class="line">OpenJDK Runtime Environment (AdoptOpenJDK)(build 1.8.0_212-b04)</span><br><span class="line">OpenJDK 64-Bit Server VM (AdoptOpenJDK)(build 25.212-b04, mixed mode)</span><br></pre></td></tr></table></figure><h2 id="服务器配置"><a href="#服务器配置" class="headerlink" title="服务器配置"></a>服务器配置</h2><p>基础代码仓我直接用了已有的github仓库(不想自己搞了)</p><p>直接在Linux命令行下输入这些就行</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/silvertriclops/MCSLI/archive/master.zip</span><br><span class="line">unzip master.zip</span><br><span class="line"><span class="built_in">cd</span> MCSLI-master </span><br><span class="line">sudo <span class="built_in">chmod</span> +x install.sh</span><br><span class="line">sudo <span class="built_in">chmod</span> +x start.sh</span><br><span class="line">./install.sh <span class="comment"># tells the computer where Java is so it knows how to start Minecraft</span></span><br><span class="line">./start.sh <span class="comment"># starts the Minecraft server. You may want to run this command inside screen.</span></span><br></pre></td></tr></table></figure><p>理论上来说,这样就已经可以用了</p><p>输入 stop退出</p><h3 id="开放tcp端口"><a href="#开放tcp端口" class="headerlink" title="开放tcp端口"></a>开放tcp端口</h3><p>因为是服务器,需要和客户端交互,一个tcp端口是必不可少的</p><p>一般来说,根据上面创建的服务器,默认使用的是25565(启动的时候中间有一行会提示的)</p><p>就像下面这样</p><p><img src="https://s2.loli.net/2021/12/19/m8LxWjMp3DFeXkA.png" alt="image-20211219204134588"></p><p>然后输入下面代码就能开放对应端口(不过我也不知道开了到底会有什么坏影响,服务器做好备份?)</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo iptables -A INPUT -p tcp --dport 25565 --jump ACCEPT</span><br><span class="line">iptables-save</span><br></pre></td></tr></table></figure><h2 id="换成我想要的版本-1-12"><a href="#换成我想要的版本-1-12" class="headerlink" title="换成我想要的版本(1.12)"></a>换成我想要的版本(1.12)</h2><p>不过这个仓库七年前就停止更新了,里面的服务器版本为1.8版本</p><p>想更新成自己的版本需要去MC官网下,就几十mb很小,下载好对应版本后</p><p>回到之前的文件夹(MCSLI-master)</p><p>把对应版本的文件放进来</p><p>如果不知道怎么把文件传给服务器,看下面</p><blockquote><p>我用的Xshell连接服务器,这时候可以下载xftp,用于文件传输,图形化界面,用了都说好</p></blockquote><p>之后更改配置(MCSLI-master&#x2F;start.sh)</p><p>里面能看到写了一行启动代码,把它里面对应服务器jar包的那部分换成你的jar包(相对位置绝对位置都可以)</p><p>看看能不能用</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./start.sh</span><br></pre></td></tr></table></figure><p>只要不报错就算成功</p><h2 id="加装mod"><a href="#加装mod" class="headerlink" title="加装mod"></a>加装mod</h2><p>mod是mc的灵魂,不打mod我不认可(实际就是我菜)</p><p>这时候需要下载forge</p><p>打开forge的官网</p><p><a href="https://files.minecraftforge.net/net/minecraftforge/forge/index_1.12.html">Downloads for Minecraft Forge for Minecraft 1.12</a></p><p>下载对应的版本,我是1.12就下载了1.12</p><p>放到和刚才文件同一级目录下</p><p>执行</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar forge-1.12-14.21.1.2443-installer.jar --install</span><br></pre></td></tr></table></figure><p>这时候你使用 ls 看看文件夹下,可以看到有类似</p><p><img src="https://s2.loli.net/2021/12/19/4iMHgdhOJsvQR9V.png" alt="image-20211219203443648"></p><p>这种东西出现</p><p>那么你的forge安装已经成功了一半了</p><p>之后打开你该死的本地MC(加装了对应版本forge的那种)</p><p>把.minecraft下的resources文件夹,整个给复制到服务器里头去(还是刚才那个文件目录)</p><p>之后执行</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./start.sh</span><br></pre></td></tr></table></figure><p>最后能看到这些信息就算成功</p><p><img src="https://s2.loli.net/2021/12/19/1QMTqoABd5gaxeF.png" alt="image-20211219203701426"></p><h2 id="享受服务器"><a href="#享受服务器" class="headerlink" title="享受服务器"></a>享受服务器</h2><p>打开你的本地MC,输入服务器ip,连接后进入就行</p><h2 id="啸贴士"><a href="#啸贴士" class="headerlink" title="啸贴士"></a>啸贴士</h2><p>如果你一不小心做错了,或许可以评论,我期末摸鱼的时候可能会来评论一下</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;MC服务器设置&quot;&gt;&lt;a href=&quot;#MC服务器设置&quot; class=&quot;headerlink&quot; title=&quot;MC服务器设置&quot;&gt;&lt;/a&gt;MC服务器设置&lt;/h1&gt;&lt;p&gt;[toc]&lt;/p&gt;
+&lt;p&gt;今天心血来潮搞了个mc服务器,下面记录一下过程&lt;/p&gt;
+&lt;h2 id=&quot;基</summary>
+      
+    
+    
+    
+    
+    <category term="MC" scheme="http://example.com/tags/MC/"/>
+    
+  </entry>
+  
+</feed>
