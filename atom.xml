@@ -6,7 +6,7 @@
   <link href="http://nmhn.github.io/atom.xml" rel="self"/>
   
   <link href="http://nmhn.github.io/"/>
-  <updated>2022-10-13T08:07:51.460Z</updated>
+  <updated>2022-10-16T08:35:13.778Z</updated>
   <id>http://nmhn.github.io/</id>
   
   <author>
@@ -17,11 +17,37 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>qemu cxl</title>
+    <link href="http://nmhn.github.io/2022/10/15/qemu-cxl/"/>
+    <id>http://nmhn.github.io/2022/10/15/qemu-cxl/</id>
+    <published>2022-10-15T02:08:48.000Z</published>
+    <updated>2022-10-16T08:35:13.778Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs shell">./build/aarch64-softmmu/qemu-system-aarch64 -M virt,gic-version=3,cxl=on -m 4g,maxmem=8G,slots=8 -cpu max \<br>-hda ../vm_disk/ubuntu_cxl.qcow2 \<br>-cdrom ../ubuntu-20.04.5-desktop-amd64.iso \<br>-object memory-backend-file,id=cxl-mem1,share=on,mem-path=/tmp/cxltest.raw,size=256M \<br>-object memory-backend-file,id=cxl-lsa1,share=on,mem-path=/tmp/lsa.raw,size=256M \<br>-device pxb-cxl,bus_nr=12,bus=pcie.0,id=cxl.1 \<br>-device cxl-rp,port=0,bus=cxl.1,id=root_port13,chassis=0,slot=2 \<br>-device cxl-type3,bus=root_port13,memdev=cxl-mem1,lsa=cxl-lsa1,id=cxl-pmem0 \<br>-M cxl-fmw.0.targets.0=cxl.1,cxl-fmw.0.size=4G<br></code></pre></td></tr></table></figure><p>-M</p><p>Libnvdimm</p><p><img src="https://gitee.com/i-dont-miss-it/pic_bed/raw/master/img/image-20221015200747925.png" alt="image-20221015200747925"></p><p><img src="https://gitee.com/i-dont-miss-it/pic_bed/raw/master/img/image-20221015200623751.png" alt="image-20221015200623751"></p><p><img src="https://gitee.com/i-dont-miss-it/pic_bed/raw/master/img/image-20221015200854839.png" alt="image-20221015200854839"></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs shell">~/qemu/build/aarch64-softmmu/qemu-system-aarch64 -M virt,gic-version=3,cxl=on -m 4g,maxmem=8G,slots=8 -cpu max \<br>-bios ~/repo/edk2/Build/ArmVirtQemu-AARCH64/DEBUG_GCC48/FV/QEMU_EFI.fd \<br>-kernel ~/linux/arch/arm64/boot/Image \<br>-initrd ./rootfs.cpio.gz \<br>-monitor telnet:127.0.0.1:4444,server,nowait \<br>-object memory-backend-file,id=cxl-mem1,share=on,mem-path=/tmp/cxltest.raw,size=256M \<br>-object memory-backend-file,id=cxl-lsa1,share=on,mem-path=/tmp/lsa.raw,size=256M \<br>-device pxb-cxl,bus_nr=12,bus=pcie.0,id=cxl.1 \<br>-device cxl-rp,port=0,bus=cxl.1,id=root_port13,chassis=0,slot=2 \<br>-device cxl-type3,bus=root_port13,memdev=cxl-mem1,lsa=cxl-lsa1,id=cxl-pmem0 \<br>-cxl-fixed-memory-window targets.0=cxl.1,size=4G \<br>-append &quot;console=ttyAMA0 root=/dev/ram rdinit=/init acpi=on&quot; \<br>-nographic \<br></code></pre></td></tr></table></figure><p><img src="https://gitee.com/i-dont-miss-it/pic_bed/raw/master/img/image-20221015202421449.png" alt="image-20221015202421449"></p><p><a href="https://github.com/trekhleb/state-of-the-art-shitcode"><img src="https://img.shields.io/static/v1?label=State-of-the-art&message=Shitcode&color=7B5804" alt="State-of-the-art Shitcode"></a></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell">make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- menuconfig<br>make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j16<br>sudo make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- modules_install<br>sudo make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu-  install<br>sudo update-grub<br>reboot<br><br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class</summary>
+      
+    
+    
+    
+    <category term="大四" scheme="http://nmhn.github.io/categories/%E5%A4%A7%E5%9B%9B/"/>
+    
+    
+    <category term="操作系统" scheme="http://nmhn.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="qemu" scheme="http://nmhn.github.io/tags/qemu/"/>
+    
+  </entry>
+  
+  <entry>
     <title>编码技巧 笔记</title>
     <link href="http://nmhn.github.io/2022/10/13/1013%E7%BC%96%E5%86%99%E5%8F%AF%E8%AF%BB%E4%BB%A3%E7%A0%81%E7%9A%84%E8%89%BA%E6%9C%AF%20%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"/>
     <id>http://nmhn.github.io/2022/10/13/1013%E7%BC%96%E5%86%99%E5%8F%AF%E8%AF%BB%E4%BB%A3%E7%A0%81%E7%9A%84%E8%89%BA%E6%9C%AF%20%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</id>
     <published>2022-10-13T08:07:00.000Z</published>
-    <updated>2022-10-13T08:07:51.460Z</updated>
+    <updated>2022-10-16T07:48:28.767Z</updated>
     
     <content type="html"><![CDATA[<p>1012编写可读代码的艺术 阅读笔记 </p><h1 id="表面改进"><a href="#表面改进" class="headerlink" title="表面改进"></a>表面改进</h1><h2 id="1-代码应当易于理解"><a href="#1-代码应当易于理解" class="headerlink" title="1.代码应当易于理解"></a>1.代码应当易于理解</h2><p><strong>可读性</strong>: 代码的写法应当使别人理解它所需的时间最小化</p><h2 id="2-将信息装入名字里"><a href="#2-将信息装入名字里" class="headerlink" title="2.将信息装入名字里"></a>2.将信息装入名字里</h2><ul><li>选择专业的词</li><li>避免泛泛的名字</li><li>用具体的名字代替抽象的名字</li><li>使用前缀&#x2F;后缀给名字附带更多信息</li><li>决定名字的长度<ul><li>小作用域短名字</li><li>首字母缩略词– 需要易于理解</li><li>丢掉没用的词</li></ul></li><li>利用名字的格式表达含义</li></ul><h2 id="3-不会误解的名字"><a href="#3-不会误解的名字" class="headerlink" title="3.不会误解的名字"></a>3.不会误解的名字</h2><h2 id="4-审美"><a href="#4-审美" class="headerlink" title="4.审美"></a>4.审美</h2><ol><li>使用一致的布局,让读者很快习惯这种风格</li><li>让相似的代码看上去相似</li><li>把相关的代码行分组,形成代码块</li></ol><h2 id="5-该写什么样的注释"><a href="#5-该写什么样的注释" class="headerlink" title="5.该写什么样的注释"></a>5.该写什么样的注释</h2><h3 id="不该写什么注释"><a href="#不该写什么注释" class="headerlink" title="不该写什么注释?"></a>不该写什么注释?</h3><ol><li>不要为那些从代码本身就能快速推断的事实写注释</li><li>不要为了注释而注释</li><li>不要给不好的名字加注释–应该把名字改好</li></ol><h3 id="该写什么"><a href="#该写什么" class="headerlink" title="该写什么?"></a>该写什么?</h3><ol><li><p>记录思想</p><p>记录写代码时有过的重要想法</p><ol><li>比如加入”导演评论”</li></ol></li><li><p>为代码中的瑕疵写注释</p></li><li><p>给常量加注释</p></li><li><p>公布可能的陷阱</p></li><li><p>全局观注释–类之间如何交互等</p></li></ol><h2 id="6-写出言简意赅的注释"><a href="#6-写出言简意赅的注释" class="headerlink" title="6.写出言简意赅的注释"></a>6.写出言简意赅的注释</h2><ol><li>让注释保持紧凑</li><li>避免不明确的代词</li><li>润色粗糙的句子</li><li>精确描述函数行为</li><li>用输入输出例子来说明</li><li>声明代码意图</li><li>采用信息量高的词</li><li></li></ol><h1 id="逻辑改进"><a href="#逻辑改进" class="headerlink" title="逻辑改进"></a>逻辑改进</h1><h2 id="7-把控制流变的易读"><a href="#7-把控制流变的易读" class="headerlink" title="7.把控制流变的易读"></a>7.把控制流变的易读</h2><ol><li><p>比较语句</p><blockquote><p>左侧倾向于变化值,右侧倾向于固定值</p></blockquote></li><li><p>最小化嵌套</p><blockquote><p>提前返回</p><blockquote><p>这是个好事</p></blockquote></blockquote></li></ol><h2 id="8-拆分超长表达式"><a href="#8-拆分超长表达式" class="headerlink" title="8.拆分超长表达式"></a>8.拆分超长表达式</h2><p>思想:拆成小块</p><h2 id="9-变量与可读性"><a href="#9-变量与可读性" class="headerlink" title="9.变量与可读性"></a>9.变量与可读性</h2><ul><li>减少变量<ul><li>去掉没有价值的临时变量</li><li>减少中间结果</li><li>减少控制流变量</li><li>缩小变量的作用域</li></ul></li></ul><h1 id="重新组织代码"><a href="#重新组织代码" class="headerlink" title="重新组织代码"></a>重新组织代码</h1><h2 id="10-抽取不相关的子问题"><a href="#10-抽取不相关的子问题" class="headerlink" title="10.抽取不相关的子问题"></a>10.抽取不相关的子问题</h2><p>如果一段代码并不是为了这个代码块的高层次目标直接工作,可以将其抽取处理.</p><h2 id="11-一次只做一件事"><a href="#11-一次只做一件事" class="headerlink" title="11.一次只做一件事"></a>11.一次只做一件事</h2><p>如题</p><h2 id="12-把想法变成代码"><a href="#12-把想法变成代码" class="headerlink" title="12.把想法变成代码"></a>12.把想法变成代码</h2><p>最好按自然理解的逻辑组织代码</p><h2 id=""><a href="#" class="headerlink" title=""></a></h2>]]></content>
     
@@ -48,7 +74,7 @@
     <link href="http://nmhn.github.io/2022/10/13/1013%20%E5%BC%82%E5%B8%B8%E6%8E%A7%E5%88%B6%E6%B5%81/"/>
     <id>http://nmhn.github.io/2022/10/13/1013%20%E5%BC%82%E5%B8%B8%E6%8E%A7%E5%88%B6%E6%B5%81/</id>
     <published>2022-10-13T02:43:00.000Z</published>
-    <updated>2022-10-13T08:08:23.976Z</updated>
+    <updated>2022-10-16T07:48:28.767Z</updated>
     
     <content type="html"><![CDATA[<h1 id="1013-异常控制流"><a href="#1013-异常控制流" class="headerlink" title="1013 异常控制流"></a>1013 异常控制流</h1><h3 id="Exception-Control-Flow-ECF"><a href="#Exception-Control-Flow-ECF" class="headerlink" title="Exception Control Flow ECF"></a>Exception Control Flow ECF</h3><h2 id="1-1-异常处理"><a href="#1-1-异常处理" class="headerlink" title="1.1 异常处理"></a>1.1 异常处理</h2><blockquote><p>启动时生成<strong>异常表</strong></p><p>运行时检测到异常,确定异常号,查找异常表,进入处理程序</p><p>执行完后,执行一条”从中断返回”指令,将控制返回给被中断的程序[如果是一个用户程序被中断]</p></blockquote><h2 id="1-2异常类别"><a href="#1-2异常类别" class="headerlink" title="1.2异常类别"></a>1.2异常类别</h2><ol><li><p>中断</p></li><li><p>陷阱和系统调用</p><blockquote><p>陷阱: 有意的异常,用来在用户程序和内核之间提供一个像过程一样的接口–系统调用</p></blockquote></li><li><p>故障</p><blockquote><p>如 除法错误,却也,一般保护故障[程序引用了一个未定义的虚拟内存区域,Linux一般会报告为一个 段故障 Segmentation fault]</p></blockquote></li><li><p>终止</p><blockquote><p>不可恢复的致命错误–通常硬件错误</p></blockquote></li></ol><h2 id="2-进程"><a href="#2-进程" class="headerlink" title="2 进程"></a>2 进程</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><blockquote><p>一个执行中程序的实例</p></blockquote><p>维护一个 该程序是系统中当前运行的唯一程序的假象</p><p>拥有</p><ul><li>一个独立的逻辑控制流<ul><li>提供独占处理器的假象</li></ul></li><li>一个私有的地址空间<ul><li>提供独占内存系统的假象</li></ul></li></ul><h3 id="进程空间"><a href="#进程空间" class="headerlink" title="进程空间"></a>进程空间</h3><p>给出通用结构</p><blockquote><p>以x86-64 Linux为例</p><img src="assets/image-20221013142209341.png" alt="image-20221013142209341" style="zoom:50%;" /></blockquote><h3 id="上下文切换"><a href="#上下文切换" class="headerlink" title="上下文切换"></a>上下文切换</h3><p>用于实现多任务</p><p>上下文: 重新启动一个被抢占的进程所需的状态</p><h2 id="系统调用错误处理"><a href="#系统调用错误处理" class="headerlink" title="系统调用错误处理"></a>系统调用错误处理</h2><p>Unix系统级函数遇到错误时,通常会返回-1,并设置全局整数变量errno来表示什么出错了.</p><h2 id="进程控制"><a href="#进程控制" class="headerlink" title="进程控制"></a>进程控制</h2><p>重点是创建子进程</p><p>父进程调用fork函数创建一个子进程</p><h3 id="父子进程区别"><a href="#父子进程区别" class="headerlink" title="父子进程区别"></a>父子进程区别</h3><blockquote><p>相同</p><ul><li>虚拟地址空间<ul><li>代码</li><li>数据段</li><li>堆</li><li>共享库</li><li>用户栈</li></ul></li><li>打开描述符<ul><li>意味着父进程调用fork时,子进程可以读写父进程中打开的任何文件</li></ul></li></ul><p>区别</p><ul><li>Pid<ul><li>进程id不同</li></ul></li><li>并发执行<ul><li>父进程和子进程是并发运行的独立进程</li></ul></li><li>虚拟地址空间<ul><li><strong>子进程得到的副本和父进程相同,包括打开的文件描述符,但是是一份独立的副本,也就是说,之后的调用,子进程和父进程独立.</strong></li></ul></li></ul></blockquote><p>fork</p><ul><li>调用一次返回两次<ul><li>一次是在调用进程(父进程中)<ul><li>返回子进程PID(非零)</li></ul></li><li>一次在创建的进程中(子进程中)<ul><li>返回0</li></ul></li></ul></li><li>可以用来辨认子进程还是父进程</li></ul><h3 id="回收子进程"><a href="#回收子进程" class="headerlink" title="回收子进程"></a>回收子进程</h3><p>步骤: 终止-&gt;分配给init进程作为养父-&gt;父进程回收[若父进程没来得及回收,则由init进程回收]</p><h2 id="信号"><a href="#信号" class="headerlink" title="信号"></a>信号</h2><p>较高层</p><ul><li>是一个小消息,通知进程系统中发生了一个某种类型的事件.</li><li>用于通知用户进程发生了一些低层的硬件异常</li></ul>]]></content>
     
@@ -493,32 +519,6 @@
     
     
     <category term="React" scheme="http://nmhn.github.io/tags/React/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>黑盒测试</title>
-    <link href="http://nmhn.github.io/2022/03/11/2022-03-11-%E9%BB%91%E7%9B%92%E6%B5%8B%E8%AF%95/"/>
-    <id>http://nmhn.github.io/2022/03/11/2022-03-11-%E9%BB%91%E7%9B%92%E6%B5%8B%E8%AF%95/</id>
-    <published>2022-03-11T01:48:15.000Z</published>
-    <updated>2022-10-12T04:37:28.040Z</updated>
-    
-    <content type="html"><![CDATA[<p>测试用例选择</p><ol><li>为每一个等价类规定一个唯一编号； </li><li>设计一个新的测试用例，使其尽可能多地覆盖 尚未被覆盖的有效等价类，重复这一步，直到 所有的有效等价类都被覆盖为止； </li><li>设计一个新的测试用例，使其仅覆盖一个尚未 被覆盖的无效等价类，重复这一步，直到所有 的无效等价类都被覆盖为止</li></ol><blockquote><p><img src="C:\Users\www13\AppData\Roaming\Typora\typora-user-images\image-20220309134921110.png" alt="image-20220309134921110"></p><h4 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h4><h4 id="是否是三角形的三条边"><a href="#是否是三角形的三条边" class="headerlink" title="是否是三角形的三条边"></a>是否是三角形的三条边</h4><h6 id="等价类"><a href="#等价类" class="headerlink" title="等价类"></a>等价类</h6><p>A&gt;0</p><p>B&gt;0</p><p>c&gt;0</p><p>A+B&gt;C</p><p>B+C&gt;A</p><p>A+C&gt;B</p><h5 id="非等价类"><a href="#非等价类" class="headerlink" title="非等价类"></a>非等价类</h5><p>A&lt;&#x3D;0</p><p>B&lt;&#x3D;0</p><p>C&lt;&#x3D;0</p><p>A+B&lt;&#x3D;C</p><p>…</p><h4 id="是否等腰"><a href="#是否等腰" class="headerlink" title="是否等腰"></a>是否等腰</h4><h5 id="等价类-1"><a href="#等价类-1" class="headerlink" title="等价类"></a>等价类</h5><p>A&#x3D;B</p><p>B&#x3D;C</p><p>C&#x3D;A</p><h5 id="非等价类-1"><a href="#非等价类-1" class="headerlink" title="非等价类"></a>非等价类</h5><p>A!&#x3D;B！&#x3D;C</p><h5 id="是否等边"><a href="#是否等边" class="headerlink" title="是否等边"></a>是否等边</h5><h5 id="等价类-2"><a href="#等价类-2" class="headerlink" title="等价类"></a>等价类</h5><p>A&#x3D;B&#x3D;C</p><h5 id="非等价类-2"><a href="#非等价类-2" class="headerlink" title="非等价类"></a>非等价类</h5><p>A!&#x3D;B</p><p>B!&#x3D;C</p><p>C!&#x3D;A</p></blockquote><h3 id="边界值分析法（单缺陷假设）"><a href="#边界值分析法（单缺陷假设）" class="headerlink" title="边界值分析法（单缺陷假设）"></a>边界值分析法（单缺陷假设）</h3><p>比最大值稍微小一点，比最小值稍微大一点</p><p><img src="C:\Users\www13\AppData\Roaming\Typora\typora-user-images\image-20220309140314690.png" alt="image-20220309140314690"></p><p><strong>健壮性测试：（再多两个点）</strong></p><p>比最大值稍微大一点，比最小值稍微小一点</p><p><img src="C:\Users\www13\AppData\Roaming\Typora\typora-user-images\image-20220309140305899.png" alt="image-20220309140305899"></p><p><strong>最坏情况测试：</strong></p><p>多变量取极值的情况</p><p><img src="C:\Users\www13\AppData\Roaming\Typora\typora-user-images\image-20220309140255646.png" alt="image-20220309140255646"></p><p><strong>健壮最坏情况测试</strong></p><p>最坏情况取超边界情况</p><p><img src="C:\Users\www13\AppData\Roaming\Typora\typora-user-images\image-20220309140405550.png" alt="image-20220309140405550"></p><h3 id="错误推测法"><a href="#错误推测法" class="headerlink" title="错误推测法"></a>错误推测法</h3><p>根据经验推测</p><p>简单有效，但系统性差，是其他的补充</p><h3 id="判定表法"><a href="#判定表法" class="headerlink" title="判定表法"></a>判定表法</h3><blockquote><p>判定表是一种用来表示和分析复杂逻辑关系的工具，最适 合描述在多个逻辑条件取值的组合所构成的复杂情况下， 分别要执行哪些不同的动作。</p></blockquote><blockquote><p>条件桩（Condition Stub）：列出了问题的所有条件。通常认为列出的条件的次序无关紧要。 </p><p>动作桩（Action Stub）：列出了问题规定可能采取的操作。这些操作的排列顺序没有约束。</p><p>条件项（Condition Entry）：列出针对它所列条件的取值，在所有可能情况下的真假值。</p><p>动作项（Action Entry）：列出在条件项的各种取值情况下应该采取的动作</p></blockquote><p>例子</p><blockquote><p>“……对于功率大于50马力的机器，并且维修记录不全或已运行 10年以上的机器，应给予优先的维修处理……</p><p>（1）列出所有的条件桩和动作桩 </p><p>– 条件桩 C1：功率大于50马力吗？ C2：维修记录不全吗？ C3：运行超过10年吗？ </p><p>– 动作桩 A1：进行优先处理 A2：做其他处理</p><p>（2）确定规则个数 </p><p>– 输入条件个数：3 </p><p>– 每个条件的取值：“是”或“否” </p><p>– 规则个数：2<em>2</em>2 &#x3D;8</p><p><img src="C:\Users\www13\AppData\Roaming\Typora\typora-user-images\image-20220309143736908.png" alt="image-20220309143736908"></p><p><img src="C:\Users\www13\AppData\Roaming\Typora\typora-user-images\image-20220309143751694.png" alt="image-20220309143751694"></p></blockquote><blockquote><p>因果图法</p><blockquote><p>从用自然语言书写的程序规格说明 的描述中找出因（输入条件）和果（输出或程序状态的改 变），通过因果图转换为判定表</p></blockquote><p>基本步骤</p><blockquote><ol><li><p>分析软件规格说明描述中，哪些是原因（即输入条件或输入 条件的等价类），哪些是结果（即输出条件），并给每个原因和 结果赋予一个标识符。</p></li><li><p>分析软件规格说明描述中的语义，找出原因与结果之间，原 因与原因之间对应的关系，根据这些关系，画出因果图</p></li><li><p>由于语法或环境限制，有些原因与原因之间，结果与结果之 间的组合情况不可能出现。为表明这些特殊情况，在因果图上用 一些记号标明约束或限制条件</p></li><li><p>把因果图转换成判定表。</p></li><li><p>把判定表的每一列拿出来作为依据，设计测试用例</p></li></ol><p>图形符号</p><p><img src="C:\Users\www13\AppData\Roaming\Typora\typora-user-images\image-20220311152714975.png" alt="image-20220311152714975"></p><p><img src="https://s2.loli.net/2022/03/11/2Izxij3sJbMwBCX.png" alt="image-20220311152824009"></p></blockquote></blockquote>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;测试用例选择&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;为每一个等价类规定一个唯一编号； &lt;/li&gt;
-&lt;li&gt;设计一个新的测试用例，使其尽可能多地覆盖 尚未被覆盖的有效等价类，重复这一步，直到 所有的有效等价类都被覆盖为止； &lt;/li&gt;
-&lt;li&gt;设计一个新的测试用例，使其仅覆盖一个尚未 被</summary>
-      
-    
-    
-    
-    
-    <category term="软件质量与评测技术" scheme="http://nmhn.github.io/tags/%E8%BD%AF%E4%BB%B6%E8%B4%A8%E9%87%8F%E4%B8%8E%E8%AF%84%E6%B5%8B%E6%8A%80%E6%9C%AF/"/>
     
   </entry>
   

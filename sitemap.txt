@@ -1,6 +1,7 @@
-http://nmhn.github.io/about/index.html
-http://nmhn.github.io/categories/index.html
+http://nmhn.github.io/2022/10/15/qemu-cxl/
 http://nmhn.github.io/tags/index.html
+http://nmhn.github.io/categories/index.html
+http://nmhn.github.io/about/index.html
 http://nmhn.github.io/2022/10/13/1013%20%E5%BC%82%E5%B8%B8%E6%8E%A7%E5%88%B6%E6%B5%81/
 http://nmhn.github.io/2022/10/13/1013%E7%BC%96%E5%86%99%E5%8F%AF%E8%AF%BB%E4%BB%A3%E7%A0%81%E7%9A%84%E8%89%BA%E6%9C%AF%20%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/
 http://nmhn.github.io/2022/10/12/1012%E7%BC%96%E7%A0%81%E6%8A%80%E5%B7%A7/
@@ -62,6 +63,7 @@ http://nmhn.github.io/tags/VM/
 http://nmhn.github.io/tags/%E7%AC%94%E8%AE%B0/
 http://nmhn.github.io/tags/%E6%8A%80%E5%B7%A7/
 http://nmhn.github.io/tags/%E7%BC%96%E7%A0%81/
+http://nmhn.github.io/tags/qemu/
 http://nmhn.github.io/categories/%E5%A4%A7%E4%B8%89/
 http://nmhn.github.io/categories/%E5%A4%A7%E4%B8%89/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/
 http://nmhn.github.io/categories/%E5%A4%A7%E4%B8%89/%E5%A4%B1%E8%B4%A5/

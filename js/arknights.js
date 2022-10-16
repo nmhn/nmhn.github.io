@@ -209,7 +209,7 @@ class Cursor {
         this.last = 0;
         this.moveIng = false;
         this.fadeIng = false;
-        this.outer = getElement('#cursor-outer').style;
+        // this.outer = getElement('#cursor-outer').style;
         this.effecter = getElement('#cursor-effect').style;
         this.attention = "a,input,button,textarea,.code-header,.gt-user-inner,.navBtnIcon";
         this.move = (timestamp) => {
