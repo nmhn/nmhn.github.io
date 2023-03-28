@@ -1,1 +1,157 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>qemu cxl | Hexo</title><script src="//unpkg.com/valine/dist/Valine.min.js"></script><script>var config={root:"/",path:"search.json"}</script><script src="//unpkg.com/mermaid@8.13.5/dist/mermaid.min.js"></script><script>mermaid.initialize({startOnLoad:!0,theme:"dark"})</script><link rel="stylesheet" href="/css/arknights.css"><link rel="stylesheet" href="//unpkg.com/@highlightjs/cdn-assets@11.4.0/styles/atom-one-dark-reasonable.min.css"><style>@font-face{font-family:BenderLight;src:local('Bender'),url(/font/BenderLight.ttf)}@font-face{font-family:'JetBrains Mono';src:local('JetBrains Mono'),url(/font/JetBrainsMono-Regular.woff2) format('woff2')}</style><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml"></head><body style="background-image:url(https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg)"><main><header class="closed"><nav><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><ol class="navContent"><li class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="数据检索" spellcheck="false" maxlength="50" type="text" id="search-input"></span></li><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem"><a class="navBlock" href="/about/"><span class="navItemTitle">About</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav><div class="search-popup"><div id="search-result"></div></div></header><article><div id="post-bg"><div id="post-title"><h1>qemu cxl</h1><div id="post-info"><span>First Post:<div class="control"><time datetime="2022-10-15T02:08:48.000Z" id="date">2022-10-15</time></div></span><br><span>Last Update:<div class="control"><time datetime="2022-10-16T08:35:13.778Z" id="updated">2022-10-16</time></div></span><br><span>Word Count:<div class="control">299</div></span><br><span>Read Time:<div class="control">1 min</div></span></div></div><hr><div id="post-content"><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs shell">./build/aarch64-softmmu/qemu-system-aarch64 -M virt,gic-version=3,cxl=on -m 4g,maxmem=8G,slots=8 -cpu max \<br>-hda ../vm_disk/ubuntu_cxl.qcow2 \<br>-cdrom ../ubuntu-20.04.5-desktop-amd64.iso \<br>-object memory-backend-file,id=cxl-mem1,share=on,mem-path=/tmp/cxltest.raw,size=256M \<br>-object memory-backend-file,id=cxl-lsa1,share=on,mem-path=/tmp/lsa.raw,size=256M \<br>-device pxb-cxl,bus_nr=12,bus=pcie.0,id=cxl.1 \<br>-device cxl-rp,port=0,bus=cxl.1,id=root_port13,chassis=0,slot=2 \<br>-device cxl-type3,bus=root_port13,memdev=cxl-mem1,lsa=cxl-lsa1,id=cxl-pmem0 \<br>-M cxl-fmw.0.targets.0=cxl.1,cxl-fmw.0.size=4G<br></code></pre></td></tr></table></figure><p>-M</p><p>Libnvdimm</p><p><img src="https://gitee.com/i-dont-miss-it/pic_bed/raw/master/img/image-20221015200747925.png" alt="image-20221015200747925"></p><p><img src="https://gitee.com/i-dont-miss-it/pic_bed/raw/master/img/image-20221015200623751.png" alt="image-20221015200623751"></p><p><img src="https://gitee.com/i-dont-miss-it/pic_bed/raw/master/img/image-20221015200854839.png" alt="image-20221015200854839"></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs shell">~/qemu/build/aarch64-softmmu/qemu-system-aarch64 -M virt,gic-version=3,cxl=on -m 4g,maxmem=8G,slots=8 -cpu max \<br>-bios ~/repo/edk2/Build/ArmVirtQemu-AARCH64/DEBUG_GCC48/FV/QEMU_EFI.fd \<br>-kernel ~/linux/arch/arm64/boot/Image \<br>-initrd ./rootfs.cpio.gz \<br>-monitor telnet:127.0.0.1:4444,server,nowait \<br>-object memory-backend-file,id=cxl-mem1,share=on,mem-path=/tmp/cxltest.raw,size=256M \<br>-object memory-backend-file,id=cxl-lsa1,share=on,mem-path=/tmp/lsa.raw,size=256M \<br>-device pxb-cxl,bus_nr=12,bus=pcie.0,id=cxl.1 \<br>-device cxl-rp,port=0,bus=cxl.1,id=root_port13,chassis=0,slot=2 \<br>-device cxl-type3,bus=root_port13,memdev=cxl-mem1,lsa=cxl-lsa1,id=cxl-pmem0 \<br>-cxl-fixed-memory-window targets.0=cxl.1,size=4G \<br>-append &quot;console=ttyAMA0 root=/dev/ram rdinit=/init acpi=on&quot; \<br>-nographic \<br></code></pre></td></tr></table></figure><p><img src="https://gitee.com/i-dont-miss-it/pic_bed/raw/master/img/image-20221015202421449.png" alt="image-20221015202421449"></p><p><a target="_blank" rel="noopener" href="https://github.com/trekhleb/state-of-the-art-shitcode"><img src="https://img.shields.io/static/v1?label=State-of-the-art&message=Shitcode&color=7B5804" alt="State-of-the-art Shitcode"></a></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell">make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- menuconfig<br>make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j16<br>sudo make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- modules_install<br>sudo make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu-  install<br>sudo update-grub<br>reboot<br><br></code></pre></td></tr></table></figure><div id="paginator"></div></div><div id="post-footer"><div id="pages"><div id="footer-link" style="left:50%;order:0;border-left:1px solid #fe2;padding-right:unset;max-width:calc(50% - 5px)"><a href="/2022/10/13/1013%E7%BC%96%E5%86%99%E5%8F%AF%E8%AF%BB%E4%BB%A3%E7%A0%81%E7%9A%84%E8%89%BA%E6%9C%AF%20%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">编码技巧 笔记 Prev →</a></div></div></div><div id="Valine"></div></div><div id="bottom-btn"><a id="to-index" href="#toc-div" title="index">≡</a><a id="to-top" onclick="scrolls.scrolltop()" title="to top" style="opacity:0;display:none">∧</a></div></article><aside><div id="aside-top"><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a target="_blank" rel="noopener" href="https://github.com/Yue-plus">YSH</a></h1><div id="description"></div></div><div id="aside-block"></div></div><footer><nobr>published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr>Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknight</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><div id="cursor-container"><div id="cursor-outer"></div><div id="cursor-effect"></div></div><script src="/js/search.js"></script><script class="pjax-js">reset=e=>{new Valine({el:"#Valine",appId:"MkE8c5Abvy4XAwiLVVgu2cbC-gzGzoHsz",appKey:"IYs46cd4ti4DN1JUw7aNIRVj",placeholder:"此条评论委托企鹅物流发送"}),code.findCode(),mermaid.init(void 0,".mermaid")}</script><script src="//unpkg.com/@highlightjs/cdn-assets@11.4.0/highlight.min.js"></script><script src="/js/arknights.js"></script><script>window.addEventListener("load",()=>{reset()})</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>qemu cxl | Hexo</title>
+    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+    <script>var config = { root: "/", path: "search.json" }</script>
+    <script src="//unpkg.com/mermaid@8.13.5/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({ startOnLoad: !0, theme: "dark" })</script>
+    <link rel="stylesheet" href="/css/arknights.css">
+    <link rel="stylesheet" href="//unpkg.com/@highlightjs/cdn-assets@11.4.0/styles/atom-one-dark-reasonable.min.css">
+    <style>
+        @font-face {
+            font-family: BenderLight;
+            src: local('Bender'), url(/font/BenderLight.ttf)
+        }
+
+        @font-face {
+            font-family: 'JetBrains Mono';
+            src: local('JetBrains Mono'), url(/font/JetBrainsMono-Regular.woff2) format('woff2')
+        }
+    </style>
+    <meta name="generator" content="Hexo 6.3.0">
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head>
+
+<body style="background-image:url(https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg)">
+    <main>
+        <header class="closed">
+            <nav>
+                <div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span
+                            class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div>
+                <ol class="navContent">
+                    <li class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off"
+                                autocorrect="off" autocapitalize="none" placeholder="数据检索" spellcheck="false"
+                                maxlength="50" type="text" id="search-input"></span></li>
+                    <li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li>
+                    <li class="navItem"><a class="navBlock" href="/about/"><span class="navItemTitle">About</span></a>
+                    </li>
+                    <li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span
+                                class="navItemTitle">Archives</span></a></li>
+                </ol>
+            </nav>
+            <div class="search-popup">
+                <div id="search-result"></div>
+            </div>
+        </header>
+        <article>
+            <div id="post-bg">
+                <div id="post-title">
+                    <h1>qemu cxl</h1>
+                    <div id="post-info"><span>First Post:<div class="control"><time datetime="2022-10-15T02:08:48.000Z"
+                                    id="date">2022-10-15</time></div></span><br><span>Last Update:<div class="control">
+                                <time datetime="2022-10-16T08:35:13.778Z" id="updated">2022-10-16</time></div>
+                            </span><br><span>Word Count:<div class="control">299</div></span><br><span>Read Time:<div
+                                class="control">1 min</div></span></div>
+                </div>
+                <hr>
+                <div id="post-content">
+                    <figure class="highlight shell">
+                        <table>
+                            <tr>
+                                <td class="gutter">
+                                    <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre>
+                                </td>
+                                <td class="code">
+                                    <pre><code class="hljs shell">./build/aarch64-softmmu/qemu-system-aarch64 -M virt,gic-version=3,cxl=on -m 4g,maxmem=8G,slots=8 -cpu max \<br>-hda ../vm_disk/ubuntu_cxl.qcow2 \<br>-cdrom ../ubuntu-20.04.5-desktop-amd64.iso \<br>-object memory-backend-file,id=cxl-mem1,share=on,mem-path=/tmp/cxltest.raw,size=256M \<br>-object memory-backend-file,id=cxl-lsa1,share=on,mem-path=/tmp/lsa.raw,size=256M \<br>-device pxb-cxl,bus_nr=12,bus=pcie.0,id=cxl.1 \<br>-device cxl-rp,port=0,bus=cxl.1,id=root_port13,chassis=0,slot=2 \<br>-device cxl-type3,bus=root_port13,memdev=cxl-mem1,lsa=cxl-lsa1,id=cxl-pmem0 \<br>-M cxl-fmw.0.targets.0=cxl.1,cxl-fmw.0.size=4G<br></code></pre>
+                                </td>
+                            </tr>
+                        </table>
+                    </figure>
+                    <p>-M</p>
+                    <p>Libnvdimm</p>
+                    <p><img src="https://gitee.com/i-dont-miss-it/pic_bed/raw/master/img/image-20221015200747925.png"
+                            alt="image-20221015200747925"></p>
+                    <p><img src="https://gitee.com/i-dont-miss-it/pic_bed/raw/master/img/image-20221015200623751.png"
+                            alt="image-20221015200623751"></p>
+                    <p><img src="https://gitee.com/i-dont-miss-it/pic_bed/raw/master/img/image-20221015200854839.png"
+                            alt="image-20221015200854839"></p>
+                    <figure class="highlight shell">
+                        <table>
+                            <tr>
+                                <td class="gutter">
+                                    <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre>
+                                </td>
+                                <td class="code">
+                                    <pre><code class="hljs shell">~/qemu/build/aarch64-softmmu/qemu-system-aarch64 -M virt,gic-version=3,cxl=on -m 4g,maxmem=8G,slots=8 -cpu max \<br>-bios ~/repo/edk2/Build/ArmVirtQemu-AARCH64/DEBUG_GCC48/FV/QEMU_EFI.fd \<br>-kernel ~/linux/arch/arm64/boot/Image \<br>-initrd ./rootfs.cpio.gz \<br>-monitor telnet:127.0.0.1:4444,server,nowait \<br>-object memory-backend-file,id=cxl-mem1,share=on,mem-path=/tmp/cxltest.raw,size=256M \<br>-object memory-backend-file,id=cxl-lsa1,share=on,mem-path=/tmp/lsa.raw,size=256M \<br>-device pxb-cxl,bus_nr=12,bus=pcie.0,id=cxl.1 \<br>-device cxl-rp,port=0,bus=cxl.1,id=root_port13,chassis=0,slot=2 \<br>-device cxl-type3,bus=root_port13,memdev=cxl-mem1,lsa=cxl-lsa1,id=cxl-pmem0 \<br>-cxl-fixed-memory-window targets.0=cxl.1,size=4G \<br>-append &quot;console=ttyAMA0 root=/dev/ram rdinit=/init acpi=on&quot; \<br>-nographic \<br></code></pre>
+                                </td>
+                            </tr>
+                        </table>
+                    </figure>
+                    <p><img src="https://gitee.com/i-dont-miss-it/pic_bed/raw/master/img/image-20221015202421449.png"
+                            alt="image-20221015202421449"></p>
+                    <p><a target="_blank" rel="noopener"
+                            href="https://github.com/trekhleb/state-of-the-art-shitcode"><img
+                                src="https://img.shields.io/static/v1?label=State-of-the-art&message=Shitcode&color=7B5804"
+                                alt="State-of-the-art Shitcode"></a></p>
+                    <figure class="highlight shell">
+                        <table>
+                            <tr>
+                                <td class="gutter">
+                                    <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre>
+                                </td>
+                                <td class="code">
+                                    <pre><code class="hljs shell">make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- menuconfig<br>make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j16<br>sudo make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- modules_install<br>sudo make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu-  install<br>sudo update-grub<br>reboot<br><br></code></pre>
+                                </td>
+                            </tr>
+                        </table>
+                    </figure>
+                    <div id="paginator"></div>
+                </div>
+                <div id="post-footer">
+                    <div id="pages">
+                        <div id="footer-link"
+                            style="left:50%;order:0;border-left:1px solid #fe2;padding-right:unset;max-width:calc(50% - 5px)">
+                            <a
+                                href="/2022/10/13/1013%E7%BC%96%E5%86%99%E5%8F%AF%E8%AF%BB%E4%BB%A3%E7%A0%81%E7%9A%84%E8%89%BA%E6%9C%AF%20%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">编码技巧
+                                笔记 Prev →</a></div>
+                    </div>
+                </div>
+                <div id="Valine"></div>
+            </div>
+            <div id="bottom-btn"><a id="to-index" href="#toc-div" title="index">≡</a><a id="to-top"
+                    onclick="scrolls.scrolltop()" title="to top" style="opacity:0;display:none">∧</a></div>
+        </article>
+        <aside>
+            <div id="aside-top">
+                <div id="about"><a href="/" id="logo"><img
+                            src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a>
+                    <h1 id="Dr"><a target="_blank" rel="noopener" href="https://github.com/Yue-plus">YSH</a></h1>
+                    <div id="description"></div>
+                </div>
+                <div id="aside-block"></div>
+            </div>
+            <footer>
+                <nobr>published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr>
+                <nobr>Theme <a target="_blank" rel="noopener"
+                        href="https://github.com/Yue-plus/hexo-theme-arknights">Arknight</a></nobr><wbr>
+                <nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr>
+            </footer>
+        </aside>
+    </main>
+    <div id="cursor-container">
+        <div id="cursor-outer"></div>
+        <div id="cursor-effect"></div>
+    </div>
+    <script src="/js/search.js"></script>
+    <script
+        class="pjax-js">reset = e => { new Valine({ el: "#Valine", appId: "MkE8c5Abvy4XAwiLVVgu2cbC-gzGzoHsz", appKey: "IYs46cd4ti4DN1JUw7aNIRVj", placeholder: "此条评论委托企鹅物流发送" }), code.findCode(), mermaid.init(void 0, ".mermaid") }</script>
+    <script src="//unpkg.com/@highlightjs/cdn-assets@11.4.0/highlight.min.js"></script>
+    <script src="/js/arknights.js"></script>
+    <script>window.addEventListener("load", () => { reset() })</script>
+</body>
+
+</html>
