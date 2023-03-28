@@ -1,3 +1,5 @@
+http://nmhn.github.io/tags/index-1.html
+http://nmhn.github.io/about/index-1.html
 http://nmhn.github.io/2022/10/15/qemu-cxl/
 http://nmhn.github.io/tags/index.html
 http://nmhn.github.io/categories/index.html
