@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>数据库完整性概述</title>
-    <url>/2021/12/06/2021-12-06-database-Complication/</url>
+    <url>/2021-12-06-database-Complication.html</url>
     <content><![CDATA[<p>9.1 数据库完整性概述</p>
 <p>数据库完整性–数据的正确性,有效性,西安共性</p>
 <p>列级约束</p>
@@ -46,7 +46,7 @@
   </entry>
   <entry>
     <title>21/12/6 Database 数据库的安全性</title>
-    <url>/2021/12/06/2021-12-06-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%AE%89%E5%85%A8%E6%80%A7/</url>
+    <url>/2021-12-06-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%AE%89%E5%85%A8%E6%80%A7.html</url>
     <content><![CDATA[<h1 id="数据库的安全性"><a href="#数据库的安全性" class="headerlink" title="数据库的安全性"></a>数据库的安全性</h1><h2 id="8-4-存取控制"><a href="#8-4-存取控制" class="headerlink" title="8.4 存取控制"></a>8.4 存取控制</h2><h6 id="用户权限定义和合法的权限检查机制一起组成了DBMS的安全子系统"><a href="#用户权限定义和合法的权限检查机制一起组成了DBMS的安全子系统" class="headerlink" title="用户权限定义和合法的权限检查机制一起组成了DBMS的安全子系统"></a>用户权限定义和合法的权限检查机制一起组成了DBMS的安全子系统</h6><p>常用存取控制方法</p>
 <h4 id="自主存取控制"><a href="#自主存取控制" class="headerlink" title="自主存取控制"></a>自主存取控制</h4><p>灵活</p>
 <p>同一用户对不同的数据对象有不同的…</p>
@@ -79,7 +79,7 @@
   </entry>
   <entry>
     <title>21/12/6 Database 查询优化</title>
-    <url>/2021/12/06/2021-12-06-%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96/</url>
+    <url>/2021-12-06-%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96.html</url>
     <content><![CDATA[<h1 id="查询优化"><a href="#查询优化" class="headerlink" title="查询优化"></a>查询优化</h1><h4 id="游标"><a href="#游标" class="headerlink" title="游标"></a>游标</h4><h6 id="目的-解决集合性操作语言与过程性操作语言的不匹配"><a href="#目的-解决集合性操作语言与过程性操作语言的不匹配" class="headerlink" title="目的-解决集合性操作语言与过程性操作语言的不匹配"></a>目的-解决集合性操作语言与过程性操作语言的不匹配</h6><h6 id="原因-sql一条语句一般能产生或处理多条记录-而主语言一次只能存放一条记录"><a href="#原因-sql一条语句一般能产生或处理多条记录-而主语言一次只能存放一条记录" class="headerlink" title="原因:sql一条语句一般能产生或处理多条记录,而主语言一次只能存放一条记录"></a>原因:sql一条语句一般能产生或处理多条记录,而主语言一次只能存放一条记录</h6><h6 id="是什么-是系统为用户开设的一个数据缓冲区-存放sql语句的执行结果"><a href="#是什么-是系统为用户开设的一个数据缓冲区-存放sql语句的执行结果" class="headerlink" title="是什么:是系统为用户开设的一个数据缓冲区,存放sql语句的执行结果"></a>是什么:是系统为用户开设的一个数据缓冲区,存放sql语句的执行结果</h6><p>用户可以用SQL语句逐一地从游标中获取记录,并赋给主变量</p>
 <h6 id="定义游标-使用Declare语句"><a href="#定义游标-使用Declare语句" class="headerlink" title="定义游标: 使用Declare语句"></a>定义游标: 使用Declare语句</h6><p>EXEC SQL DECLARE &lt;&gt; CURSOR……</p>
 <h6 id="打开游标–执行相应的select语句-吧所有满足查询条件的记录从指定表取到缓冲区中"><a href="#打开游标–执行相应的select语句-吧所有满足查询条件的记录从指定表取到缓冲区中" class="headerlink" title="打开游标–执行相应的select语句,吧所有满足查询条件的记录从指定表取到缓冲区中"></a>打开游标–执行相应的select语句,吧所有满足查询条件的记录从指定表取到缓冲区中</h6><p>EXEC SQL OPEN &lt;游标名&gt;</p>
@@ -165,7 +165,7 @@
   </entry>
   <entry>
     <title>21/12/7 存储管理-操作系统</title>
-    <url>/2021/12/07/2021-12-07-%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/</url>
+    <url>/2021-12-07-%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86.html</url>
     <content><![CDATA[<h1 id="存储管理"><a href="#存储管理" class="headerlink" title="存储管理"></a>存储管理</h1><h4 id="地址访问保护机制"><a href="#地址访问保护机制" class="headerlink" title="地址访问保护机制"></a>地址访问保护机制</h4><ol>
 <li><h5 id="上下界寄存器和地址检查机制"><a href="#上下界寄存器和地址检查机制" class="headerlink" title="上下界寄存器和地址检查机制"></a>上下界寄存器和地址检查机制</h5></li>
 </ol>
@@ -266,7 +266,7 @@
   </entry>
   <entry>
     <title>21/12/6 Database 数据库操作</title>
-    <url>/2021/12/06/2021-12-06-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/</url>
+    <url>/2021-12-06-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C.html</url>
     <content><![CDATA[<h2 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h2><p>select</p>
 <p>from</p>
 <p>where</p>
@@ -282,7 +282,7 @@
   </entry>
   <entry>
     <title>21/12/7 设备管理</title>
-    <url>/2021/12/07/2021-12-07-%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86/</url>
+    <url>/2021-12-07-%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86.html</url>
     <content><![CDATA[<h1 id="设备管理"><a href="#设备管理" class="headerlink" title="设备管理"></a>设备管理</h1><h2 id="1-控制器"><a href="#1-控制器" class="headerlink" title="1. 控制器"></a>1. 控制器</h2><h6 id="控制器的任务是在外设与内存之间完成比特流与字节块之间的转换"><a href="#控制器的任务是在外设与内存之间完成比特流与字节块之间的转换" class="headerlink" title="控制器的任务是在外设与内存之间完成比特流与字节块之间的转换"></a>控制器的任务是在外设与内存之间完成比特流与字节块之间的转换</h6><h3 id="1-1寄存器"><a href="#1-1寄存器" class="headerlink" title="1.1寄存器"></a>1.1寄存器</h3><p>每个控制器有几个寄存器,操作系统可以往里写东西</p>
 <h3 id="1-2数据缓冲区"><a href="#1-2数据缓冲区" class="headerlink" title="1.2数据缓冲区"></a>1.2数据缓冲区</h3><p>有些控制器上有,用于大数据传输</p>
 <h4 id="1-2-1磁盘控制器"><a href="#1-2-1磁盘控制器" class="headerlink" title="1.2.1磁盘控制器"></a>1.2.1磁盘控制器</h4><p>将位流组装为字节存入缓冲区中,形成字节为单位的块</p>
@@ -317,7 +317,7 @@
   </entry>
   <entry>
     <title>21/12/6 软件体系结构复习-设计模式</title>
-    <url>/2021/12/07/2021-12-07-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</url>
+    <url>/2021-12-07-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.html</url>
     <content><![CDATA[<h3 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h3><h6 id="基本原则-责任分离-高内聚低耦合"><a href="#基本原则-责任分离-高内聚低耦合" class="headerlink" title="基本原则:责任分离+高内聚低耦合"></a>基本原则:责任分离+高内聚低耦合</h6><h4 id="各部分组成及说明"><a href="#各部分组成及说明" class="headerlink" title="各部分组成及说明"></a>各部分组成及说明</h4><ol>
 <li>strategy:定义了一个共同的接口,所有的具体算法类实现这个接口.换进该类context调用这个接口调用具体的算法类</li>
 <li>ConcreteStragety 封装了具体的算法,实现统一个几口</li>
@@ -450,7 +450,7 @@
   </entry>
   <entry>
     <title>21/12/6 软件体系结构复习</title>
-    <url>/2021/12/07/2021-12-07-%E8%BD%AF%E4%BB%B6%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0/</url>
+    <url>/2021-12-07-%E8%BD%AF%E4%BB%B6%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0.html</url>
     <content><![CDATA[<h1 id="复习"><a href="#复习" class="headerlink" title="复习"></a>复习</h1><h2 id="1-基本概念"><a href="#1-基本概念" class="headerlink" title="1.基本概念"></a>1.基本概念</h2><h3 id="软件体系结构"><a href="#软件体系结构" class="headerlink" title="软件体系结构"></a>软件体系结构</h3><p>系统的基本组织结构,包括系统构成要素,这些构成要素之间以及与环境之间的关系,系统设计及演化时所应遵循的原则</p>
 <h3 id="什么设计模式"><a href="#什么设计模式" class="headerlink" title="什么设计模式?"></a>什么设计模式?</h3><h6 id="是一套被反复使用-多数人知晓的-经过分类编目的-代码设计经验的总结"><a href="#是一套被反复使用-多数人知晓的-经过分类编目的-代码设计经验的总结" class="headerlink" title="是一套被反复使用,多数人知晓的,经过分类编目的,代码设计经验的总结."></a>是一套被反复使用,多数人知晓的,经过分类编目的,代码设计经验的总结.</h6><h3 id="为什么要用设计模式"><a href="#为什么要用设计模式" class="headerlink" title="为什么要用设计模式?"></a>为什么要用设计模式?</h3><p>为了<code>&lt;u&gt;</code>可重用代码<code>&lt;/u&gt;</code>,让代码更容易<code>&lt;u&gt;</code>被他人理解<code>&lt;/u&gt;</code>,保证<code>&lt;u&gt;</code>代码可靠性<code>&lt;/u&gt;</code></p>
 <h3 id="非功能需求有哪些-含义是什么"><a href="#非功能需求有哪些-含义是什么" class="headerlink" title="非功能需求有哪些?,含义是什么?"></a>非功能需求有哪些?,含义是什么?</h3><ol>
@@ -577,7 +577,7 @@
   </entry>
   <entry>
     <title>计网笔记-数据链路层</title>
-    <url>/2021/12/09/2021-12-09-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/</url>
+    <url>/2021-12-09-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82.html</url>
     <content><![CDATA[<h1 id="12-2-数据链路层"><a href="#12-2-数据链路层" class="headerlink" title="12_2_数据链路层"></a>12_2_数据链路层</h1><h2 id="1-数据链路层的基本功能"><a href="#1-数据链路层的基本功能" class="headerlink" title="1. 数据链路层的基本功能"></a>1. 数据链路层的基本功能</h2><p><strong><code>&lt;u&gt;</code>将数据报从一个节点经过一条链路传输到相邻节点<code>&lt;/u&gt;</code></strong></p>
 <ol>
 <li>组帧:将数据报封装进帧，加上首部和尾部</li>
@@ -665,7 +665,7 @@
   </entry>
   <entry>
     <title>网络地址转换</title>
-    <url>/2021/12/09/2021-12-09-%E7%BD%91%E7%BB%9C%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2/</url>
+    <url>/2021-12-09-%E7%BD%91%E7%BB%9C%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2.html</url>
     <content><![CDATA[<h3 id="网络地址转换"><a href="#网络地址转换" class="headerlink" title="网络地址转换"></a>网络地址转换</h3><p>目的:解决ip稀缺</p>
 <p>三个专用地址块</p>
 <p><img src="https://s2.loli.net/2021/12/09/15aVHB4QMLxdjTC.png" alt="image-20211118100015197"></p>
@@ -685,7 +685,7 @@
   </entry>
   <entry>
     <title>网络层</title>
-    <url>/2021/12/09/2021-12-09-%E8%AE%A1%E7%BD%91%E7%BD%91%E7%BB%9C%E5%B1%82/</url>
+    <url>/2021-12-09-%E8%AE%A1%E7%BD%91%E7%BD%91%E7%BB%9C%E5%B1%82.html</url>
     <content><![CDATA[<h1 id="网络层-控制平面"><a href="#网络层-控制平面" class="headerlink" title="网络层-控制平面"></a>网络层-控制平面</h1><h2 id="路由算法"><a href="#路由算法" class="headerlink" title="路由算法"></a>路由算法</h2><h6 id="产生路由表的算法"><a href="#产生路由表的算法" class="headerlink" title="产生路由表的算法"></a>产生路由表的算法</h6><h3 id="图论抽象"><a href="#图论抽象" class="headerlink" title="图论抽象"></a>图论抽象</h3><p>Graph: G &#x3D; <strong>(N,E)</strong></p>
 <p><strong>N</strong> &#x3D; set of routers &#x3D; { u, v, w, x, y, z } 节点是<strong>路由器</strong></p>
 <p><strong>E</strong> &#x3D; set of links &#x3D;{ (u,v), (u,x), (v,x), (v,w), (x,w), (x,y), (w,y), (w,z), (y,z) }  边是<strong>物理链路</strong></p>
@@ -752,7 +752,7 @@
   </entry>
   <entry>
     <title>文件系统-操作系统</title>
-    <url>/2021/12/07/2021-12-07/</url>
+    <url>/2021-12-07.html</url>
     <content><![CDATA[<h1 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h1><h2 id="文件管理"><a href="#文件管理" class="headerlink" title="文件管理"></a>文件管理</h2><h3 id="文件系统的功能"><a href="#文件系统的功能" class="headerlink" title="文件系统的功能"></a>文件系统的功能</h3><p>支持文件所占存储介质空间的分配&#x2F;回收<br>支持文件相对起始数据的逻辑块定位到外存上的物理块<br>支持对文件访问的安全检查<br>支持对文件的读写访问</p>
 <h3 id="文件的结构"><a href="#文件的结构" class="headerlink" title="文件的结构"></a>文件的结构</h3><h5 id="逻辑结构-文件组织"><a href="#逻辑结构-文件组织" class="headerlink" title="逻辑结构(文件组织):"></a>逻辑结构(<strong>文件组织</strong>):</h5><p>用户看到的文件组织形式,和存储:设备无关</p>
 <p>有结构的记录式文件：由一个以上的记录构成</p>
@@ -885,7 +885,7 @@
   </entry>
   <entry>
     <title>计算机网络复习</title>
-    <url>/2021/12/11/2021-12-11-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%A4%8D%E4%B9%A0/</url>
+    <url>/2021-12-11-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%A4%8D%E4%B9%A0.html</url>
     <content><![CDATA[<h1 id="计网复习"><a href="#计网复习" class="headerlink" title="计网复习"></a>计网复习</h1><h2 id="大纲"><a href="#大纲" class="headerlink" title="大纲"></a>大纲</h2><p>[toc]</p>
 <h2 id="1-计算机网络体系结构"><a href="#1-计算机网络体系结构" class="headerlink" title="1. 计算机网络体系结构"></a>1. 计算机网络体系结构</h2><h3 id="1-1-计算机网络概述"><a href="#1-1-计算机网络概述" class="headerlink" title="1.1  计算机网络概述"></a>1.1  计算机网络概述</h3><h4 id="1-1-1计算机网络的概念、组成"><a href="#1-1-1计算机网络的概念、组成" class="headerlink" title="1.1.1计算机网络的概念、组成"></a>1.1.1计算机网络的概念、组成</h4><p>概念</p>
 <blockquote>
@@ -1810,7 +1810,7 @@
   </entry>
   <entry>
     <title>MC服务器设置</title>
-    <url>/2021/12/19/2021-12-19-MC%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AE%BE%E7%BD%AE/</url>
+    <url>/2021-12-19-MC%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AE%BE%E7%BD%AE.html</url>
     <content><![CDATA[<h1 id="MC服务器设置"><a href="#MC服务器设置" class="headerlink" title="MC服务器设置"></a>MC服务器设置</h1><p>[toc]</p>
 <p>今天心血来潮搞了个mc服务器,下面记录一下过程</p>
 <h2 id="基础配置"><a href="#基础配置" class="headerlink" title="基础配置"></a>基础配置</h2><p>服务器系统:Debian(我也不知道是什么版本,反正是vultur上买的)</p>
@@ -1884,7 +1884,7 @@
   </entry>
   <entry>
     <title>白盒测试</title>
-    <url>/2022/03/09/2022-03-09-%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/</url>
+    <url>/2022-03-09-%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95.html</url>
     <content><![CDATA[<h1 id="白盒测试"><a href="#白盒测试" class="headerlink" title="白盒测试"></a>白盒测试</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>知道内部工作过程，可通过测试内部动作来测试</p>
 <h3 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h3><p>通过测试来检测软件产品内部动作是否按照规格说明书的规定正常执行</p>
 <h3 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h3><p>看软件内部各条通路是否按照规定工作</p>
@@ -1953,7 +1953,7 @@
   </entry>
   <entry>
     <title>黑盒测试</title>
-    <url>/2022/03/11/2022-03-11-%E9%BB%91%E7%9B%92%E6%B5%8B%E8%AF%95/</url>
+    <url>/2022-03-11-%E9%BB%91%E7%9B%92%E6%B5%8B%E8%AF%95.html</url>
     <content><![CDATA[<p>测试用例选择</p>
 <ol>
 <li>为每一个等价类规定一个唯一编号； </li>
@@ -2048,7 +2048,7 @@
   </entry>
   <entry>
     <title>React学习20220312 生命周期</title>
-    <url>/2022/03/12/2022-03-12-React%E5%AD%A6%E4%B9%A020220312/</url>
+    <url>/2022-03-12-React%E5%AD%A6%E4%B9%A020220312.html</url>
     <content><![CDATA[<h1 id="React学习20220312"><a href="#React学习20220312" class="headerlink" title="React学习20220312"></a>React学习20220312</h1><h2 id="CreateElement函数拆解"><a href="#CreateElement函数拆解" class="headerlink" title="CreateElement函数拆解"></a>CreateElement函数拆解</h2><img src="C:\Users\www13\AppData\Roaming\Typora\typora-user-images\image-20220312150556893.png" alt="image-20220312150556893" style="zoom:50%;" />
 
 
@@ -2120,7 +2120,7 @@
   </entry>
   <entry>
     <title>React学习20220313 Hook</title>
-    <url>/2022/03/13/2022-03-13-React%E5%AD%A6%E4%B9%A020220313%20Hook/</url>
+    <url>/2022-03-13-React%E5%AD%A6%E4%B9%A020220313%20Hook.html</url>
     <content><![CDATA[<h1 id="React学习20220313-Hook"><a href="#React学习20220313-Hook" class="headerlink" title="React学习20220313 Hook"></a>React学习20220313 Hook</h1><h2 id="理解Hook"><a href="#理解Hook" class="headerlink" title="理解Hook"></a>理解Hook</h2><p>按我的理解，Hook是对繁琐，学习曲线长，难以更改中间步骤的类的拆分，使得函数可以拥有一些类能够使用的功能：如state和生命周期等，而且Hook所辅助的函数式编程比较符合React所推崇的组件化编程。</p>
 <h2 id="对useState的理解"><a href="#对useState的理解" class="headerlink" title="对useState的理解"></a>对useState的理解</h2><p>充当函数中的state，但一次只有一个，不像类中一次指定多个</p>
 <blockquote>
@@ -2161,7 +2161,7 @@
   </entry>
   <entry>
     <title>React学习20220314 虚拟DOM</title>
-    <url>/2022/03/16/2022-03-14-React%E5%AD%A6%E4%B9%A020220314%20%E8%99%9A%E6%8B%9FDOM/</url>
+    <url>/2022-03-14-React%E5%AD%A6%E4%B9%A020220314%20%E8%99%9A%E6%8B%9FDOM.html</url>
     <content><![CDATA[<h1 id="React学习20220314-虚拟DOM"><a href="#React学习20220314-虚拟DOM" class="headerlink" title="React学习20220314 虚拟DOM"></a>React学习20220314 虚拟DOM</h1><h2 id="虚拟DOM是什么"><a href="#虚拟DOM是什么" class="headerlink" title="虚拟DOM是什么"></a>虚拟DOM是什么</h2><p>是JS和DOM之间的一个映射缓存，在形态上表现为一个能够描述DOM结构及其属性信息的JS对象。</p>
 <p>在REACT中，表现为</p>
 <p><img src="G:/WorkStation/JavaScriptProject/React%E5%AD%A6%E4%B9%A0/React%E5%AD%A6%E4%B9%A020220314%20%E8%99%9A%E6%8B%9FDOM/assets/image-20220314142105501.png" alt="image-20220314142105501"></p>
@@ -2230,7 +2230,7 @@
   </entry>
   <entry>
     <title>React学习20220314 SetState</title>
-    <url>/2022/03/16/2022-03-14-React%E5%AD%A6%E4%B9%A020220314%20SetState/</url>
+    <url>/2022-03-14-React%E5%AD%A6%E4%B9%A020220314%20SetState.html</url>
     <content><![CDATA[<h1 id="React学习20220314-SetState"><a href="#React学习20220314-SetState" class="headerlink" title="React学习20220314 SetState"></a>React学习20220314 SetState</h1><h2 id="初始认知"><a href="#初始认知" class="headerlink" title="初始认知"></a>初始认知</h2><p>setState之后立马访问对应state，会发现它并没有改变，而是会在之后某个时间发生变化</p>
 <h2 id="异步的动机和原理"><a href="#异步的动机和原理" class="headerlink" title="异步的动机和原理"></a>异步的动机和原理</h2><img src="https://s0.lgstatic.com/i/image/M00/6D/8A/Ciqc1F-uMeSAYK6FAABN0Vwnq5M814.png" alt="图片3.png" data-nodeid="13893">
 
@@ -2248,7 +2248,7 @@
   </entry>
   <entry>
     <title>字节二面记录</title>
-    <url>/2022/04/02/2022-04-02-%E5%AD%97%E8%8A%82%E4%BA%8C%E9%9D%A2%E8%AE%B0%E5%BD%95/</url>
+    <url>/2022-04-02-%E5%AD%97%E8%8A%82%E4%BA%8C%E9%9D%A2%E8%AE%B0%E5%BD%95.html</url>
     <content><![CDATA[<h1 id="2022-x2F-4-x2F-2-字节二面记录"><a href="#2022-x2F-4-x2F-2-字节二面记录" class="headerlink" title="2022&#x2F;4&#x2F;2 字节二面记录"></a>2022&#x2F;4&#x2F;2 字节二面记录</h1><blockquote>
 <p>啸问题:开头以为只有暑假可以实习,直接被面试官拒了,然后被同学提醒才发现开学也能实习,紧急联系回来了</p>
 <p>面试官还挺好的,居然还能继续面</p>
@@ -2268,7 +2268,7 @@
   </entry>
   <entry>
     <title>微型数据库开发记录</title>
-    <url>/2022/09/04/2022-09-04-%E5%BE%AE%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/</url>
+    <url>/2022-09-04-%E5%BE%AE%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95.html</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>近三周应小学期老师要求，和4位队友合作开发了一个微型数据库系统。由于耗费了许多的精力，我想将开发过程记录在这个博客上。</p>
 <h2 id="功能性需求："><a href="#功能性需求：" class="headerlink" title="功能性需求："></a>功能性需求：</h2><ol>
 <li>创建数据库和表，能够以文件形式保存在磁盘上（操作系统的文 件、进程管理，数据结构 的 B树）</li>
@@ -2315,7 +2315,7 @@
   </entry>
   <entry>
     <title>计组复习</title>
-    <url>/2022/09/11/2022-09-11-%E8%AE%A1%E7%BB%84%E5%A4%8D%E4%B9%A0/</url>
+    <url>/2022-09-11-%E8%AE%A1%E7%BB%84%E5%A4%8D%E4%B9%A0.html</url>
     <content><![CDATA[<h1 id="指令系统"><a href="#指令系统" class="headerlink" title="指令系统"></a>指令系统</h1><p>基本格式： 操作码| 地址码   	（字节的整数倍）</p>
 <h3 id="地址码结构"><a href="#地址码结构" class="headerlink" title="地址码结构"></a>地址码结构</h3><blockquote>
 <p>四地址指令： A1 OP A2 -&gt; A3 4次访存</p>
@@ -2452,7 +2452,7 @@
   </entry>
   <entry>
     <title>21/12/6 Database exp 8</title>
-    <url>/2021/12/06/21-12-6-Database-exp-8/</url>
+    <url>/21-12-6-Database-exp-8.html</url>
     <content><![CDATA[<ol>
 <li><h1 id="分析系统功能"><a href="#分析系统功能" class="headerlink" title="分析系统功能"></a>分析系统功能</h1><ol>
 <li><h2 id="ER图"><a href="#ER图" class="headerlink" title="ER图"></a>ER图</h2><img src="C:\Users\www13\AppData\Roaming\Typora\typora-user-images\image-20211120140233739.png" alt="image-20211120140233739"></li>
@@ -2998,7 +2998,7 @@
   </entry>
   <entry>
     <title>Bits Bytes and Integers</title>
-    <url>/2022/09/17/2022-09-17-csapp01/</url>
+    <url>/2022-09-17-csapp01.html</url>
     <content><![CDATA[<h1 id="Bits-Bytes-and-Integers"><a href="#Bits-Bytes-and-Integers" class="headerlink" title="Bits,Bytes and Integers"></a>Bits,Bytes and Integers</h1><h2 id="基础位运算"><a href="#基础位运算" class="headerlink" title="基础位运算"></a>基础位运算</h2><h3 id="分清-amp-，-amp-amp-，-，-，-，-之间的区别"><a href="#分清-amp-，-amp-amp-，-，-，-，-之间的区别" class="headerlink" title="分清&amp;，&amp;&amp;，| ，||，~，!之间的区别"></a>分清&amp;，&amp;&amp;，| ，||，~，!之间的区别</h3><p>位操作： &amp;，|，~，运算时只是单纯进行位操作</p>
 <p>逻辑比较： &amp;&amp;，||，！，运算时会添加逻辑考虑，</p>
 <blockquote>
@@ -3036,7 +3036,7 @@
   </entry>
   <entry>
     <title>floats</title>
-    <url>/2022/09/18/22-09-18-csapp02/</url>
+    <url>/22-09-18-csapp02.html</url>
     <content><![CDATA[<h1 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a>浮点数</h1><h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><h4 id="浮点通过移动二进制小数点来表示尽可能大的取值范围"><a href="#浮点通过移动二进制小数点来表示尽可能大的取值范围" class="headerlink" title="浮点通过移动二进制小数点来表示尽可能大的取值范围"></a>浮点通过移动二进制小数点来表示尽可能大的取值范围</h4><h3 id="数字公式"><a href="#数字公式" class="headerlink" title="数字公式"></a>数字公式</h3><p>$$<br>(-1)^S M 2^E<br>$$</p>
 <p>符号位{S} 表示正负</p>
 <p>小数{M}  一般是一个1~2之间的小数值</p>
@@ -3060,7 +3060,7 @@
   </entry>
   <entry>
     <title>未继续_android与腾讯云mysql数据库连接_windows</title>
-    <url>/2021/12/07/android%E4%B8%8E%E8%85%BE%E8%AE%AF%E4%BA%91mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5-windows/</url>
+    <url>/android%E4%B8%8E%E8%85%BE%E8%AE%AF%E4%BA%91mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5-windows.html</url>
     <content><![CDATA[<p>第一步</p>
 <blockquote>
 <p>购买一个腾讯云服务</p>
@@ -3102,7 +3102,7 @@
   </entry>
   <entry>
     <title>CPU虚拟化</title>
-    <url>/2022/09/29/0929CPU%E8%99%9A%E6%8B%9F%E5%8C%96/</url>
+    <url>/0929CPU%E8%99%9A%E6%8B%9F%E5%8C%96.html</url>
     <content><![CDATA[<h2 id="MAIN-TASK-执行虚拟机程序指令，响应虚拟机内外部事件"><a href="#MAIN-TASK-执行虚拟机程序指令，响应虚拟机内外部事件" class="headerlink" title="MAIN TASK: 执行虚拟机程序指令，响应虚拟机内外部事件"></a>MAIN TASK: 执行虚拟机程序指令，响应虚拟机内外部事件</h2><h2 id="面临的挑战"><a href="#面临的挑战" class="headerlink" title="面临的挑战"></a>面临的挑战</h2><h3 id="1-敏感非特权指令"><a href="#1-敏感非特权指令" class="headerlink" title="1. 敏感非特权指令"></a>1. 敏感非特权指令</h3><p>挑战来源： 基于 陷入-模拟 机制的虚拟化架构只能在所有敏感指令都是特权指令的架构中被建立<br>敏感指令： 操作敏感物理资源的指令，如I&#x2F;O指令、页表基地址切换指令等<br>特权指令； 必须运行在最高特权级的指令，在非特权级中执行这些指令将会触发特权级切换。<br>解决方案： </p>
 <blockquote>
 <p>软件方案： 解释执行【无脑解释执行所有指令，效率较低】，二进制翻译【将敏感指令替换为其他指令，会增加指令数量】，扫描与修补【在执行前，将敏感指令替换为特权指令，代码局部性较差】，半虚拟化【在执行敏感指令的时候通过超调用主动陷入Hypervisor中，避免扫描二进制代码引入的开销，但是打破了虚拟机和Hypervisor之间的界限】<br>硬件辅助方案： Intel VT-x,AMD SVM, ARM EL2, RISC-V H-Extension<br>将所有敏感指令转化为特权指令【可能存在兼容性问题】<br>引入虚拟化模式</p>
@@ -3120,7 +3120,7 @@
   </entry>
   <entry>
     <title>CSAPP 存储器层次结构 笔记</title>
-    <url>/2022/10/09/1009%E5%AD%98%E5%82%A8%E5%99%A8%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84/</url>
+    <url>/1009%E5%AD%98%E5%82%A8%E5%99%A8%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84.html</url>
     <content><![CDATA[<h2 id="6-1-存储技术"><a href="#6-1-存储技术" class="headerlink" title="6.1 存储技术"></a>6.1 存储技术</h2><ul>
 <li><h3 id="随机访问存储器-RAM"><a href="#随机访问存储器-RAM" class="headerlink" title="随机访问存储器 RAM"></a>随机访问存储器 RAM</h3><ul>
 <li><h4 id="静态-SRAM"><a href="#静态-SRAM" class="headerlink" title="静态 SRAM"></a>静态 SRAM</h4><blockquote>
@@ -3317,7 +3317,7 @@
   </entry>
   <entry>
     <title>CSAPP Optimize 笔记</title>
-    <url>/2022/10/08/1008CSAPP%20Optimize/</url>
+    <url>/1008CSAPP%20Optimize.html</url>
     <content><![CDATA[<h2 id="5-1-编译器优化能力的局限性"><a href="#5-1-编译器优化能力的局限性" class="headerlink" title="5.1 编译器优化能力的局限性"></a>5.1 编译器优化能力的局限性</h2><ul>
 <li><h3 id="编译器只做安全的优化–优化后和未优化的版本有一样的行为"><a href="#编译器只做安全的优化–优化后和未优化的版本有一样的行为" class="headerlink" title="编译器只做安全的优化–优化后和未优化的版本有一样的行为"></a>编译器只做安全的优化–优化后和未优化的版本有一样的行为</h3></li>
 </ul>
@@ -3447,7 +3447,7 @@
   </entry>
   <entry>
     <title>CSAPP Machine Level Programming</title>
-    <url>/2022/10/07/1007csapp_CPu/</url>
+    <url>/1007csapp_CPu.html</url>
     <content><![CDATA[<h2 id="C-语言-基础属性"><a href="#C-语言-基础属性" class="headerlink" title="C 语言 基础属性"></a>C 语言 基础属性</h2><p>数组的指针运算– 数组存储的是它的指针,其指针++ 会跳过存储数据量的位置(如 int a[10],a++ ,arr[a]会+4)</p>
 <h2 id="struct的对齐"><a href="#struct的对齐" class="headerlink" title="struct的对齐"></a>struct的对齐</h2><p>由于会根据struct中的最大的基本结构类型[int,double,float 之类的,和列表没关系]来进行对齐[例如,struct中存在double就会按照8byte对齐,如果最大只有int,就按照4byte对齐],因此,最好将结构合理组织,</p>
 <p>如</p>
@@ -3549,7 +3549,7 @@
   </entry>
   <entry>
     <title>CSAPP Linking 笔记</title>
-    <url>/2022/10/12/1012%20Linking/</url>
+    <url>/1012%20Linking.html</url>
     <content><![CDATA[<h2 id="符号和符号表"><a href="#符号和符号表" class="headerlink" title="符号和符号表"></a>符号和符号表</h2><blockquote>
 <p>static属性声明的全局变量&#x2F;函数都是模块私有的,任意不被static修饰的全局变量&#x2F;函数都是公共的,可以被其他模块访问</p>
 <p>因此,在每个可重定位目标模块中存在三类符号</p>
@@ -3582,7 +3582,7 @@
   </entry>
   <entry>
     <title>Giant VM 操作过程</title>
-    <url>/2022/10/01/1001GiantVm%20%E6%93%8D%E4%BD%9C%E8%BF%87%E7%A8%8B%20-ysh/</url>
+    <url>/1001GiantVm%20%E6%93%8D%E4%BD%9C%E8%BF%87%E7%A8%8B%20-ysh.html</url>
     <content><![CDATA[<p>主机环境：Windows 11 64位 core i9 12900p</p>
 <p>此次使用VMWare Workstation pro 16进行操作</p>
 <h2 id="1-环境配置"><a href="#1-环境配置" class="headerlink" title="1.环境配置"></a>1.环境配置</h2><h4 id="step1-系统准备"><a href="#step1-系统准备" class="headerlink" title="step1 系统准备"></a>step1 系统准备</h4><blockquote>
@@ -3688,7 +3688,7 @@
   </entry>
   <entry>
     <title>编码技巧 笔记</title>
-    <url>/2022/10/12/1012%E7%BC%96%E7%A0%81%E6%8A%80%E5%B7%A7/</url>
+    <url>/1012%E7%BC%96%E7%A0%81%E6%8A%80%E5%B7%A7.html</url>
     <content><![CDATA[<h2 id="1-整洁性"><a href="#1-整洁性" class="headerlink" title="1 整洁性"></a>1 整洁性</h2><ul>
 <li>语义简单明确,优先考虑易于读者理解的写法</li>
 <li>简洁!&#x3D;代码短 <ul>
@@ -3833,7 +3833,7 @@
   </entry>
   <entry>
     <title>论文阅读笔记-Towards a Fully Disaggregated and Programmable Data Center</title>
-    <url>/2022/10/02/1002%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0-Towards%20a%20Fully%20Disaggregated%20and%20Programmable/</url>
+    <url>/1002%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0-Towards%20a%20Fully%20Disaggregated%20and%20Programmable.html</url>
     <content><![CDATA[<h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>目的： 探索建立一个完全分布式的数据中心的可能性。</p>
 <p>topLayer: 探索了两种抽象形式，并提出了一种原分布式的方法</p>
 <p>bottomLayer: 描述了建立分布式设备与连接它们的网络基础设施所需的硬件和关键功能。</p>
@@ -3875,7 +3875,7 @@
   </entry>
   <entry>
     <title>csapp 异常控制流</title>
-    <url>/2022/10/13/1013%20%E5%BC%82%E5%B8%B8%E6%8E%A7%E5%88%B6%E6%B5%81/</url>
+    <url>/1013%20%E5%BC%82%E5%B8%B8%E6%8E%A7%E5%88%B6%E6%B5%81.html</url>
     <content><![CDATA[<h1 id="1013-异常控制流"><a href="#1013-异常控制流" class="headerlink" title="1013 异常控制流"></a>1013 异常控制流</h1><h3 id="Exception-Control-Flow-ECF"><a href="#Exception-Control-Flow-ECF" class="headerlink" title="Exception Control Flow ECF"></a>Exception Control Flow ECF</h3><h2 id="1-1-异常处理"><a href="#1-1-异常处理" class="headerlink" title="1.1 异常处理"></a>1.1 异常处理</h2><blockquote>
 <p>启动时生成<strong>异常表</strong></p>
 <p>运行时检测到异常,确定异常号,查找异常表,进入处理程序</p>
@@ -3989,7 +3989,7 @@
   </entry>
   <entry>
     <title>编码技巧 笔记</title>
-    <url>/2022/10/13/1013%E7%BC%96%E5%86%99%E5%8F%AF%E8%AF%BB%E4%BB%A3%E7%A0%81%E7%9A%84%E8%89%BA%E6%9C%AF%20%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</url>
+    <url>/1013%E7%BC%96%E5%86%99%E5%8F%AF%E8%AF%BB%E4%BB%A3%E7%A0%81%E7%9A%84%E8%89%BA%E6%9C%AF%20%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0.html</url>
     <content><![CDATA[<p>1012编写可读代码的艺术 阅读笔记 </p>
 <h1 id="表面改进"><a href="#表面改进" class="headerlink" title="表面改进"></a>表面改进</h1><h2 id="1-代码应当易于理解"><a href="#1-代码应当易于理解" class="headerlink" title="1.代码应当易于理解"></a>1.代码应当易于理解</h2><p><strong>可读性</strong>: 代码的写法应当使别人理解它所需的时间最小化</p>
 <h2 id="2-将信息装入名字里"><a href="#2-将信息装入名字里" class="headerlink" title="2.将信息装入名字里"></a>2.将信息装入名字里</h2><ul>
@@ -4080,7 +4080,7 @@
   </entry>
   <entry>
     <title>qemu cxl</title>
-    <url>/2022/10/15/qemu-cxl/</url>
+    <url>/qemu-cxl.html</url>
     <content><![CDATA[<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">./build/aarch64-softmmu/qemu-system-aarch64 -M virt,gic-version=3,cxl=on -m 4g,maxmem=8G,slots=8 -cpu max \<br>-hda ../vm_disk/ubuntu_cxl.qcow2 \<br>-cdrom ../ubuntu-20.04.5-desktop-amd64.iso \<br>-object memory-backend-file,id=cxl-mem1,share=on,mem-path=/tmp/cxltest.raw,size=256M \<br>-object memory-backend-file,id=cxl-lsa1,share=on,mem-path=/tmp/lsa.raw,size=256M \<br>-device pxb-cxl,bus_nr=12,bus=pcie.0,id=cxl.1 \<br>-device cxl-rp,port=0,bus=cxl.1,id=root_port13,chassis=0,slot=2 \<br>-device cxl-type3,bus=root_port13,memdev=cxl-mem1,lsa=cxl-lsa1,id=cxl-pmem0 \<br>-M cxl-fmw.0.targets.0=cxl.1,cxl-fmw.0.size=4G<br></code></pre></td></tr></table></figure>
 
 <p>-M</p>
@@ -4101,6 +4101,64 @@
       <tags>
         <tag>操作系统</tag>
         <tag>qemu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决 系统上禁止运行脚本。有关详细信息， 请参阅 https:/go.microsoft.com/fwlink/?LinkID=135170 中的 about_Execution_Policies</title>
+    <url>/%E8%A7%A3%E5%86%B3-%E7%B3%BB%E7%BB%9F%E4%B8%8A%E7%A6%81%E6%AD%A2%E8%BF%90%E8%A1%8C%E8%84%9A%E6%9C%AC%E3%80%82%E6%9C%89%E5%85%B3%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF%EF%BC%8C-%E8%AF%B7%E5%8F%82%E9%98%85-https-go-microsoft-com-fwlink-LinkID-135170-%E4%B8%AD%E7%9A%84-about-Execution-Policies.html</url>
+    <content><![CDATA[<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><blockquote>
+<p>Windows11 （版本22621.1413）</p>
+</blockquote>
+<h2 id="省流"><a href="#省流" class="headerlink" title="省流"></a>省流</h2><blockquote>
+<ol>
+<li><p>win + x 以管理员身份运行PowerShell</p>
+</li>
+<li><p>输入</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser<br></code></pre></td></tr></table></figure>
+
+<p>，设置成Y即可</p>
+<ol>
+<li><p>想知道改成啥样了，可以输入</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">Get-ExecutionPolicy -List<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>只想知道当前用户的改成啥样了，输入</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">Get-ExecutionPolicy<br></code></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ol>
+</blockquote>
+<h2 id="其他人的解决方案"><a href="#其他人的解决方案" class="headerlink" title="其他人的解决方案"></a>其他人的解决方案</h2><p>搜到的其他人的法子</p>
+<blockquote>
+<ol>
+<li>win + x 以管理员身份运行PowerShell</li>
+<li>输入set-executionpolicy remotesigned，设置成Y即可</li>
+</ol>
+</blockquote>
+<p>但实际上我这并没有把当前用户的executionpolicy 改成remotesigned，或者是我这文件夹不认这个LocalMachine的设置（为啥，我不道啊）</p>
+<h2 id="需要知道的一些东西"><a href="#需要知道的一些东西" class="headerlink" title="需要知道的一些东西"></a>需要知道的一些东西</h2><p>毕竟这是对电脑的修改，大伙肯定是想知道这是改了什么的</p>
+<blockquote>
+<h3 id="用户组"><a href="#用户组" class="headerlink" title="用户组"></a>用户组</h3><h3 id="LocalMachine"><a href="#LocalMachine" class="headerlink" title="LocalMachine"></a>LocalMachine</h3><p>执行策略会影响当前计算机上的所有用户。 它存储在 <strong>HKEY_LOCAL_MACHINE</strong> 注册表子项中。</p>
+<h3 id="CurrentUser"><a href="#CurrentUser" class="headerlink" title="CurrentUser"></a>CurrentUser</h3><p>执行策略仅影响当前用户。 它存储在 <strong>HKEY_CURRENT_USER</strong> 注册表子项中。</p>
+<h3 id="两个用到的安全策略级别"><a href="#两个用到的安全策略级别" class="headerlink" title="两个用到的安全策略级别"></a>两个用到的安全策略级别</h3><h3 id="Restricted"><a href="#Restricted" class="headerlink" title="Restricted"></a>Restricted</h3><ul>
+<li>Windows 客户端计算机的默认执行策略。</li>
+<li>允许单个命令，但不允许脚本。</li>
+<li>阻止运行所有脚本文件，包括格式化和配置文件 () <code>.ps1xml</code> 、模块脚本文件 (<code>.psm1</code>) ，以及 PowerShell 配置文件 () <code>.ps1</code></li>
+</ul>
+<h3 id="RemoteSigned"><a href="#RemoteSigned" class="headerlink" title="RemoteSigned"></a>RemoteSigned</h3><ul>
+<li>Windows Server 计算机的默认执行策略。</li>
+<li>脚本可以运行。</li>
+<li>需要受信任的发布者对从 Internet 下载的脚本和配置文件（包括电子邮件和即时消息程序）的数字签名。</li>
+<li>不需要在本地计算机上编写且未从 Internet 下载的脚本上使用数字签名。</li>
+<li>如果未阻止脚本（例如使用 cmdlet），则运行从 Internet 下载且未签名的 <code>Unblock-File</code> 脚本。</li>
+<li>运行来自 Internet 以外的源的未签名脚本以及可能是恶意的已签名脚本的风险。</li>
+</ul>
+</blockquote>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-7.3">关于执行策略 - PowerShell | Microsoft Learn</a></p>
+<p><a href="https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.security/set-executionpolicy?view=powershell-7.3">Set-ExecutionPolicy (Microsoft.PowerShell.Security) - PowerShell | Microsoft Learn</a></p>
+<p><a href="https://blog.csdn.net/l_x_cser/article/details/104956657">实测解决:系统上禁止运行脚本。有关详细信息， 请参阅 https:&#x2F;go.microsoft.com&#x2F;fwlink&#x2F;?LinkID&#x3D;135170 中的 about_Execution_Policies_SeanHit的博客-CSDN博客</a></p>
+]]></content>
+      <tags>
+        <tag>Windows使用</tag>
       </tags>
   </entry>
 </search>
