@@ -1,3 +1,4 @@
+http://nmhn.github.io/2021/12/07/android%E4%B8%8E%E8%85%BE%E8%AE%AF%E4%BA%91mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5-windows/
 http://nmhn.github.io/tags/index-1.html
 http://nmhn.github.io/about/index-1.html
 http://nmhn.github.io/2022/10/15/qemu-cxl/
@@ -40,7 +41,6 @@ http://nmhn.github.io/2022/09/11/2022-09-11-%E8%AE%A1%E7%BB%84%E5%A4%8D%E4%B9%A0
 http://nmhn.github.io/2021/12/06/21-12-6-Database-exp-8/
 http://nmhn.github.io/2022/09/17/2022-09-17-csapp01/
 http://nmhn.github.io/2022/09/18/22-09-18-csapp02/
-http://nmhn.github.io/2021/12/07/android%E4%B8%8E%E8%85%BE%E8%AE%AF%E4%BA%91mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5-windows/
 http://nmhn.github.io/
 http://nmhn.github.io/tags/exp8/
 http://nmhn.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/
@@ -68,7 +68,6 @@ http://nmhn.github.io/tags/%E7%BC%96%E7%A0%81/
 http://nmhn.github.io/tags/qemu/
 http://nmhn.github.io/categories/%E5%A4%A7%E4%B8%89/
 http://nmhn.github.io/categories/%E5%A4%A7%E4%B8%89/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/
-http://nmhn.github.io/categories/%E5%A4%A7%E4%B8%89/%E5%A4%B1%E8%B4%A5/
 http://nmhn.github.io/categories/%E5%A4%A7%E5%9B%9B/
 http://nmhn.github.io/categories/%E5%A4%A7%E5%9B%9B/%E4%B8%8A%E4%BA%A4/
 http://nmhn.github.io/categories/%E7%AC%94%E8%AE%B0/
